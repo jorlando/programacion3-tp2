@@ -1,0 +1,6 @@
+#Excluyo las carpetas propias de eclipse
+.metadata/
+TrabajoPractico2/.settings
+
+#Excluyo lo contenido dentro de bin
+bin/*.*
