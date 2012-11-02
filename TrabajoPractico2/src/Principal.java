@@ -1,5 +1,5 @@
 
-public class claseDePrueba {
+public class Principal {
 
 	/**
 	 * @param args
