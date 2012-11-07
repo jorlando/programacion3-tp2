@@ -9,6 +9,12 @@ public class Vector {
 		this.y = y;
 	}
 	
+	public Vector (Vector aCopiar) //inicializo un Vector a partir de otro
+	{
+		this.x = aCopiar.getX();
+		this.y = aCopiar.getY();
+	}
+	
 	public double getX(){
 		return x;
 	}
