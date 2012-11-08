@@ -21,7 +21,14 @@ public class AvionTest extends TestCase
 		
 		unAvion.Avanzar();
 		
-		assertEquals(unAvion.obtenerPosicion(),posicionInicial.sumarOtroVector(unAvion.obtenerDireccion()));
+		double dx = unAvion.obtenerPosicion().getX() - posicionInicial.sumarOtroVector(unAvion.obtenerDireccion()).getX();
+		double dy = unAvion.obtenerPosicion().getY() - posicionInicial.sumarOtroVector(unAvion.obtenerDireccion()).getY();
+		double deltaPermitido = 0.01;
+		
+		if(dx >= deltaPermitido || dx <= deltaPermitido*(-1))
+			fail();
+		if(dy >= deltaPermitido || dy <= deltaPermitido*(-1))
+			fail();
 	}
 
 }
