@@ -37,7 +37,7 @@ public class TrayectoriaTest extends TestCase
 		
 		Trayectoria unaTrayectoria = new Trayectoria(unasDirecciones);
 				
-		Vector versorDireccion = unaTrayectoria.Direccion();
+		Vector versorDireccion = unaTrayectoria.Direccion(new Vector(0,0));
 		
 		assertTrue(versorDireccion.esIgualA(new Vector(0,1)));
 	}
@@ -48,7 +48,7 @@ public class TrayectoriaTest extends TestCase
 		unasDirecciones.offer(new Vector(1,1));
 		Trayectoria unaTrayectoria = new Trayectoria(unasDirecciones);
 	
-		unaTrayectoria.WaypointAlcanzado();
+		unaTrayectoria.QuitarWaypoint();
 		
 		assertTrue(unaTrayectoria.Waypoint().esIgualA(new Vector(1,1)));
 	}

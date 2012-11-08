@@ -1,7 +1,8 @@
 package Utilitarios;
 
+import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
+
 
 public class Trayectoria
 {
@@ -12,19 +13,36 @@ public class Trayectoria
 		this.waypoints = unasDirecciones;
 	}
 
+	public Trayectoria(Vector unWaypoint)
+	{
+		this.waypoints = new LinkedList<Vector>();
+		this.waypoints.offer(unWaypoint);
+	}
+	
 	public Vector Waypoint()
 	{
 		return this.waypoints.peek();
 	}
 
-	public Vector Direccion()
+	public Vector Direccion(Vector desdePosicion)
 	{
-		Vector aux = new Vector(this.waypoints.peek());
+		//La direccion sera la resta Waypoint - posicion desde normalizada
+		Vector aux = this.waypoints.peek().restarOtroVector(desdePosicion);
 		
 		return aux.normalizar();
 	}
 
-	public void WaypointAlcanzado()
+	protected Vector GetWaypoint()
+	{
+		return this.waypoints.remove();
+	}
+	
+	public void AgregarWaypoint(Vector unWaypoint)
+	{
+		this.waypoints.offer(unWaypoint);
+	}
+	
+	public void QuitarWaypoint()
 	{
 		this.waypoints.remove();
 	}

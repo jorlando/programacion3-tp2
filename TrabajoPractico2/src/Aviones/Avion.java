@@ -3,25 +3,47 @@ package Aviones;
 import Utilitarios.Trayectoria;
 import Utilitarios.Vector;
 
-public abstract class Avion
+public class Avion
 {
 	private Vector posicion;
 	private Trayectoria trayectoriaDeVuelo; 
+	private EstrategiaAvion tipoDeAvion;
+	private double velocidad;
 	
-	Avion(Vector PosicionInicial, Trayectoria trayectoriaInicial)
+	public Avion(Vector PosicionInicial, Trayectoria trayectoriaInicial, EstrategiaAvion tipoDeAvion)
 	{
 		this.posicion = PosicionInicial;
 		this.trayectoriaDeVuelo = trayectoriaInicial;
+		this.tipoDeAvion = tipoDeAvion;
+		this.velocidad = 1;
 	}
-
+	
+	public Avion(Vector PosicionInicial, Vector DireccionInicial, EstrategiaAvion tipoDeAvion)
+	{
+		this.posicion = PosicionInicial;
+		this.trayectoriaDeVuelo = new Trayectoria(DireccionInicial);
+		this.tipoDeAvion = tipoDeAvion;
+		this.velocidad = 1;
+	}
+	
 	public Vector obtenerDireccion()
 	{	
-		return this.trayectoriaDeVuelo.Direccion(); 
+		return this.trayectoriaDeVuelo.Direccion(this.posicion); 
 	}
 
 	public Vector obtenerPosicion()
 	{
 		return this.posicion;
+	}
+	
+	protected void ModificarPosicion(Vector posicion)
+	{
+		this.posicion = posicion;
+	}
+	
+	public void Avanzar()
+	{
+		posicion = tipoDeAvion.Avanzar(this.posicion, this.velocidad, this.trayectoriaDeVuelo);
 	}
 
 }
