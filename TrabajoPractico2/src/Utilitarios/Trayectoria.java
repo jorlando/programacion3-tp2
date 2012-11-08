@@ -7,7 +7,8 @@ import java.util.Queue;
 public class Trayectoria
 {
 	private Queue<Vector> waypoints;
-
+	private Vector direccionAnterior;
+	
 	public Trayectoria(Queue<Vector> unasDirecciones)
 	{
 		this.waypoints = unasDirecciones;
@@ -27,10 +28,17 @@ public class Trayectoria
 	public Vector Direccion(Vector desdePosicion)
 	{
 		//La direccion sera la resta Waypoint - posicion desde normalizada
-		Vector aux = this.waypoints.peek().restarOtroVector(desdePosicion);
-		
-		return aux.normalizar();
+		if (this.waypoints.peek().esIgualA(desdePosicion))
+			return this.direccionAnterior;
+		else
+		{		
+			Vector aux = this.waypoints.peek().restarOtroVector(desdePosicion);
+			
+			this.direccionAnterior = aux.normalizar();
+			return aux.normalizar();
+		}
 	}
+	
 
 	protected Vector GetWaypoint()
 	{

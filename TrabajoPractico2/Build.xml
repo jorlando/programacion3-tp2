@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+
+<project name="Cop-Control" default="compilar">
+	
+	<target name="limpiar" description="Borrar Todo lo Compilado">
+		<delete dir= "build"/>
+		<delete dir= "test"/>
+	</target>
+		
+	<target name="compilar" depends="limpiar" description= "Compilar Version Productiva">
+		<mkdir dir="build"/>
+		<javac srcdir = "./src" destdir="./build"></javac>
+	</target>
+	
+	<target name="compilartest" depends="compilar" description= "Compilar Solo Tests">
+			<mkdir dir="test"/>
+			<javac srcdir = "./srcTestUnitarios" destdir="./test">
+				<classpath path="./build"/>
+				
+			</javac>
+	</target>
+	
+	<target name="corrertest" depends="compilartest"
+			description= "Ejecuta los test con JUnit">
+		<junit fork="no" printsummary="no" haltonfailure="no" showoutput="true">
+			
+			<classpath path="./test"/>
+			<classpath path="./build"/>
+			<classpath path="./src"/>
+			
+			<batchtest fork="no">
+				<fileset dir=".">
+			      <include name= "**/*Test*.java"/>
+			    </fileset>
+			</batchtest>
+		</junit>
+	</target>
+</project>

@@ -43,7 +43,7 @@ public class Avion
 	
 	public void Avanzar()
 	{
-		posicion = tipoDeAvion.Avanzar(this.posicion, this.velocidad, this.trayectoriaDeVuelo);
+		this.posicion = tipoDeAvion.Avanzar(this.posicion, this.velocidad, this.trayectoriaDeVuelo);
 	}
 
 }

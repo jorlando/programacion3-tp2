@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 	//  Para la prueba se utilizara un miembro de la clase AvionSimple que es la mas
 	//  directa de las relaciones de herencia.
 
-public class AvionTest extends TestCase
+public class AvionSimpleTest extends TestCase
 {
 
 	public void testAvionAvanzaSegunTrayectoriaYPosicionInicial()
@@ -31,4 +31,16 @@ public class AvionTest extends TestCase
 			fail();
 	}
 
+	public void testAvionContinuaEnLineaRecta()
+	{
+		Vector posicionInicial = new Vector(1,0);
+		Vector direccionInicial = new Vector(2,0);
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, Estrategia.AvionSimple());
+		
+		unAvion.Avanzar();
+		unAvion.Avanzar();
+		
+		assertTrue(unAvion.obtenerPosicion().getX() == 3.0 && 
+				   unAvion.obtenerPosicion().getY() == 0.0 );
+	}
 }

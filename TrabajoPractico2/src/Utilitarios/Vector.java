@@ -33,6 +33,9 @@ public class Vector {
 	}
 	
 	public Vector normalizar(){
+		if (x == 0.0 && y == 0.0)
+			return new Vector(0.0,0.0);
+		
 		return new Vector(x/this.norma(),y/this.norma());
 	}
 	
