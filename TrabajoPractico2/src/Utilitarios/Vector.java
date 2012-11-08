@@ -1,4 +1,3 @@
-package Utilitarios;
 
 public class Vector {
 	private double x; //los manejo con double por la sqrt
@@ -7,12 +6,6 @@ public class Vector {
 	public Vector (double x, double y){
 		this.x = x;
 		this.y = y;
-	}
-	
-	public Vector (Vector aCopiar) //inicializo un Vector a partir de otro
-	{
-		this.x = aCopiar.getX();
-		this.y = aCopiar.getY();
 	}
 	
 	public double getX(){
@@ -53,6 +46,15 @@ public class Vector {
 	
 	public double pendiente(){
 		return y/x;
+	}
+	
+	public double productoEscalar(Vector otro){
+		
+		return ((this.x*otro.x) + (this.y*otro.y));
+	}
+	
+	public double anguloFormadoCon(Vector otro){
+		return Math.acos((this.productoEscalar(otro))/(this.norma()*otro.norma()));
 	}
 
 }
