@@ -1,3 +1,5 @@
+package Utilitarios;
+
 
 public class Vector {
 	private double x; //los manejo con double por la sqrt
@@ -6,6 +8,12 @@ public class Vector {
 	public Vector (double x, double y){
 		this.x = x;
 		this.y = y;
+	}
+	
+	public Vector (Vector aCopiar)
+	{
+		this.x = aCopiar.getX();
+		this.x = aCopiar.getY();
 	}
 	
 	public double getX(){

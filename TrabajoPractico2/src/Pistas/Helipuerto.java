@@ -1,3 +1,9 @@
+package Pistas;
+
+import Utilitarios.Vector;
+import Aviones.Avion;
+import Entradas.Entrada;
+import Entradas.EntradaSinDireccion;
 
 public class Helipuerto implements Pista {
 	private Entrada entrada;

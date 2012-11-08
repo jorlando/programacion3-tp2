@@ -1,3 +1,7 @@
+package Entradas;
+
+import Utilitarios.Vector;
+
 
 public class EntradaConDireccion extends Entrada {
 	

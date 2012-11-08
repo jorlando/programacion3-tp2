@@ -1,3 +1,6 @@
+package Entradas;
+
+import Utilitarios.Vector;
 
 public abstract class Entrada {
 	

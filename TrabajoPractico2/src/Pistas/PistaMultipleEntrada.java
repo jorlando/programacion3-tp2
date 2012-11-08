@@ -1,3 +1,8 @@
+package Pistas;
+
+import Aviones.Avion;
+import Entradas.Entrada;
+
 
 public class PistaMultipleEntrada {
 	//no esta lista todavia.

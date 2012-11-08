@@ -1,3 +1,10 @@
+package Pistas;
+
+import Utilitarios.Vector;
+import Aviones.Avion;
+import Entradas.Entrada;
+import Entradas.EntradaConDireccion;
+
 
 public class PistaDobleEntrada implements Pista {
 	private Entrada entrada1;

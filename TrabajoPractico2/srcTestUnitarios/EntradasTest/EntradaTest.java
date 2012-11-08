@@ -1,3 +1,10 @@
+package EntradasTest;
+
+
+import Utilitarios.Vector;
+import Aviones.Avion;
+import Aviones.AvionSimple;
+import Entradas.EntradaConDireccion;
 import junit.framework.TestCase;
 
 public class EntradaTest extends TestCase {
@@ -7,7 +14,7 @@ public class EntradaTest extends TestCase {
 	
 	public void setUp(){
 		entrada= new EntradaConDireccion(new Vector(1,2) , 2 , new Vector(2,1) , 45 );
-		avion1 = new Avion(new Vector(1,2),new Vector (2,1));
+		avion1 = new AvionSimple(new Vector(1,2),new Vector (2,1));
 	}
 	
 	public void testEntradaPunto12PerteneceAEntrada() {

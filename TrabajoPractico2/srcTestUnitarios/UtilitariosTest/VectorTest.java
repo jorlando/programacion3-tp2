@@ -1,3 +1,6 @@
+package UtilitariosTest;
+
+import Utilitarios.Vector;
 import junit.framework.TestCase;
 
 public class VectorTest extends TestCase{

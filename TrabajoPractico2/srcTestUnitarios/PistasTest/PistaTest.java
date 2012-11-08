@@ -1,3 +1,4 @@
+package PistasTest;
 import junit.framework.TestCase;
 
 public class PistaTest extends TestCase {
