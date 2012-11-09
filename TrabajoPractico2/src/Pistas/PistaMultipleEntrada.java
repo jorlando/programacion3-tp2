@@ -2,25 +2,24 @@ package Pistas;
 
 import Aviones.Avion;
 import Entradas.Entrada;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class PistaMultipleEntrada extends Pista {
-	//no esta lista todavia.
-	private int cantidadEntradas;
-	private Entrada[] entradas;
+	private ArrayList<Entrada> entradas;
 	
-	public PistaMultipleEntrada (int c){
-		entradas = new Entrada[c];//hay que ver como agregamos las entradas.
-		cantidadEntradas = c;
+	public PistaMultipleEntrada (ArrayList<Entrada> entradasNuevas){
+		entradas = new ArrayList<Entrada>(entradasNuevas);//no estoy seguro si funciona.
 	}
 	
 	public boolean calcularAterrizaje(Avion avion){
-		for (int i = 0;i<cantidadEntradas;i++){
-			if (entradas[i].direccionCorrecta(avion.obtenerDireccion()) == true) {
-				if (entradas[i].puntoPertenceALaEntrada(avion.obtenerPosicion()) == true){
-					return true;
-				}
-			}
+		// hay que probar a ver si anda
+		Iterator<Entrada> it = entradas.iterator();
+		Entrada entradaActual;
+		while (it.hasNext()){
+			entradaActual = it.next();
+			if (entradaActual.direccionCorrecta(avion.obtenerDireccion()) && entradaActual.puntoPertenceALaEntrada(avion.obtenerPosicion())) return true;
 		}
 		//si sale del ciclo significa que no puede entrar en ninguna de las entradas de la pista.
 		return false;
