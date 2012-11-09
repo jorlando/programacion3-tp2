@@ -2,6 +2,7 @@ package Aviones;
 
 import Utilitarios.Trayectoria;
 import Utilitarios.Vector;
+import Pistas.Pista;
 
 public class EstrategiaAvionPesado implements EstrategiaAvion
 {
@@ -30,6 +31,10 @@ public class EstrategiaAvionPesado implements EstrategiaAvion
 			proximaPosicion = posicion.sumarOtroVector(trayectoriaDeVuelo.Direccion(posicion).multiplicarPorEscalar(velocidad));
 	
 		return proximaPosicion;	
+	}
+	
+	public boolean puedeAterrizarEn(Pista unaPista){
+		return unaPista.puedeAterrizarAvionPesado();
 	}
 
 }

@@ -1,5 +1,6 @@
 package Aviones;
 
+import Pistas.Pista;
 import Utilitarios.Trayectoria;
 import Utilitarios.Vector;
 
@@ -30,6 +31,9 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 	
 		return proximaPosicion;	
 	}
-
+	
+	public boolean puedeAterrizarEn(Pista unaPista){
+		return unaPista.puedeAterrizarAvionSimple();
+	}
 	
 }

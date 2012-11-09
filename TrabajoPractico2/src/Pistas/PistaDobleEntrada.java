@@ -6,7 +6,7 @@ import Entradas.Entrada;
 import Entradas.EntradaConDireccion;
 
 
-public class PistaDobleEntrada implements Pista {
+public class PistaDobleEntrada extends Pista {
 	private Entrada entrada1;
 	private Entrada entrada2;
 	
@@ -25,6 +25,5 @@ public class PistaDobleEntrada implements Pista {
 		
 		return false;
 	}
-	
 	
 }

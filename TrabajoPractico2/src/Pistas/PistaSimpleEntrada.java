@@ -6,8 +6,7 @@ import Entradas.Entrada;
 import Entradas.EntradaConDireccion;
 
 
-public class PistaSimpleEntrada implements Pista {
-
+public class PistaSimpleEntrada extends Pista {
 	private Entrada entrada;
 	
 	public PistaSimpleEntrada(Vector posicion, Vector direccion, double ancho, double tolerancia){

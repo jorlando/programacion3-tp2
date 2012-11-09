@@ -2,6 +2,7 @@ package Aviones;
 
 import Utilitarios.Trayectoria;
 import Utilitarios.Vector;
+import Pistas.Pista;
 
 public class Avion
 {
@@ -44,6 +45,14 @@ public class Avion
 	public void Avanzar()
 	{
 		this.posicion = tipoDeAvion.Avanzar(this.posicion, this.velocidad, this.trayectoriaDeVuelo);
+	}
+	
+	public EstrategiaAvion obtenerEstrategia(){
+		return this.tipoDeAvion;
+	}
+	
+	public boolean puedoAterrizarEn(Pista unaPista){
+		return (unaPista.calcularAterrizaje(this) && tipoDeAvion.puedeAterrizarEn(unaPista));
 	}
 
 }

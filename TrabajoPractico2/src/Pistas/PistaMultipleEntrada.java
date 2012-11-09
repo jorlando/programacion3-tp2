@@ -4,7 +4,7 @@ import Aviones.Avion;
 import Entradas.Entrada;
 
 
-public class PistaMultipleEntrada {
+public class PistaMultipleEntrada extends Pista {
 	//no esta lista todavia.
 	private int cantidadEntradas;
 	private Entrada[] entradas;

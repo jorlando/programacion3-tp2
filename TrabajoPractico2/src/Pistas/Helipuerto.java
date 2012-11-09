@@ -5,7 +5,7 @@ import Aviones.Avion;
 import Entradas.Entrada;
 import Entradas.EntradaSinDireccion;
 
-public class Helipuerto implements Pista {
+public class Helipuerto extends Pista {
 	private Entrada entrada;
 	
 	public Helipuerto (Vector posicion, double ancho){
@@ -17,5 +17,9 @@ public class Helipuerto implements Pista {
 		Vector direccionAvion = avion.obtenerDireccion();
 		return (entrada.puntoPertenceALaEntrada(posicionAvion) && entrada.direccionCorrecta(direccionAvion));
 	}
-
+	
+	public boolean puedeAterrizarHelicoptero(){
+		return true;
+	}
+	
 }

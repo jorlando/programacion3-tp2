@@ -2,6 +2,7 @@ package Aviones;
 
 import Utilitarios.Trayectoria;
 import Utilitarios.Vector;
+import Pistas.Pista;
 
 public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 {
@@ -35,5 +36,9 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 		}
 		else return posicion;
 	}
-
+	
+	public boolean puedeAterrizarEn(Pista unaPista){
+		return unaPista.puedeAterrizarHelicoptero();
+	}
+	
 }
