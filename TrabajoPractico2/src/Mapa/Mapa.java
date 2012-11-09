@@ -26,4 +26,20 @@ public class Mapa {
 		aviones.add(unAvion);
 	}
 	
+	public boolean verificarColisiones(){
+		//verifica si hay aviones que chocaron.
+		//seria la condicion para finalizar el juego.
+		return false;
+	}
+	
+	public void aterrizarAviones(){
+		//aterriza los aviones que puedan aterrizar sobre alguna pista.
+	}
+	
+	public void moverAviones(){
+		//hace avanzar a los aviones. 
+	}
+	
+	
+	
 }
