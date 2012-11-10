@@ -36,4 +36,8 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 		return unaPista.puedeAterrizarAvionSimple();
 	}
 	
+	public boolean calcularChoqueCon(Avion unAvion){
+		return true;
+	}
+	
 }

@@ -41,4 +41,8 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 		return unaPista.puedeAterrizarHelicoptero();
 	}
 	
+	public boolean calcularChoqueCon(Avion unAvion){
+		return true;
+	}
+	
 }

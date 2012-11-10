@@ -36,5 +36,9 @@ public class EstrategiaAvionPesado implements EstrategiaAvion
 	public boolean puedeAterrizarEn(Pista unaPista){
 		return unaPista.puedeAterrizarAvionPesado();
 	}
+	
+	public boolean calcularChoqueCon(Avion unAvion){
+		return true;
+	}
 
 }

@@ -10,21 +10,24 @@ public class Avion
 	private Trayectoria trayectoriaDeVuelo; 
 	private EstrategiaAvion tipoDeAvion;
 	private double velocidad;
+	private double tamaño;
 	
-	public Avion(Vector PosicionInicial, Trayectoria trayectoriaInicial, EstrategiaAvion tipoDeAvion)
+	public Avion(Vector PosicionInicial, Trayectoria trayectoriaInicial, double tamaño, EstrategiaAvion tipoDeAvion)
 	{
 		this.posicion = PosicionInicial;
 		this.trayectoriaDeVuelo = trayectoriaInicial;
 		this.tipoDeAvion = tipoDeAvion;
 		this.velocidad = 1;
+		this.tamaño = tamaño;
 	}
 	
-	public Avion(Vector PosicionInicial, Vector DireccionInicial, EstrategiaAvion tipoDeAvion)
+	public Avion(Vector PosicionInicial, Vector DireccionInicial, double tamaño, EstrategiaAvion tipoDeAvion)
 	{
 		this.posicion = PosicionInicial;
 		this.trayectoriaDeVuelo = new Trayectoria(DireccionInicial);
 		this.tipoDeAvion = tipoDeAvion;
 		this.velocidad = 1;
+		this.tamaño = tamaño;
 	}
 	
 	public Vector obtenerDireccion()
@@ -54,5 +57,9 @@ public class Avion
 	public boolean puedoAterrizarEn(Pista unaPista){
 		return (unaPista.calcularAterrizaje(this) && tipoDeAvion.puedeAterrizarEn(unaPista));
 	}
-
+	
+	public boolean colisionaCon(Avion otroAvion){
+		return ((((this.posicion.restarOtroVector(otroAvion.posicion)).norma())-(this.tamaño+otroAvion.tamaño)<0) && 
+				tipoDeAvion.calcularChoqueCon(otroAvion));
+	}
 }
