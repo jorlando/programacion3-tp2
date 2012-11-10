@@ -1,5 +1,6 @@
 package Utilitarios;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -9,9 +10,12 @@ public class Trayectoria
 	private Queue<Vector> waypoints;
 	private Vector direccionAnterior;
 	
-	public Trayectoria(Queue<Vector> unasDirecciones)
+	public Trayectoria(Iterator<Vector> direcciones)
 	{
-		this.waypoints = unasDirecciones;
+		this.waypoints = new LinkedList<Vector>();
+		
+		while(direcciones.hasNext())
+			this.waypoints.offer(direcciones.next());
 	}
 
 	public Trayectoria(Vector unWaypoint)

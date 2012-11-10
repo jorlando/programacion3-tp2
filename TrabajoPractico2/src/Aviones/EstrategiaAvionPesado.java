@@ -7,7 +7,7 @@ import Pistas.Pista;
 public class EstrategiaAvionPesado implements EstrategiaAvion
 {
 
-	public Vector Avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
+	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{
 		double distanciaAlWaypoint = trayectoriaDeVuelo.Waypoint().restarOtroVector(posicion).norma();
 		

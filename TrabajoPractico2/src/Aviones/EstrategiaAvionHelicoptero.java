@@ -7,7 +7,7 @@ import Pistas.Pista;
 public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 {
 
-	public Vector Avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
+	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{
 		if(trayectoriaDeVuelo.Waypoint() != null)
 		{

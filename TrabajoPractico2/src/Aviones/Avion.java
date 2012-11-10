@@ -21,13 +21,9 @@ public class Avion
 		this.tamaño = tamaño;
 	}
 	
-	public Avion(Vector PosicionInicial, Vector DireccionInicial, double tamaño, EstrategiaAvion tipoDeAvion)
+	public Avion(Vector posicionInicial, Vector direccionInicial, double tamaño, EstrategiaAvion tipoDeAvion)
 	{
-		this.posicion = PosicionInicial;
-		this.trayectoriaDeVuelo = new Trayectoria(DireccionInicial);
-		this.tipoDeAvion = tipoDeAvion;
-		this.velocidad = 1;
-		this.tamaño = tamaño;
+		this(posicionInicial, new Trayectoria(direccionInicial), tamaño, tipoDeAvion);
 	}
 	
 	public Vector obtenerDireccion()
@@ -40,14 +36,14 @@ public class Avion
 		return this.posicion;
 	}
 	
-	protected void ModificarPosicion(Vector posicion)
+	protected void modificarPosicion(Vector posicion)
 	{
 		this.posicion = posicion;
 	}
 	
-	public void Avanzar()
+	public void avanzar()
 	{
-		this.posicion = tipoDeAvion.Avanzar(this.posicion, this.velocidad, this.trayectoriaDeVuelo);
+		this.posicion = tipoDeAvion.avanzar(this.posicion, this.velocidad, this.trayectoriaDeVuelo);
 	}
 	
 	public EstrategiaAvion obtenerEstrategia(){

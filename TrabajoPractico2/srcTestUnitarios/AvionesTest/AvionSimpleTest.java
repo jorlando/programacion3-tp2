@@ -17,9 +17,9 @@ public class AvionSimpleTest extends TestCase
 	{
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, Estrategia.AvionSimple());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, Estrategia.AvionSimple());
 		
-		unAvion.Avanzar();
+		unAvion.avanzar();
 		
 		double dx = unAvion.obtenerPosicion().getX() - posicionInicial.sumarOtroVector(unAvion.obtenerDireccion()).getX();
 		double dy = unAvion.obtenerPosicion().getY() - posicionInicial.sumarOtroVector(unAvion.obtenerDireccion()).getY();
@@ -35,10 +35,10 @@ public class AvionSimpleTest extends TestCase
 	{
 		Vector posicionInicial = new Vector(1,0);
 		Vector direccionInicial = new Vector(2,0);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, Estrategia.AvionSimple());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, Estrategia.AvionSimple());
 		
-		unAvion.Avanzar();
-		unAvion.Avanzar();
+		unAvion.avanzar();
+		unAvion.avanzar();
 		
 		assertTrue(unAvion.obtenerPosicion().getX() == 3.0 && 
 				   unAvion.obtenerPosicion().getY() == 0.0 );

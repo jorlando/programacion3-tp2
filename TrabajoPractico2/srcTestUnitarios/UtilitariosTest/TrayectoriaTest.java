@@ -25,7 +25,7 @@ public class TrayectoriaTest extends TestCase
 	{
 		unasDirecciones.offer(new Vector(1,2));
 		
-		Trayectoria unaTrayectoria = new Trayectoria(unasDirecciones);
+		Trayectoria unaTrayectoria = new Trayectoria(unasDirecciones.iterator());
 		
 		unaTrayectoria.Waypoint().esIgualA(new Vector(1,2));
 	}
@@ -35,7 +35,7 @@ public class TrayectoriaTest extends TestCase
 		unasDirecciones.offer(new Vector(0,2));
 		unasDirecciones.offer(new Vector(1,0));
 		
-		Trayectoria unaTrayectoria = new Trayectoria(unasDirecciones);
+		Trayectoria unaTrayectoria = new Trayectoria(unasDirecciones.iterator());
 				
 		Vector versorDireccion = unaTrayectoria.Direccion(new Vector(0,0));
 		
@@ -46,7 +46,7 @@ public class TrayectoriaTest extends TestCase
 	{
 		unasDirecciones.offer(new Vector(0,2));
 		unasDirecciones.offer(new Vector(1,1));
-		Trayectoria unaTrayectoria = new Trayectoria(unasDirecciones);
+		Trayectoria unaTrayectoria = new Trayectoria(unasDirecciones.iterator());
 	
 		unaTrayectoria.QuitarWaypoint();
 		
