@@ -38,7 +38,7 @@ public class Mapa {
 	}
 	
 	public void moverAviones(){
-		Iterator iterador = aviones.listIterator();
+		Iterator<Avion> iterador = aviones.listIterator();
 		while( iterador.hasNext() ) {
 	          Avion avionAMover = (Avion) iterador.next();
 	          avionAMover.avanzar();
