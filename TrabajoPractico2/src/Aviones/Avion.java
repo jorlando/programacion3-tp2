@@ -11,7 +11,7 @@ public class Avion
 	private EstrategiaAvion tipoDeAvion;
 	private double velocidad;
 	private double tamaño;
-	
+		
 	public Avion(Vector PosicionInicial, Trayectoria trayectoriaInicial, double tamaño, EstrategiaAvion tipoDeAvion)
 	{
 		this.posicion = PosicionInicial;

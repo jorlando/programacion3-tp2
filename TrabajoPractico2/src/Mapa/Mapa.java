@@ -34,7 +34,11 @@ public class Mapa {
 	}
 	
 	public void aterrizarAviones(){
-		//aterriza los aviones que puedan aterrizar sobre alguna pista.
+		Iterator<Pista> iteradorPista = pistas.listIterator();
+		while( iteradorPista.hasNext()) {
+	          Pista pistaDondeAterrizar = (Pista) iteradorPista.next();
+	          pistaDondeAterrizar.aterrizarAviones(this.aviones);
+		} 		
 	}
 	
 	public void moverAviones(){
@@ -44,5 +48,6 @@ public class Mapa {
 	          avionAMover.avanzar();
 		} 
 	}
-
+	
+	
 }

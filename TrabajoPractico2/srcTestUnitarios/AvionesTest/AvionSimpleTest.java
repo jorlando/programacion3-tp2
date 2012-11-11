@@ -43,4 +43,5 @@ public class AvionSimpleTest extends TestCase
 		assertTrue(unAvion.obtenerPosicion().getX() == 3.0 && 
 				   unAvion.obtenerPosicion().getY() == 0.0 );
 	}
+	
 }
