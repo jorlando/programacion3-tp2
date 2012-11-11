@@ -33,9 +33,7 @@ public class Vector {
 	}
 	
 	public Vector normalizar(){
-		if (x == 0.0 && y == 0.0)
-			return new Vector(0.0,0.0);
-		
+		if (x == 0.0 && y == 0.0) return new Vector(0.0,0.0);
 		return new Vector(x/this.norma(),y/this.norma());
 	}
 	
@@ -55,17 +53,20 @@ public class Vector {
 		return new Vector(-(this.y), this.x );
 	}
 	
-	public double pendiente(){
-		return y/x;
-	}
-	
 	public double productoEscalar(Vector otro){
 		
 		return ((this.x*otro.x) + (this.y*otro.y));
 	}
 	
 	public double anguloFormadoCon(Vector otro){
+		if (this.norma()*otro.norma()==0) return 0;
 		return Math.acos((this.productoEscalar(otro))/(this.norma()*otro.norma()));
+	}
+	
+	public double pendiente(){
+		double i = 0.0000000000000001;
+		if (x!=0) i=x;// esto es medio feo pero es para salvar casos extremos.
+		return y/i;
 	}
 
 }

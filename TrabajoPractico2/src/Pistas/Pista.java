@@ -30,4 +30,5 @@ public abstract class Pista {
 	public boolean puedeAterrizarAvionPesado(){
 		return false;
 	}
+
 }

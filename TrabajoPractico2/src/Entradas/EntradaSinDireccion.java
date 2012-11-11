@@ -11,8 +11,7 @@ public class EntradaSinDireccion extends Entrada {
 	}
 	
 	public boolean puntoPertenceALaEntrada(Vector vector) {
-		if (vector.restarOtroVector(posicion).norma() < ancho) return true;
-		return false;
+		return (vector.restarOtroVector(posicion).norma() <= ancho);
 	}
 	
 	public boolean direccionCorrecta(Vector direccion){
