@@ -3,13 +3,14 @@ package Mapa;
 import java.util.ArrayList;
 import Aviones.Avion;
 import Pistas.Pista;
+import java.util.Iterator;
 
 public class Mapa {
 	
 	private ArrayList<Avion> aviones;
 	private ArrayList<Pista> pistas;
-	private double ancho;// ---
-	private double largo;//  |
+	private double ancho;
+	private double largo;
 	
 	public Mapa(double ancho, double largo){
 		this.ancho = ancho;
@@ -37,9 +38,11 @@ public class Mapa {
 	}
 	
 	public void moverAviones(){
-		//hace avanzar a los aviones. 
+		Iterator<Avion> iterador = aviones.listIterator();
+		while( iterador.hasNext() ) {
+	          Avion avionAMover = (Avion) iterador.next();
+	          avionAMover.avanzar();
+		} 
 	}
-	
-	
-	
+
 }
