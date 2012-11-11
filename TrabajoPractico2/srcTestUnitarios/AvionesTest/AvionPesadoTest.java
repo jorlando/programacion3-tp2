@@ -1,24 +1,23 @@
 package AvionesTest;
 
+
 import java.util.ArrayList;
-import Utilitarios.Vector;
+
+import org.junit.Test;
+
 import Aviones.Avion;
-import Aviones.EstrategiaAvionSimple;
+import Aviones.EstrategiaAvionPesado;
+import Utilitarios.Vector;
+
 import junit.framework.TestCase;
 
-	//  AvionTest será las pruebas de los metodos comunes a todos los aviones 
-	//  (Aquellos implementados en la clase Abstracta Avion).
-	//  Para la prueba se utilizara un miembro de la clase AvionSimple que es la mas
-	//  directa de las relaciones de herencia.
-
-public class AvionSimpleTest extends TestCase
-{
+public class AvionPesadoTest extends TestCase {
 
 	public void testAvionAvanzaSegunTrayectoriaYPosicionInicial()
 	{
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionPesado());
 		
 		unAvion.avanzar();
 		
@@ -36,7 +35,7 @@ public class AvionSimpleTest extends TestCase
 	{
 		Vector posicionInicial = new Vector(1,0);
 		Vector direccionInicial = new Vector(2,0);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionPesado());
 		
 		unAvion.avanzar();
 		unAvion.avanzar();
@@ -49,10 +48,10 @@ public class AvionSimpleTest extends TestCase
 	{
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionPesado());
 		
 		Vector otraPosicionInicial = new Vector(1,0);	//A esa distancia chocan
-		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, 1, new EstrategiaAvionPesado());
 		
 		assertTrue(unAvion.colisionaCon(avionAChocar));
 	}
@@ -61,10 +60,10 @@ public class AvionSimpleTest extends TestCase
 	{
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionPesado());
 		
 		Vector otraPosicionInicial = new Vector(2,0);	//Lejos, no deberia chocar
-		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, 1, new EstrategiaAvionPesado());
 		
 		assertFalse(unAvion.colisionaCon(avionAChocar));
 	}
@@ -73,10 +72,10 @@ public class AvionSimpleTest extends TestCase
 	{
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionPesado());
 		
 		Vector otraPosicionInicial = new Vector(4,0);	//Lejos, no deberia chocar
-		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, 1, new EstrategiaAvionPesado());
 		
 		ArrayList<Avion> todosLosAviones = new ArrayList<Avion>();
 		todosLosAviones.add(avionAChocar);
@@ -85,4 +84,5 @@ public class AvionSimpleTest extends TestCase
 		assertFalse(unAvion.verificarSiColicionaConOtro(todosLosAviones));
 		
 	}
+
 }

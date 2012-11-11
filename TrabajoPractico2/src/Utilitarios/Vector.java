@@ -13,7 +13,7 @@ public class Vector {
 	public Vector (Vector aCopiar)
 	{
 		this.x = aCopiar.getX();
-		this.x = aCopiar.getY();
+		this.y = aCopiar.getY();
 	}
 	
 	public double getX(){
