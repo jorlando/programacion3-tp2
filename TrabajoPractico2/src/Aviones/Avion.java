@@ -1,5 +1,8 @@
 package Aviones;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import Utilitarios.Trayectoria;
 import Utilitarios.Vector;
 import Pistas.Pista;
@@ -58,4 +61,18 @@ public class Avion
 		return ((((this.posicion.restarOtroVector(otroAvion.posicion)).norma())-(this.tamaño+otroAvion.tamaño)<0) && 
 				tipoDeAvion.calcularChoqueCon(otroAvion));
 	}
+	
+	public boolean verificarSiColicionaConOtro(ArrayList<Avion> otrosAviones)
+	{
+		Iterator<Avion> iteradorAviones = otrosAviones.listIterator();
+		while( iteradorAviones.hasNext() ) {
+	          Avion avionAVerificar = (Avion) iteradorAviones.next();
+	          // dentro de la lista de aviones recibida por parametro tambien esta el avion que verifica
+	          if (avionAVerificar != this){
+	        	  if( this.colisionaCon(avionAVerificar) ) return true;
+	          }
+		} 
+	return false;
+	}
+	
 }

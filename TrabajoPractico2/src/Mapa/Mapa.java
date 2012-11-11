@@ -28,8 +28,13 @@ public class Mapa {
 	}
 	
 	public boolean verificarColisiones(){
-		//verifica si hay aviones que chocaron.
-		//seria la condicion para finalizar el juego.
+		Iterator<Avion> iterador = aviones.listIterator();
+		while( iterador.hasNext() ) {
+	          Avion avionAVerificar = (Avion) iterador.next();
+	          if (avionAVerificar.verificarSiColicionaConOtro(this.aviones))
+	        	  return true;
+		} 
+		
 		return false;
 	}
 	
