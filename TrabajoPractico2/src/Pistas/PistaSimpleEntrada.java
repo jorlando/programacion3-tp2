@@ -1,6 +1,7 @@
 package Pistas;
 
 import Utilitarios.Vector;
+import Pistas.Pista;
 import Aviones.Avion;
 import Entradas.Entrada;
 import Entradas.EntradaConDireccion;

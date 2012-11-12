@@ -14,25 +14,24 @@
 	
 	<target name="compilartest" depends="compilar" description= "Compilar Solo Tests">
 			<mkdir dir="test"/>
-			<javac srcdir = "./srcTestUnitarios" destdir="./test">
-				<classpath path="./build"/>
-				
-			</javac>
+			
 	</target>
 	
-	<target name="corrertest" depends="compilartest"
-			description= "Ejecuta los test con JUnit">
-		<junit fork="no" printsummary="no" haltonfailure="no" showoutput="true">
-			
-			<classpath path="./test"/>
-			<classpath path="./build"/>
-			<classpath path="./src"/>
-			
-			<batchtest fork="no">
-				<fileset dir=".">
-			      <include name= "**/*Test*.java"/>
-			    </fileset>
-			</batchtest>
-		</junit>
-	</target>
+	 <target name="pasartest" depends="compilar" description="Ejecutar test junit">
+	        <junit printsummary="on"
+	            fork="false"
+	            haltonfailure="false"
+	            failureproperty="tests.failed"
+	            showoutput="true">
+
+	            <classpath refid="classpath.proyecto"/>
+	            <formatter type="brief" usefile="false"/>
+	            
+	            <batchtest>
+	                <fileset dir="${dir.src}">
+	                    <include name="**/Test*.java"/>
+	                </fileset>
+	            </batchtest>
+	        </junit>
+	 <target/>
 </project>

@@ -1,6 +1,7 @@
 package Pistas;
 
 import Utilitarios.Vector;
+import Pistas.PistaSimpleEntrada;
 
 public class PistaPesadaSimple extends PistaSimpleEntrada{
 	

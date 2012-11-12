@@ -7,7 +7,7 @@ import Aviones.Avion;
 
 public abstract class Pista {
 	
-	public abstract boolean calcularAterrizaje(Avion unAvion);
+	protected abstract boolean calcularAterrizaje(Avion unAvion);
 	
 	public void aterrizarAviones (ArrayList<Avion> avionesAterrizar)
 	{
