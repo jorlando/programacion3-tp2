@@ -27,6 +27,15 @@ public class Mapa {
 		aviones.add(unAvion);
 	}
 	
+	//Creado solo para TEST
+	public ArrayList<Pista> obtenerPistas(){
+		return this.pistas;
+	}
+	//Creado solo para TEST
+		public ArrayList<Avion> obtenerAviones(){
+			return this.aviones;
+		}
+	
 	public boolean verificarColisiones(){
 		Iterator<Avion> iterador = aviones.listIterator();
 		while( iterador.hasNext() ) {
