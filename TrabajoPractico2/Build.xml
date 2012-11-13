@@ -14,24 +14,23 @@
 	
 	<target name="compilartest" depends="compilar" description= "Compilar Solo Tests">
 			<mkdir dir="test"/>
-			
+			<javac srcdir = "./srcTestUnitarios" destdir="./test">
+				<classpath path= "./build"></classpath>
+			</javac>
 	</target>
 	
-	 <target name="pasartest" depends="compilar" description="Ejecutar test junit">
-	        <junit printsummary="on"
-	            fork="false"
-	            haltonfailure="false"
-	            failureproperty="tests.failed"
-	            showoutput="true">
+	 <target name="pasartest" depends="compilartest" description="Ejecutar test junit">
+	       
+	 	<junit printsummary= "yes" >
 
-	            <classpath refid="classpath.proyecto"/>
-	            <formatter type="brief" usefile="false"/>
-	            
+	        	<classpath path= "./build"></classpath>
+	        	<classpath path= "./test"></classpath>
+	 				           
 	            <batchtest>
-	                <fileset dir="${dir.src}">
-	                    <include name="**/Test*.java"/>
+	                <fileset dir="./srcTestUnitarios">
+	                    <include name="**/*Test.java"/>
 	                </fileset>
 	            </batchtest>
-	        </junit>
+	    </junit>
 	 </target>
 </project>
