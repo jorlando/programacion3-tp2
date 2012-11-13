@@ -7,7 +7,7 @@ public abstract class Entrada {
 	protected Vector posicion;
 	protected double ancho;
 	
-	protected abstract boolean puntoPertenceALaEntrada(Vector vector);
-	protected abstract boolean direccionCorrecta(Vector direccion);
+	public abstract boolean puntoPertenceALaEntrada(Vector vector);
+	public abstract boolean direccionCorrecta(Vector direccion);
 
 }

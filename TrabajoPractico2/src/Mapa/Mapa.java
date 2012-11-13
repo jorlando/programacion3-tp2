@@ -31,7 +31,7 @@ public class Mapa {
 		Iterator<Avion> iterador = aviones.listIterator();
 		while( iterador.hasNext() ) {
 	          Avion avionAVerificar = (Avion) iterador.next();
-	          if (avionAVerificar.verificarSiColicionaConOtro(this.aviones))
+	          if (avionAVerificar.verificarSiColicionaConOtro(this.aviones))//esto es repetitivo hay que ver si se puede mejorar
 	        	  return true;
 		} 
 		
