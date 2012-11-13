@@ -9,14 +9,17 @@ public abstract class Pista {
 	
 	public abstract boolean calcularAterrizaje(Avion unAvion);
 	
-	public void aterrizarAviones (ArrayList<Avion> avionesAterrizar)
+	public ArrayList<Avion> aterrizarAviones (ArrayList<Avion> avionesAterrizar)
 	{
+		ArrayList<Avion> avionesAterrizados = new ArrayList<Avion>();
 		Iterator<Avion> iteradorAvion = avionesAterrizar.iterator();
 		while (iteradorAvion.hasNext())
 		{
 			Avion avionAEvaluar= iteradorAvion.next();
-			if(this.calcularAterrizaje(avionAEvaluar)) avionesAterrizar.remove(avionAEvaluar);
+			if(this.calcularAterrizaje(avionAEvaluar)) avionesAterrizados.add(avionAEvaluar);
 		}
+		return avionesAterrizados;
+
 	}
 	
 	public boolean puedeAterrizarHelicoptero(){

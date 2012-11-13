@@ -50,9 +50,19 @@ public class Mapa {
 	public void aterrizarAviones(){
 		Iterator<Pista> iteradorPista = pistas.listIterator();
 		while( iteradorPista.hasNext()) {
-	          Pista pistaDondeAterrizar = (Pista) iteradorPista.next();
-	          pistaDondeAterrizar.aterrizarAviones(this.aviones);
+			Pista pistaDondeAterrizar = (Pista) iteradorPista.next();
+			ArrayList<Avion> avionesAterrizados = pistaDondeAterrizar.aterrizarAviones(this.aviones);
+			if (avionesAterrizados.size()>0) this.borrarAterrizados(avionesAterrizados);
 		} 		
+	}
+	
+	public void borrarAterrizados(ArrayList<Avion> avionesAterrizados)
+	{
+		Iterator<Avion> iterador = avionesAterrizados.listIterator();
+		while( iterador.hasNext() ) {
+	          Avion avionABorrar = (Avion) iterador.next();
+	          this.aviones.remove(avionABorrar);
+		}	
 	}
 	
 	public void moverAviones(){
