@@ -15,7 +15,8 @@
 	<target name="compilartest" depends="compilar" description= "Compilar Solo Tests">
 			<mkdir dir="test"/>
 			<javac srcdir = "./srcTestUnitarios" destdir="./test">
-				<classpath path= "./build"></classpath>
+				<classpath path= "./build/"></classpath>
+				<classpath path= "./util/junit.jar"></classpath>
 			</javac>
 	</target>
 	
@@ -25,7 +26,7 @@
 
 	        	<classpath path= "./build"></classpath>
 	        	<classpath path= "./test"></classpath>
-	 				           
+	 			<classpath path= "./util/junit.jar"></classpath>	           
 	            <batchtest>
 	                <fileset dir="./srcTestUnitarios">
 	                    <include name="**/*Test.java"/>
