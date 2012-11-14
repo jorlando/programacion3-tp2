@@ -1,0 +1,23 @@
+INSTRUCTIVO DE COMPILACION Y EJECUCION CON ANT
+
+Requerimientos:
+
+---> Tener instalado y correctamente configurado JDK (preferentemente v.7) y ant (preferentemente 1.8)
+
+
+Instrucciones:
+
+En la consola ubicarse en el directorio donde se encuentra el archivo build.xml (programacion3-tp2\TrabajoPractico2)
+
+Utiilizar comandos ant para compilar y ejecutar las pruebas
+
+
+Comandos disponibles:
+
+[limpiar] 	---> Elimina los directorios donde se almacenan las compilaciones
+
+[compilar]	---> Compila las clases productivas y las aloja en la carpeta build
+
+[compilartest] 	---> Compila las clases productivas junto con los test y aloja estos ultimos en test
+
+[pasartest]	---> Todo lo anterior y ejecuta las pruebas unitarias con JUnit. Devuelve log interactivo.
