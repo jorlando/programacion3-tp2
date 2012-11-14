@@ -16,8 +16,14 @@ public class EntradaConDireccion extends Entrada {
 	}
 	
 	public boolean puntoPertenceALaEntrada(Vector vector){
-		return (vector.restarOtroVector(posicion).norma() <= ancho) &&
-				( vector.getY() == (direccionEntrada.obtenerPerpendicular().pendiente()*(vector.getX()-posicion.getX()))+posicion.getY()); //esto es la formula de la recta que pasa por un punto.
+		Vector v1 = posicion;
+		Vector v2 = posicion.sumarOtroVector(direccionEntrada.obtenerPerpendicular());
+		if (v1.getX() == v2.getX()){ //si son iguales falla (division por 0)
+			return (vector.restarOtroVector(posicion).norma() <= ancho) && (vector.getX() == v1.getX());
+		}
+		double y = ((v2.getY()-v1.getY())/(v2.getX()-v1.getX()))*(vector.getX()-v1.getX())+v1.getY();
+		return (vector.restarOtroVector(posicion).norma() <= ancho) && (y==vector.getY());
+			
 	}
 	
 	public boolean direccionCorrecta(Vector direccion){
