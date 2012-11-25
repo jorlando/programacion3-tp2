@@ -1,0 +1,10 @@
+K 10
+svn:ignore
+V 23
+*.class
+*.suo
+bin
+obj
+
+
+END
