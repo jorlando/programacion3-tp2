@@ -22,4 +22,12 @@ public class Helipuerto extends Pista {
 		return true;
 	}
 	
+	public int getX(){
+		return entrada.getX();
+	}
+	
+	public int getY(){
+		return entrada.getY();
+	}
+	
 }

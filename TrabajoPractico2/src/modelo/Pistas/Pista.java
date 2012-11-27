@@ -4,8 +4,10 @@ import java.util.Iterator;
 import java.util.ArrayList;
 import modelo.Aviones.Avion;
 
+import ar.uba.fi.algo3.titiritero.Posicionable;
 
-public abstract class Pista {
+
+public abstract class Pista implements Posicionable {
 	
 	public abstract boolean calcularAterrizaje(Avion unAvion);
 	

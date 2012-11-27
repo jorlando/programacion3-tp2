@@ -50,9 +50,9 @@ public class Imagen implements Dibujable{
 	public void setPosicionable(Posicionable posicionable) {
 		this.posicionable = posicionable;
 	}
-	
-	private String nombreArchivoImagen;
-    private BufferedImage imagen;
-    private Posicionable posicionable;
+	/*cambie para que se puedan heredar*/
+	protected String nombreArchivoImagen;
+    protected BufferedImage imagen;
+    protected Posicionable posicionable;
 
 }

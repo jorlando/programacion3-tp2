@@ -7,7 +7,10 @@ import modelo.Utilitarios.Trayectoria;
 import modelo.Utilitarios.Vector;
 import modelo.Pistas.Pista;
 
-public class Avion
+import ar.uba.fi.algo3.titiritero.Posicionable;
+import ar.uba.fi.algo3.titiritero.ObjetoVivo;
+
+public class Avion implements Posicionable,ObjetoVivo
 {
 	private Vector posicion;
 	private Trayectoria trayectoriaDeVuelo; 
@@ -73,6 +76,18 @@ public class Avion
 	          }
 		} 
 	return false;
+	}
+	
+	public int getX(){
+		return (int)this.posicion.getX();
+	}
+	
+	public int getY(){
+		return (int)this.posicion.getY();
+	}
+	
+	public void vivir(){ //esto sirve depende como lo hagamos
+		avanzar();
 	}
 	
 }

@@ -19,5 +19,12 @@ public class PistaSimpleEntrada extends Pista {
 		Vector direccionAvion = avion.obtenerDireccion();
 		return (entrada.puntoPertenceALaEntrada(posicionAvion) && entrada.direccionCorrecta(direccionAvion));
 	}
-
+	
+	public int getX(){
+		return this.entrada.getX();
+	}
+	
+	public int getY(){
+		return this.entrada.getY();
+	}
 }

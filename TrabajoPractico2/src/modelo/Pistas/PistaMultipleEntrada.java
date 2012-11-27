@@ -24,4 +24,14 @@ public class PistaMultipleEntrada extends Pista {
 		//si sale del ciclo significa que no puede entrar en ninguna de las entradas de la pista.
 		return false;
 	}
+	
+	public int getX(){
+		return entradas.get(0).getX();
+	}
+	
+	public int getY(){
+		return entradas.get(0).getY();
+	}
+	
+	
 }

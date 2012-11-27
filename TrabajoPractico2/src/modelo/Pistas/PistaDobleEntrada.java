@@ -24,4 +24,11 @@ public class PistaDobleEntrada extends Pista {
 			((entrada2.direccionCorrecta(direccionAvion) && entrada2.puntoPertenceALaEntrada(posicionAvion))));
 	}
 	
+	public int getX(){
+		return entrada1.getX();
+	}
+	
+	public int getY(){
+		return entrada1.getY();
+	}
 }
