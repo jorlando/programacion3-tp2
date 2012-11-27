@@ -1,9 +1,13 @@
 package modelo.Mapa;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import modelo.Aviones.Avion;
 import modelo.Pistas.Pista;
-import java.util.Iterator;
+
+import modelo.Jugador;
+
 
 public class Mapa {
 	
@@ -11,6 +15,7 @@ public class Mapa {
 	private ArrayList<Pista> pistas;
 	private double ancho;
 	private double largo;
+	private Jugador jugador;
 	
 	public Mapa(double ancho, double largo){
 		this.ancho = ancho;
@@ -48,8 +53,9 @@ public class Mapa {
 	}
 	
 	public void aterrizarAviones(){
+		//hay que hacer que aumente un punto por cada avion aterrizado
 		Iterator<Pista> iteradorPista = pistas.listIterator();
-		while( iteradorPista.hasNext()) {
+		while(iteradorPista.hasNext()) {
 			Pista pistaDondeAterrizar = (Pista) iteradorPista.next();
 			ArrayList<Avion> avionesAterrizados = pistaDondeAterrizar.aterrizarAviones(this.aviones);
 			if (avionesAterrizados.size()>0) this.borrarAterrizados(avionesAterrizados);
@@ -73,5 +79,8 @@ public class Mapa {
 		} 
 	}
 	
+	public void setJugador(Jugador jugador){
+		this.jugador = jugador;
+	}
 	
 }

@@ -2,8 +2,12 @@ package modelo;
 
 import vista.Ventanas.VentanaPrincipal;
 import vista.Ventanas.VentanaJuego;
-import modelo.Jugador;
 import ar.uba.fi.algo3.titiritero.ControladorJuego;
+
+import modelo.Jugador;
+import modelo.Mapa.Mapa;
+
+
 
 
 public class Juego {
@@ -16,14 +20,32 @@ public class Juego {
     public Juego() {
         jugador = null;
         ventanaPrincipal = null;
-        ventanaPrincipal =null;
-        controlador = null;
+        ventanaPrincipal = null;
+        controlador = new ControladorJuego (true);
     }
 	
 	public void comenzarAplicacion(){
-	      ventanaPrincipal= new VentanaPrincipal();
-	      ventanaPrincipal.pantallaUno();
+	      ventanaPrincipal= new VentanaPrincipal(controlador);
+	      ventanaPrincipal.pantallaMenu();
 	      ventanaPrincipal.setVisible(true);
-	      //this.juegoNuevo();
+	      if (ventanaPrincipal.getSeleccion() == 1){
+	    	  this.juegoNuevo();
+	      }
+	      else if(ventanaPrincipal.getSeleccion() == 2){
+	    	  this.juegoGrabado();
+	      }
+	}
+	
+	public void juegoNuevo(){
+		//empezamos un juego de 0
+		Mapa mapa = new Mapa(800,600); //hay que ver bien lo del tamaño del mapa 
+		jugador = new Jugador();
+		mapa.setJugador(jugador);
+		
+		
+	}
+	
+	public void juegoGrabado(){
+		//necesitariamos saber persistencia jaja
 	}
 }

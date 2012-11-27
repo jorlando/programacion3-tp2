@@ -1,33 +1,32 @@
 package vista.Ventanas;
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
+import ar.uba.fi.algo3.titiritero.vista.Panel;
+import ar.uba.fi.algo3.titiritero.vista.Ventana;
+import ar.uba.fi.algo3.titiritero.ControladorJuego;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-public class VentanaPrincipal extends JFrame {
+public class VentanaPrincipal extends Ventana {
 
-	private JPanel menu;
+	public static final int EMPEZAR_JUEGO = 1;
+	public static final int JUEGO_GRABADO = 2;
+	
+	private int seleccion;
+	
+	private Panel menu;
     private JButton botonJuegoNuevo;
     private JButton botonContinuarJuego;
     private JButton botonSalir;
     
-    public VentanaPrincipal(){
-        super();
-        setSize(750,530);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension frameSize = getSize();
-        int x = (screenSize.width - frameSize.width) / 2;
-        int y = (screenSize.height - frameSize.height) / 2;
-        setLocation(x, y);
-        menu = new JPanel();
+    private static final long serialVersionUID = 1L;
+    
+    public VentanaPrincipal(ControladorJuego controlador){
+    	super(800,600,controlador);
+        menu = new Panel(400,300,controlador);
         crearBotones();
+        seleccion = 0;
         setVisible(true);
         setAlwaysOnTop(true);
     }
@@ -35,7 +34,7 @@ public class VentanaPrincipal extends JFrame {
     private void crearBotones(){
 
         botonJuegoNuevo = new JButton("Juego Nuevo");
-        botonContinuarJuego = new JButton("continuar juego");
+        botonContinuarJuego = new JButton("Continuar Juego");
         botonSalir = new JButton("Salir");
         menu.add(botonJuegoNuevo);
         menu.add(botonContinuarJuego);
@@ -43,17 +42,18 @@ public class VentanaPrincipal extends JFrame {
         menu.setLayout(new GridLayout(3,1));
     }
     
-    public void pantallaUno (){
+    public void pantallaMenu (){
         menu.setVisible(true);
         add(menu);
         botonJuegoNuevo.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 ;     menu.setVisible(false);
-                //emepzarJuego
+                seleccion = EMPEZAR_JUEGO; 
             }
         });
 
        /* botonContinuarJuego.addActionListener(new ActionListener(){
+        * 
  	
         }); */
 
@@ -63,6 +63,8 @@ public class VentanaPrincipal extends JFrame {
             }
         });
     }
-
-
+    
+    public int getSeleccion(){
+    	return this.seleccion;
+    }
 }
