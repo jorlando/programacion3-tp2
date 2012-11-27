@@ -15,7 +15,7 @@ public abstract class Figura implements Dibujable, MouseClickObservador {
 	public abstract void dibujar(SuperficieDeDibujo superfice) ;
 
 	public void setColor(Color unColor){
-		this.color =unColor; 
+		this.color = unColor; 
 	}
 	
 	public Color getColor(){
