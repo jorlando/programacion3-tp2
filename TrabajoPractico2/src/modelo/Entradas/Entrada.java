@@ -1,9 +1,8 @@
 package modelo.Entradas;
 
 import modelo.Utilitarios.Vector;
-import ar.uba.fi.algo3.titiritero.Posicionable;
 
-public abstract class Entrada implements Posicionable {
+public abstract class Entrada {
 	
 	protected Vector posicion;
 	protected double ancho;

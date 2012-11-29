@@ -7,10 +7,8 @@ import modelo.Utilitarios.Trayectoria;
 import modelo.Utilitarios.Vector;
 import modelo.Pistas.Pista;
 
-import ar.uba.fi.algo3.titiritero.Posicionable;
-import ar.uba.fi.algo3.titiritero.ObjetoVivo;
 
-public class Avion implements Posicionable,ObjetoVivo
+public class Avion
 {
 	private Vector posicion;
 	private Trayectoria trayectoriaDeVuelo; 

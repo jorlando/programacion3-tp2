@@ -5,22 +5,17 @@ import java.util.Iterator;
 
 import modelo.Aviones.Avion;
 import modelo.Pistas.Pista;
-import modelo.Jugador;
-
-import ar.uba.fi.algo3.titiritero.Posicionable;
-import ar.uba.fi.algo3.titiritero.ObjetoVivo;
 
 
 
 
 
-public class Mapa implements ObjetoVivo, Posicionable{
+public class Mapa{
 	
 	private ArrayList<Avion> aviones;
 	private ArrayList<Pista> pistas;
 	private double ancho;
 	private double largo;
-	private Jugador jugador;
 	
 	public Mapa(double ancho, double largo){
 		this.ancho = ancho;
@@ -86,22 +81,6 @@ public class Mapa implements ObjetoVivo, Posicionable{
 	          Avion avionAMover = (Avion) iterador.next();
 	          avionAMover.avanzar();
 		} 
-	}
-	
-	public void setJugador(Jugador jugador){
-		this.jugador = jugador;
-	}
-	
-	public int getX(){
-		return 0;
-	}
-	
-	public int getY(){
-		return 0;
-	}
-	
-	public void vivir(){
-		//habria que hacer el gameloop aca
 	}
 	
 }
