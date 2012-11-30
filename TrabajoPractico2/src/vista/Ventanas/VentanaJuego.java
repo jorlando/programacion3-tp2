@@ -1,6 +1,7 @@
 package vista.Ventanas;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -20,6 +21,8 @@ import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 public class VentanaJuego {
 	private JFrame frame;
 	private GameLoop gameLoop;
+	private boolean juegoComenzado;
+	private boolean pausa;
 	
 	private int FPS = 50;
 	private int LARGO = 1024;
@@ -55,10 +58,13 @@ public class VentanaJuego {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("CopControl");
+		frame.setResizable(false);
 		
 		JButton btnIniciar = this.addBotonIniciar();
 		
-		JButton btnDetener = this.addBotonDetener();
+		JButton btnPausa = this.addBotonDetener();
+		
+		JButton btnVolverAlMenu = this.addBotonVolver();
 		
 		JPanel panel = this.addSuperficiePanel();
 		
@@ -70,8 +76,12 @@ public class VentanaJuego {
 		
 		this.addKeyListener();
 
-		this.setComponentsFocus(btnIniciar, btnDetener);
-
+		this.setComponentsFocus(btnIniciar, btnPausa, btnVolverAlMenu); //esto nose para que sirve
+		
+		this.pausa = true;
+		
+		this.juegoComenzado = false;
+		
 	}
 
 	private void inicializarModelo() {
@@ -79,10 +89,11 @@ public class VentanaJuego {
 
 	}
 
-	private void setComponentsFocus(JButton btnIniciar, JButton btnDetener) {
+	private void setComponentsFocus(JButton btnIniciar, JButton btnDetener, JButton btnVolver) {
 		frame.setFocusable(true);
 		btnDetener.setFocusable(false);
 		btnIniciar.setFocusable(false);
+		btnVolver.setFocusable(false);
 	}
 
 	private void addKeyListener() {
@@ -90,16 +101,16 @@ public class VentanaJuego {
 				) {
 			
 			@Override
-			public void keyTyped(KeyEvent arg0) {
+			public void keyTyped(KeyEvent eventoTyped) {
 				System.out.println("Key pressed");
 			}
 			
 			@Override
-			public void keyReleased(KeyEvent arg0) {
+			public void keyReleased(KeyEvent eventoRelease) {
 			}
 			
 			@Override
-			public void keyPressed(KeyEvent arg0) {
+			public void keyPressed(KeyEvent eventoPress) {
 				System.out.println("Ping");
 			}  
 			 	
@@ -110,38 +121,76 @@ public class VentanaJuego {
 		panel.addMouseListener(new MouseAdapter() {
 					
 			@Override
-			public void mouseClicked(MouseEvent arg0) {				
+			public void mouseClicked(MouseEvent eventoMouse) {
+				//la idea aca es que busque en el mapa un avion cercano a ese punto e inicie una tryectoria. 
+				Point posicion = eventoMouse.getLocationOnScreen(); //este punto es el que hay que agregar a la trayectoria
+				int x = posicion.x;
+				int y = posicion.y;
+				System.out.println(x+","+y);
+				
 			}});
+		
 	}
 
 	private JPanel addSuperficiePanel() {
 		JPanel panel = new SuperficiePanel();
 		panel.setBackground(new Color(100, 200, 50));
-		panel.setBounds(42, 53, (int)(LARGO-100), (ANCHO-150));
+		panel.setBounds(0, 50,(LARGO),(ANCHO));
 		frame.getContentPane().add(panel);
 		return panel;
 	}
-
+	
 	private JButton addBotonDetener() {
-		JButton btnDetener = new JButton("Detener");
-		btnDetener.addActionListener(new ActionListener() {
+		JButton btnPausa = new JButton("Pausa");
+		btnPausa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameLoop.detenerEjecucion();
+				if (juegoComenzado){
+					if (pausa){
+						gameLoop.iniciarEjecucion();
+						((JButton)e.getSource()).setBackground(Color.green); //esto es medio feo pero fue la unica manera que encontre de hacerlo.
+						pausa = false;
+					}
+					else{
+						gameLoop.detenerEjecucion();
+						((JButton)e.getSource()).setBackground(Color.red);
+						pausa = true;
+					}
+				}
 			}
 		});
-		btnDetener.setBounds(325, 16, 92, 25);
-		frame.getContentPane().add(btnDetener);
-		return btnDetener;
+		
+		btnPausa.setBounds(280, 16, 92, 25);
+		btnPausa.setBackground(Color.green);
+		frame.getContentPane().add(btnPausa);
+		return btnPausa;
 	}
 
 	private JButton addBotonIniciar() {
-		JButton btnIniciar = new JButton("Iniciar");
+		JButton btnIniciar = new JButton("Comenzar Juego");
 		btnIniciar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				gameLoop.iniciarEjecucion();
+				pausa = false;
+				juegoComenzado = true;
+				((JButton)e.getSource()).setVisible(false);
 			}
 		});
-		btnIniciar.setBounds(42, 16, 77, 25);
+		btnIniciar.setBounds(42, 16, 200, 25);
+		frame.getContentPane().add(btnIniciar);
+		return btnIniciar;
+	}
+	
+	private JButton addBotonVolver() {
+		JButton btnIniciar = new JButton("Volver Al Menu");
+		btnIniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				gameLoop.detenerEjecucion();
+				frame.setVisible(false);
+				VentanaPrincipal ventana = new VentanaPrincipal();
+				ventana.iniciar();
+			}
+		});
+		btnIniciar.setBounds(800, 16, 200, 25);
 		frame.getContentPane().add(btnIniciar);
 		return btnIniciar;
 	}
