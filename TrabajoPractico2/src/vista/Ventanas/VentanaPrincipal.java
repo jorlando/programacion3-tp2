@@ -1,70 +1,102 @@
 package vista.Ventanas;
 
+import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import ar.uba.fi.algo3.titiritero.vista.Panel;
-import ar.uba.fi.algo3.titiritero.vista.Ventana;
-import ar.uba.fi.algo3.titiritero.ControladorJuego;
-import javax.swing.JButton;
 
-public class VentanaPrincipal extends Ventana {
+import javax.swing.JFrame;
 
-	public static final int EMPEZAR_JUEGO = 1;
-	public static final int JUEGO_GRABADO = 2;
+import vista.Ventanas.VentanaJuego;
+import vista.Ventanas.Menu.*;
+
+public class VentanaPrincipal extends JFrame implements ActionListener{
 	
-	private int seleccion;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	private Panel menu;
-    private JButton botonJuegoNuevo;
-    private JButton botonContinuarJuego;
-    private JButton botonSalir;
-    
-    private static final long serialVersionUID = 1L;
-    
-    public VentanaPrincipal(ControladorJuego controlador){
-    	super(800,600,controlador);
-        menu = new Panel(400,300,controlador);
-        crearBotones();
-        seleccion = 0;
-        setVisible(true);
-        setAlwaysOnTop(true);
-    }
-    
-    private void crearBotones(){
+	BarraMenu menuBar;
+	PanelMenu panelMenu;
+	PanelNombre panelNombre;
+	PanelInfo panelInfo;
+	
+	public VentanaPrincipal(){
+		//Inicializamos la ventana
+		super ("CopControl");
+		setBounds(600,460,640,480);
+		setResizable(false);
+	}
+	
+	public void iniciar(){
+		
+		setVisible(true);
+		
+		//Inicializamos la barra de menu
+		menuBar = new BarraMenu (this);
+		this.setJMenuBar(menuBar);
+				
+		//Creamos los paneles
+		
+		Container contentPane = getContentPane();
+		contentPane.setLayout(new GridLayout(3,1));
+		
+		panelMenu = new PanelMenu(this);
+		panelInfo = new PanelInfo();
+		panelNombre = new PanelNombre();
+		
+		contentPane.add(panelInfo);
+		contentPane.add(panelNombre);
+		contentPane.add(panelMenu);
+		
+		paintComponents(this.getGraphics());
+				
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+	}
 
-        botonJuegoNuevo = new JButton("Juego Nuevo");
-        botonContinuarJuego = new JButton("Continuar Juego");
-        botonSalir = new JButton("Salir");
-        menu.add(botonJuegoNuevo);
-        menu.add(botonContinuarJuego);
-        menu.add(botonSalir);
-        menu.setLayout(new GridLayout(3,1));
-    }
-    
-    public void pantallaMenu (){
-        menu.setVisible(true);
-        add(menu);
-        botonJuegoNuevo.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                ;     menu.setVisible(false);
-                seleccion = EMPEZAR_JUEGO; 
-            }
-        });
 
-       /* botonContinuarJuego.addActionListener(new ActionListener(){
-        * 
- 	
-        }); */
-
-        botonSalir.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                ;     System.exit(0);
-            }
-        });
-    }
-    
-    public int getSeleccion(){
-    	return this.seleccion;
-    }
+	@Override
+	public void actionPerformed(ActionEvent evento) {
+		// TODO Auto-generated method stub
+		if (evento.getActionCommand()=="nuevoJuego"){
+			nuevoJuego();
+		}
+		else if (evento.getActionCommand()=="continuarJuego"){
+			cargarJuego();
+		}
+		else if (evento.getActionCommand()=="salir"){
+			System.exit(0);
+		}
+		else if (evento.getActionCommand()=="acerca"){
+			acerca();
+		}
+		else if (evento.getActionCommand()=="ayuda"){
+			ayuda();
+		}
+		
+		
+		
+	}
+	
+	private void nuevoJuego(){
+		VentanaJuego vJuego = new VentanaJuego();
+		setVisible(false);
+		vJuego.getFrame().setVisible(true);
+	}
+	
+	private void cargarJuego(){
+		System.out.println("se tiene que cargar un juego guardado");
+	}
+	
+	private void ayuda(){
+		this.panelInfo.setTexto("Aca se informan las instrucciones del juego: ");
+	}
+	
+	private void acerca(){
+		this.panelInfo.setTexto("CopControl V 1.0  Integrantes:  Federico Rodrigez Longhi");
+		
+	}
+	
 }
