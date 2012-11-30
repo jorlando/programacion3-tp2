@@ -3,8 +3,11 @@ package modelo.Mapa;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import Excepciones.ImposibleCalcularPosicion;
+
 import modelo.Aviones.Avion;
 import modelo.Pistas.Pista;
+import modelo.Utilitarios.Vector;
 
 
 
@@ -81,6 +84,21 @@ public class Mapa{
 	          Avion avionAMover = (Avion) iterador.next();
 	          avionAMover.avanzar();
 		} 
+	}
+
+	
+	/* Falta Implementar */ 
+	public Vector obtenerPosicionLibre() throws ImposibleCalcularPosicion {
+		//random posicion
+		//verificamos que esta libre
+			//sino volvemos a probar (Aca puede pasar que se haga muy prolongado, habria que ver si cortamos el ciclo y ahi lanzamos la exepcion)
+		return (new Vector(0,0));
+	}
+	
+	/* Falta Implementar */
+	public Vector calcularDireccionParaPosicion(Vector unaPosicion) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

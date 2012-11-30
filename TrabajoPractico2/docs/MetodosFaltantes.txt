@@ -1,0 +1,5 @@
+Metodos que faltan implementar:
+
+	-Mapa.obtenerPosicionLibre
+	-Mapa.calcularDireccionParaPosicion
+	-Nivel.calcularNuevoTipoDeAvion
