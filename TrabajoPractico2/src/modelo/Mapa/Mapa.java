@@ -2,6 +2,7 @@ package modelo.Mapa;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import Excepciones.ImposibleCalcularPosicion;
 
@@ -17,10 +18,10 @@ public class Mapa{
 	
 	private ArrayList<Avion> aviones;
 	private ArrayList<Pista> pistas;
-	private double ancho;
-	private double largo;
+	private int ancho;
+	private int largo;
 	
-	public Mapa(double ancho, double largo){
+	public Mapa(int ancho, int largo){
 		this.ancho = ancho;
 		this.largo = largo;
 		aviones = new ArrayList<Avion>();
@@ -86,19 +87,59 @@ public class Mapa{
 		} 
 	}
 
-	
-	/* Falta Implementar */ 
 	public Vector obtenerPosicionLibre() throws ImposibleCalcularPosicion {
-		//random posicion
-		//verificamos que esta libre
-			//sino volvemos a probar (Aca puede pasar que se haga muy prolongado, habria que ver si cortamos el ciclo y ahi lanzamos la exepcion)
-		return (new Vector(0,0));
+		
+		Vector posicion = this.calcularPosicionBorde();
+
+		if (!this.posicionEstaLibre(posicion)){
+			throw new ImposibleCalcularPosicion();
+		}
+
+		return posicion;
 	}
 	
+	private Vector calcularPosicionBorde() {
+		
+		int x = 0,y = 0;
+		int pos1,pos2;
+		Random generator = new Random();
+		pos1 = generator.nextInt(2);
+		pos2 = generator.nextInt(2);
+		
+		if (pos1 == 0){
+			x = generator.nextInt(this.ancho+1);
+			// lo comentado abajo depende de donde se tome el (0,0)
+			if (pos2 == 0) y = 0; // (x,0) aparece del borde de abajo
+			else y = this.largo; // (x,largo) aparece del borde de arriba
+		}
+		else if (pos1 == 1){
+			y = generator.nextInt(this.largo+1);
+			if (pos2 == 0) x = 0; // (0,y) aparece del lado izquierdo
+			else x = this.ancho; // (ancho,y) aparece del lado derecho
+		}
+		
+		return new Vector(x,y);
+		
+	}
+	
+	private boolean posicionEstaLibre(Vector posicion) {
+		
+		double distanciaMin = 20;
+		Vector posicionAvion;
+		Iterator<Avion> iterador = aviones.listIterator();
+		
+		while( iterador.hasNext()) {
+	          Avion avion = (Avion) iterador.next();
+	          posicionAvion = avion.obtenerPosicion();
+	          if (posicion.restarOtroVector(posicionAvion).norma() < distanciaMin) return false;
+		}
+		
+		return true;
+	}
+
 	/* Falta Implementar */
 	public Vector calcularDireccionParaPosicion(Vector unaPosicion) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Vector(0,0);
 	}
 	
 }

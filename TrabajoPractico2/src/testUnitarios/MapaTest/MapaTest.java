@@ -2,6 +2,8 @@ package testUnitarios.MapaTest;
 
 import java.util.ArrayList;
 
+import Excepciones.ImposibleCalcularPosicion;
+
 import junit.framework.TestCase;
 import modelo.Aviones.Avion;
 import modelo.Aviones.EstrategiaAvionPesado;
@@ -81,6 +83,18 @@ public class MapaTest extends TestCase {
 		assertTrue(unAvion.obtenerPosicion().getX() == 3.0 && 
 				   unAvion.obtenerPosicion().getY() == 0.0 );
 	}
+	public void testMapaObtenerPosicion(){
+		Mapa unMapa = new Mapa(10,10);
+		Vector unVector = new Vector(0,0);
+		try{
+			unVector = unMapa.obtenerPosicionLibre();
+		}
+		catch (ImposibleCalcularPosicion ex){
+			assertTrue(true);
+		}
+		assertTrue ((unVector.getX() <= 10) && (unVector.getY() <= 10));
+	}
+	
 	
 	
 
