@@ -7,6 +7,7 @@ import java.util.Random;
 import Excepciones.ImposibleCalcularPosicion;
 
 import modelo.Aviones.Avion;
+import modelo.Aviones.EstrategiaAvionSimple;
 import modelo.Pistas.Pista;
 import modelo.Utilitarios.Vector;
 
@@ -19,12 +20,14 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	private ArrayList<Pista> pistas;
 	private int ancho;
 	private int largo;
+	private Nivel nivel;
 	
 	public Mapa(int ancho, int largo){
 		this.ancho = ancho;
 		this.largo = largo;
 		aviones = new ArrayList<Avion>();
 		pistas = new ArrayList<Pista>();
+		nivel = new Nivel();
 	}
 	
 	public Mapa(){
@@ -69,12 +72,13 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		} 		
 	}
 	
-	public void borrarAterrizados(ArrayList<Avion> avionesAterrizados)
+	private void borrarAterrizados(ArrayList<Avion> avionesAterrizados)
 	{
 		Iterator<Avion> iterador = avionesAterrizados.listIterator();
 		while( iterador.hasNext() ) {
 	          Avion avionABorrar = (Avion) iterador.next();
 	          this.aviones.remove(avionABorrar);
+	          nivel.AvionAterrizado();
 		}	
 	}
 	
@@ -160,8 +164,23 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	}
 
 	@Override
-	public void vivir() {
+	public void vivir() 
+	{
+		this.moverAviones();
+		this.aterrizarAviones();
 		
+		if (this.verificarColisiones())
+		{
+			//Como termino el juego?
+		}
+		
+		this.agregarAviones();
+	}
+
+	
+	private void agregarAviones() 
+	{
+		this.agregarAvion(new Avion(new Vector(0,300), new Vector(320, 240), new EstrategiaAvionSimple()));
 	}
 	
 }

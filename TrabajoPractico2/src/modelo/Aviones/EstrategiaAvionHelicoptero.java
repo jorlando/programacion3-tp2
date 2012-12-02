@@ -7,6 +7,8 @@ import modelo.Pistas.Pista;
 public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 {
 
+	private static double tamaño = 10;
+	
 	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{
 		if(trayectoriaDeVuelo.Waypoint() != null)
@@ -44,5 +46,11 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 	public boolean calcularChoqueCon(Avion unAvion){
 		return true;
 	}
+
+	public double tamaño() 
+	{
+		return this.tamaño;
+	}
+
 	
 }

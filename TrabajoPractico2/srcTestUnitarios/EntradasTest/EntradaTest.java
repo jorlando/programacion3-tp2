@@ -14,7 +14,7 @@ public class EntradaTest extends TestCase {
 	
 	public void setUp(){
 		entrada= new EntradaConDireccion(new Vector(1,2) , 2 , new Vector(2,1) , 45 );
-		avion1 = new Avion(new Vector(1,2),new Vector (2,1), 1, new EstrategiaAvionSimple());
+		avion1 = new Avion(new Vector(1,2),new Vector (2,1), new EstrategiaAvionSimple());
 	}
 	
 	public void testEntradaPunto12PerteneceAEntrada() {

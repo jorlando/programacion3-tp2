@@ -16,18 +16,18 @@ public class Avion
 	private double velocidad;
 	private double tamaño;
 		
-	public Avion(Vector PosicionInicial, Trayectoria trayectoriaInicial, double tamaño, EstrategiaAvion tipoDeAvion)
+	public Avion(Vector PosicionInicial, Trayectoria trayectoriaInicial, EstrategiaAvion tipoDeAvion)
 	{
 		this.posicion = PosicionInicial;
 		this.trayectoriaDeVuelo = trayectoriaInicial;
 		this.tipoDeAvion = tipoDeAvion;
 		this.velocidad = 1;
-		this.tamaño = tamaño;
+		this.tamaño = tipoDeAvion.tamaño();
 	}
 	
-	public Avion(Vector posicionInicial, Vector direccionInicial, double tamaño, EstrategiaAvion tipoDeAvion)
+	public Avion(Vector posicionInicial, Vector direccionInicial, EstrategiaAvion tipoDeAvion)
 	{
-		this(posicionInicial, new Trayectoria(direccionInicial), tamaño, tipoDeAvion);
+		this(posicionInicial, new Trayectoria(direccionInicial), tipoDeAvion);
 	}
 	
 	public Vector obtenerDireccion()

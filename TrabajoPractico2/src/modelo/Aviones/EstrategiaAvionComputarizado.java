@@ -6,6 +6,8 @@ import modelo.Utilitarios.Vector;
 
 public class EstrategiaAvionComputarizado implements EstrategiaAvion {
 
+	private static double tamaño = 10;
+	
 	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{
 		double distanciaAlWaypoint = trayectoriaDeVuelo.Waypoint().restarOtroVector(posicion).norma();
@@ -38,6 +40,12 @@ public class EstrategiaAvionComputarizado implements EstrategiaAvion {
 	
 	public boolean calcularChoqueCon(Avion unAvion){
 		return true;
+	}
+
+
+	public double tamaño() 
+	{
+		return this.tamaño;
 	}
 
 }

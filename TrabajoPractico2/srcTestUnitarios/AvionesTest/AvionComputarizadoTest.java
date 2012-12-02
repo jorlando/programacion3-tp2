@@ -15,7 +15,7 @@ public class AvionComputarizadoTest extends TestCase {
 	{
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionComputarizado());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, new EstrategiaAvionComputarizado());
 		
 		unAvion.avanzar();
 		
@@ -33,10 +33,10 @@ public class AvionComputarizadoTest extends TestCase {
 	{
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionComputarizado());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, new EstrategiaAvionComputarizado());
 		
 		Vector otraPosicionInicial = new Vector(1,0);	//A esa distancia chocan
-		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, 1, new EstrategiaAvionComputarizado());
+		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, new EstrategiaAvionComputarizado());
 		
 		assertTrue(unAvion.colisionaCon(avionAChocar));
 	}
@@ -45,10 +45,10 @@ public class AvionComputarizadoTest extends TestCase {
 	{
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionComputarizado());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, new EstrategiaAvionComputarizado());
 		
-		Vector otraPosicionInicial = new Vector(2,0);	//Lejos, no deberia chocar
-		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, 1, new EstrategiaAvionComputarizado());
+		Vector otraPosicionInicial = new Vector(50,0);	//Lejos, no deberia chocar
+		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, new EstrategiaAvionComputarizado());
 		
 		assertFalse(unAvion.colisionaCon(avionAChocar));
 	}
@@ -57,10 +57,10 @@ public class AvionComputarizadoTest extends TestCase {
 	{
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionComputarizado());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, new EstrategiaAvionComputarizado());
 		
-		Vector otraPosicionInicial = new Vector(4,0);	//Lejos, no deberia chocar
-		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, 1, new EstrategiaAvionComputarizado());
+		Vector otraPosicionInicial = new Vector(50,0);	//Lejos, no deberia chocar
+		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, new EstrategiaAvionComputarizado());
 		
 		ArrayList<Avion> todosLosAviones = new ArrayList<Avion>();
 		todosLosAviones.add(avionAChocar);

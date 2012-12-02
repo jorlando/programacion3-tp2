@@ -30,10 +30,10 @@ public class MapaTest extends TestCase {
 		
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, new EstrategiaAvionSimple());
 		
 		Vector otraPosicionInicial = new Vector(2,0);
-		Avion otroAvion = new Avion(otraPosicionInicial, direccionInicial, 1, new EstrategiaAvionPesado());
+		Avion otroAvion = new Avion(otraPosicionInicial, direccionInicial, new EstrategiaAvionPesado());
 		
 		unMapa.agregarAvion(unAvion);
 		unMapa.agregarAvion(otroAvion);
@@ -46,10 +46,10 @@ public class MapaTest extends TestCase {
 		Mapa unMapa= new Mapa(50,50);
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, new EstrategiaAvionSimple());
 		
 		Vector otraPosicionInicial = new Vector(1,0);	//A esa distancia chocan
-		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion avionAChocar = new Avion(otraPosicionInicial, direccionInicial, new EstrategiaAvionSimple());
 		
 		unMapa.agregarAvion(unAvion);
 		unMapa.agregarAvion(avionAChocar);
@@ -59,7 +59,7 @@ public class MapaTest extends TestCase {
 	public void testMapaAvionAterriza(){
 		Mapa unMapa= new Mapa(50,50);
 		Pista unaPista = new PistaDobleEntrada(new Vector (0,0), new Vector(1,1), 2, 0);
-		Avion unAvion = new Avion(new Vector(1,1), new Vector(-1,-1), 2, new EstrategiaAvionSimple());
+		Avion unAvion = new Avion(new Vector(1,1), new Vector(-1,-1), new EstrategiaAvionSimple());
 		
 		unMapa.agregarPista(unaPista);
 		unMapa.agregarAvion(unAvion);
@@ -74,7 +74,7 @@ public class MapaTest extends TestCase {
 		Mapa unMapa= new Mapa(50,50);
 		Vector posicionInicial = new Vector(1,0);
 		Vector direccionInicial = new Vector(2,0);
-		Avion unAvion = new Avion(posicionInicial, direccionInicial, 1, new EstrategiaAvionSimple());
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, new EstrategiaAvionSimple());
 		
 		unMapa.agregarAvion(unAvion);
 		unMapa.moverAviones();
