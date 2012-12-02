@@ -1,11 +1,10 @@
-package UtilitariosTest;
+package testUnitarios.UtilitariosTest;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Stack;
 
-import Utilitarios.Trayectoria;
-import Utilitarios.Vector;
+import modelo.Utilitarios.Trayectoria;
+import modelo.Utilitarios.Vector;
 
 import junit.framework.TestCase;
 

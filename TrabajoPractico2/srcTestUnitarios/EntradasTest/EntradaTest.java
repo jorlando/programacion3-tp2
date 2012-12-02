@@ -1,10 +1,10 @@
-package EntradasTest;
+package testUnitarios.EntradasTest;
 
 
-import Utilitarios.Vector;
-import Aviones.Avion;
-import Aviones.EstrategiaAvionSimple;
-import Entradas.EntradaConDireccion;
+import modelo.Utilitarios.Vector;
+import modelo.Aviones.Avion;
+import modelo.Aviones.EstrategiaAvionSimple;
+import modelo.Entradas.EntradaConDireccion;
 import junit.framework.TestCase;
 
 public class EntradaTest extends TestCase {

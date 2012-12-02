@@ -1,11 +1,11 @@
-package PistasTest;
+package testUnitarios.PistasTest;
 
 import junit.framework.TestCase;
-import Utilitarios.Vector;
-import Pistas.Pista;
-import Pistas.PistaSimpleEntrada;
-import Aviones.Avion;
-import Aviones.EstrategiaAvionSimple;
+import modelo.Utilitarios.Vector;
+import modelo.Pistas.Pista;
+import modelo.Pistas.PistaSimpleEntrada;
+import modelo.Aviones.Avion;
+import modelo.Aviones.EstrategiaAvionSimple;
 
 
 

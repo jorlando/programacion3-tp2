@@ -1,9 +1,9 @@
-package AvionesTest;
+package testUnitarios.AvionesTest;
 
 import java.util.ArrayList;
-import Utilitarios.Vector;
-import Aviones.Avion;
-import Aviones.EstrategiaAvionSimple;
+import modelo.Utilitarios.Vector;
+import modelo.Aviones.Avion;
+import modelo.Aviones.EstrategiaAvionSimple;
 import junit.framework.TestCase;
 
 	//  AvionTest será las pruebas de los metodos comunes a todos los aviones 

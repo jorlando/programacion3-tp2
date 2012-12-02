@@ -1,10 +1,10 @@
-package AvionesTest;
+package testUnitarios.AvionesTest;
 
 import java.util.ArrayList;
 
-import Aviones.Avion;
-import Aviones.EstrategiaAvionHelicoptero;
-import Utilitarios.Vector;
+import modelo.Aviones.Avion;
+import modelo.Aviones.EstrategiaAvionHelicoptero;
+import modelo.Utilitarios.Vector;
 import junit.framework.TestCase;
 
 public class AvionHelicopteroTest extends TestCase {

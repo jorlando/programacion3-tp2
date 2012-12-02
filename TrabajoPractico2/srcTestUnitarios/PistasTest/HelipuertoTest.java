@@ -1,11 +1,11 @@
-package PistasTest;
+package testUnitarios.PistasTest;
 
 import junit.framework.TestCase;
-import Utilitarios.Vector;
-import Pistas.Pista;
-import Pistas.Helipuerto;
-import Aviones.Avion;
-import Aviones.EstrategiaAvionHelicoptero;
+import modelo.Utilitarios.Vector;
+import modelo.Pistas.Pista;
+import modelo.Pistas.Helipuerto;
+import modelo.Aviones.Avion;
+import modelo.Aviones.EstrategiaAvionHelicoptero;
 
 
 public class HelipuertoTest extends TestCase {

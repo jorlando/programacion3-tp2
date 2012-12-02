@@ -1,13 +1,10 @@
-package AvionesTest;
+package testUnitarios.AvionesTest;
 
 
 import java.util.ArrayList;
-
-import org.junit.Test;
-
-import Aviones.Avion;
-import Aviones.EstrategiaAvionPesado;
-import Utilitarios.Vector;
+import modelo.Aviones.Avion;
+import modelo.Aviones.EstrategiaAvionPesado;
+import modelo.Utilitarios.Vector;
 
 import junit.framework.TestCase;
 

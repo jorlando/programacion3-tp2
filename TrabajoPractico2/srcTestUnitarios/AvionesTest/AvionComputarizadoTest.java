@@ -3,9 +3,9 @@ package AvionesTest;
 
 import java.util.ArrayList;
 
-import Aviones.Avion;
-import Aviones.EstrategiaAvionComputarizado;
-import Utilitarios.Vector;
+import modelo.Aviones.Avion;
+import modelo.Aviones.EstrategiaAvionComputarizado;
+import modelo.Utilitarios.Vector;
 
 import junit.framework.TestCase;
 
