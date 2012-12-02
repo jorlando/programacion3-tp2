@@ -12,8 +12,9 @@ public class PanelMenu extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	JButton nuevoJuego, continuarJuego, salir;
-
+	
 	public PanelMenu(ActionListener oyente){
+		
 		this.setBackground(Color.white);
 		
 		FlowLayout layout = new FlowLayout();
@@ -34,7 +35,6 @@ public class PanelMenu extends JPanel {
 		nuevoJuego.setActionCommand("nuevoJuego");
 		continuarJuego.setActionCommand("continuarJuego");
 		salir.setActionCommand("salir");
-		
 		
 		add(nuevoJuego);
 		add(continuarJuego);

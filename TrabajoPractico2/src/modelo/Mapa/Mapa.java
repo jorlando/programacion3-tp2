@@ -10,11 +10,10 @@ import modelo.Aviones.Avion;
 import modelo.Pistas.Pista;
 import modelo.Utilitarios.Vector;
 
+import fiuba.algo3.titiritero.modelo.*;
 
 
-
-
-public class Mapa{
+public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	
 	private ArrayList<Avion> aviones;
 	private ArrayList<Pista> pistas;
@@ -29,7 +28,7 @@ public class Mapa{
 	}
 	
 	public Mapa(){
-		new Mapa(800,600);
+		this(800,600);
 	}
 	
 	public void agregarPista(Pista unaPista){
@@ -140,6 +139,29 @@ public class Mapa{
 	/* Falta Implementar */
 	public Vector calcularDireccionParaPosicion(Vector unaPosicion) {
 		return new Vector(0,0);
+	}
+	
+	public int getLargo(){
+		return this.largo;
+	}
+	
+	public int getAncho(){
+		return this.ancho;
+	}
+
+	@Override
+	public int getX() {
+		return 0;
+	}
+
+	@Override
+	public int getY() {
+		return 0;
+	}
+
+	@Override
+	public void vivir() {
+		
 	}
 	
 }

@@ -14,6 +14,7 @@ public class PanelNombre extends JPanel {
 	JTextField nombre;
 	
 	public PanelNombre(){
+		
 		this.setBackground(Color.white);
 		
 		FlowLayout layout = new FlowLayout();
@@ -24,6 +25,7 @@ public class PanelNombre extends JPanel {
 		
 		add(new JLabel("Nombre: "));
 		add(nombre);
+
 	}
 	
 	public String getNombre(){
