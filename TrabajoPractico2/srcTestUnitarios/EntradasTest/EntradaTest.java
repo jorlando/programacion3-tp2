@@ -1,4 +1,4 @@
-package testUnitarios.EntradasTest;
+package EntradasTest;
 
 
 import modelo.Utilitarios.Vector;

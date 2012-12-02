@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import vista.Ventanas.VentanaJuego;
@@ -21,6 +22,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 	PanelMenu panelMenu;
 	PanelNombre panelNombre;
 	PanelInfo panelInfo;
+	ImageIcon fondo;
 	
 	public VentanaPrincipal(){
 		//Inicializamos la ventana
@@ -32,14 +34,15 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 	public void iniciar(){
 		
 		setVisible(true);
-		
 		//Inicializamos la barra de menu
 		menuBar = new BarraMenu (this);
 		this.setJMenuBar(menuBar);
-				
-		//Creamos los paneles
+		fondo = new ImageIcon("recursos/imagenes/menuFondo.png");
+		this.setIconImage(fondo.getImage());
 		
 		Container contentPane = getContentPane();
+				
+		//Creamos los paneles
 		contentPane.setLayout(new GridLayout(3,1));
 		
 		panelMenu = new PanelMenu(this);
@@ -49,7 +52,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 		contentPane.add(panelInfo);
 		contentPane.add(panelNombre);
 		contentPane.add(panelMenu);
-		
+
 		paintComponents(this.getGraphics());
 				
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -75,15 +78,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 		else if (evento.getActionCommand()=="ayuda"){
 			ayuda();
 		}
-		
-		
-		
 	}
 	
 	private void nuevoJuego(){
+		
 		VentanaJuego vJuego = new VentanaJuego();
 		setVisible(false);
 		vJuego.getFrame().setVisible(true);
+		
 	}
 	
 	private void cargarJuego(){
@@ -95,8 +97,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 	}
 	
 	private void acerca(){
-		this.panelInfo.setTexto("CopControl V 1.0  Integrantes:  Federico Rodrigez Longhi");
-		
+		this.panelInfo.setTexto("CopControl V 1.0  Integrantes:  " +
+				"\nFederico Rodrigez Longhi,  \n" +
+				"Nicolas Gatti, \n" +
+				"Juan Manuel Orlando");
 	}
 	
 }
+

@@ -1,4 +1,4 @@
-package testUnitarios.MapaTest;
+package MapaTest;
 
 import java.util.ArrayList;
 

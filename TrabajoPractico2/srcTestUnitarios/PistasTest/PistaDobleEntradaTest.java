@@ -1,4 +1,4 @@
-package testUnitarios.PistasTest;
+package PistasTest;
 
 import junit.framework.TestCase;
 import modelo.Utilitarios.Vector;

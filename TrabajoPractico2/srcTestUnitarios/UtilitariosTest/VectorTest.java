@@ -1,4 +1,4 @@
-package testUnitarios.UtilitariosTest;
+package UtilitariosTest;
 
 import modelo.Utilitarios.Vector;
 import junit.framework.TestCase;

@@ -9,10 +9,15 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import vista.Objetos.VistaMapa;
+
+import modelo.Mapa.Mapa;
 
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
@@ -84,7 +89,13 @@ public class VentanaJuego {
 		
 	}
 
-	private void inicializarModelo() {
+	private void inicializarModelo() throws MalformedURLException, IOException {
+		
+		Mapa unMapa = new Mapa();
+		VistaMapa vista = new VistaMapa(unMapa);
+		
+		this.gameLoop.agregar(unMapa);
+		this.gameLoop.agregar(vista);
 		
 
 	}
@@ -184,7 +195,9 @@ public class VentanaJuego {
 		JButton btnIniciar = new JButton("Volver Al Menu");
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				gameLoop.detenerEjecucion();
+				if (juegoComenzado){
+					gameLoop.detenerEjecucion();
+				}
 				frame.setVisible(false);
 				VentanaPrincipal ventana = new VentanaPrincipal();
 				ventana.iniciar();
