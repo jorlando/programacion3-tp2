@@ -7,8 +7,7 @@ public class VistaPistaSimple extends Cuadrado {
 
 	public VistaPistaSimple(int ancho, int alto,
 			ObjetoPosicionable objetoPosicionable) {
-		super(ancho, alto, objetoPosicionable);
-		
+		super(ancho, alto, objetoPosicionable);	
 	}
 
 }

@@ -7,7 +7,7 @@ import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 
 public abstract class Figura implements ObjetoDibujable {
-	
+
 	private Color color;
 	private ObjetoPosicionable posicionable;
 	

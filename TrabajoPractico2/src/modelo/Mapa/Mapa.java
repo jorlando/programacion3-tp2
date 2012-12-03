@@ -27,6 +27,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	private int largo;
 	private Nivel nivel;
 	private GameLoop gameLoop;
+	private ObservadorDeGameLoop observador; 
 	
 	public Mapa(int ancho, int largo, GameLoop gameLoop){
 		this.ancho = ancho;
@@ -35,6 +36,8 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		pistas = new ArrayList<Pista>();
 		nivel = new Nivel();
 		this.gameLoop = gameLoop;
+		this.observador = new ObservadorDeMapa(this);
+		this.gameLoop.agregarObservador(observador);
 	}
 	
 	public Mapa(GameLoop gameLoop){
@@ -180,30 +183,38 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 			//habria que hacer algo para avisar que se murio
 		}
 		
-		this.agregarAviones();
+		//this.agregarAviones();
 	}
 	
 	public void iniciarSimulacion(){
+		
+		
 		VistaMapa vistaMapa = new VistaMapa(this);
 		/* Creamos las pistas */
-		Pista pista1 = new PistaSimpleEntrada(new Vector(200,300), new Vector(1,0), 10, 45);
-		VistaPistaSimple vistaPista1 = new VistaPistaSimple(100,10,pista1);
+		Pista pista1 = new PistaSimpleEntrada(new Vector(200,300), new Vector(1,0), 20, 80);
+		VistaPistaSimple vistaPista1 = new VistaPistaSimple(100,20,pista1);
 		
 		this.agregarPista(pista1);
 		/* **************************************** */
 		gameLoop.agregar(vistaMapa);
 		gameLoop.agregar(this);
 		gameLoop.agregar(vistaPista1);
+		/* **************************************** */
 		gameLoop.iniciarEjecucion();
 	}
 	
 	public void agregarAviones(){
 		// le preguntamos al nivel que avion agregar 
-		Avion nuevoAvion = new Avion(new Vector(10,10), new Vector(1,1), new EstrategiaAvionSimple());
+		Random generator = new Random();
+		int x = generator.nextInt(this.largo);
+		int y = generator.nextInt(this.largo);
+		
+		Avion nuevoAvion = new Avion(new Vector(x,y), new Vector(1,1), new EstrategiaAvionSimple());
 		VistaAvionSimple vistaAvion = new VistaAvionSimple(nuevoAvion);
 		this.agregarAvion(nuevoAvion);
 		gameLoop.agregar(nuevoAvion);
 		gameLoop.agregar(vistaAvion);
+		
 	}
 
 	public void detenerSimulacion() {
