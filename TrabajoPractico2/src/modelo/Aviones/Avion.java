@@ -62,7 +62,7 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 	}
 	
 	public boolean colisionaCon(Avion otroAvion){
-		return ((((this.posicion.restarOtroVector(otroAvion.posicion)).norma())-(this.getTamaño()+otroAvion.getTamaño())<0) && 
+		return ((((this.posicion.restarOtroVector(otroAvion.posicion)).norma())-(this.getTamaño()/2 + otroAvion.getTamaño()/2)<0) && 
 				tipoDeAvion.calcularChoqueCon(otroAvion));
 	}
 	

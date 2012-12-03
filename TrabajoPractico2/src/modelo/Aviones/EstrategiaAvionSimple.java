@@ -6,7 +6,7 @@ import modelo.Utilitarios.Vector;
 
 public class EstrategiaAvionSimple implements EstrategiaAvion
 {
-	private static int tamaño = 10;
+	private static int tamaño = 20;
 	
 	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{

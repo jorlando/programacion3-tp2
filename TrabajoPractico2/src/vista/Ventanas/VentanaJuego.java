@@ -9,7 +9,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -69,6 +68,8 @@ public class VentanaJuego {
 		
 		JButton btnVolverAlMenu = this.addBotonVolver();
 		
+		JButton btnReiniciar = this.addBotonReiniciar();
+		
 		JPanel panel = this.addSuperficiePanel();
 		
 		GameLoop gameLoop = new GameLoop(FPS,(SuperficieDeDibujo) panel);
@@ -79,7 +80,7 @@ public class VentanaJuego {
 		
 		this.addKeyListener();
 
-		this.setComponentsFocus(btnIniciar, btnPausa, btnVolverAlMenu); //esto nose para que sirve
+		this.setComponentsFocus(btnIniciar, btnPausa, btnVolverAlMenu, btnReiniciar); //esto nose para que sirve
 		
 		this.pausa = true;
 		
@@ -90,20 +91,15 @@ public class VentanaJuego {
 	private void inicializarModelo(GameLoop gameLoop) {
 		
 		mapa = new Mapa(gameLoop);
-		/*
-		VistaMapa vistaMapa = new VistaMapa(unMapa);
-		
-		this.gameLoop.agregar(unMapa);
-		this.gameLoop.agregar(vistaMapa);
-		*/
 
 	}
 
-	private void setComponentsFocus(JButton btnIniciar, JButton btnDetener, JButton btnVolver) {
+	private void setComponentsFocus(JButton btnIniciar, JButton btnDetener, JButton btnVolver, JButton btnReiniciar) {
 		frame.setFocusable(true);
 		btnDetener.setFocusable(false);
 		btnIniciar.setFocusable(false);
 		btnVolver.setFocusable(false);
+		btnReiniciar.setFocusable(false);
 	}
 
 	private void addKeyListener() {
@@ -206,5 +202,24 @@ public class VentanaJuego {
 		frame.getContentPane().add(btnIniciar);
 		return btnIniciar;
 	}
+	
+	private JButton addBotonReiniciar() {
+		JButton btnIniciar = new JButton("Reiniciar");
+		btnIniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (juegoEnProgreso){
+					mapa.detenerSimulacion();
+					frame.setVisible(false);
+					VentanaJuego vJuego = new VentanaJuego();
+					vJuego.getFrame().setVisible(true);
+				}
+				
+			}
+		});
+		btnIniciar.setBounds(500, 16, 200, 25);
+		frame.getContentPane().add(btnIniciar);
+		return btnIniciar;
+	}
+	
 }
 

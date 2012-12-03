@@ -9,7 +9,6 @@ public class ObservadorDeMapa implements ObservadorDeGameLoop {
 	public ObservadorDeMapa(Mapa unMapa){
 		this.mapa= unMapa;
 	}
-	
 
 	@Override
 	public void notificarCicloFinalizado() {
