@@ -6,12 +6,14 @@ import java.util.Random;
 
 import vista.Aviones.VistaAvionSimple;
 import vista.Objetos.VistaMapa;
+import vista.Pistas.VistaPistaSimple;
 
 import Excepciones.ImposibleCalcularPosicion;
 
 import modelo.Aviones.Avion;
 import modelo.Aviones.EstrategiaAvionSimple;
 import modelo.Pistas.Pista;
+import modelo.Pistas.PistaSimpleEntrada;
 import modelo.Utilitarios.Vector;
 
 import fiuba.algo3.titiritero.modelo.*;
@@ -183,8 +185,15 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	
 	public void iniciarSimulacion(){
 		VistaMapa vistaMapa = new VistaMapa(this);
+		/* Creamos las pistas */
+		Pista pista1 = new PistaSimpleEntrada(new Vector(200,300), new Vector(1,0), 10, 45);
+		VistaPistaSimple vistaPista1 = new VistaPistaSimple(100,10,pista1);
+		
+		this.agregarPista(pista1);
+		/* **************************************** */
 		gameLoop.agregar(vistaMapa);
 		gameLoop.agregar(this);
+		gameLoop.agregar(vistaPista1);
 		gameLoop.iniciarEjecucion();
 	}
 	
@@ -200,5 +209,11 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	public void detenerSimulacion() {
 		gameLoop.detenerEjecucion();
 	}
+	
+	/* Para mejorar
+	private void crearPistas(){
+		
+	}
+	*/
 	
 }
