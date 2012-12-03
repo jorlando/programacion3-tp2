@@ -7,7 +7,7 @@ import modelo.Pistas.Pista;
 public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 {
 
-	private static double tamaño = 10;
+	private static int tamaño = 10;
 	
 	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{
@@ -47,7 +47,7 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 		return true;
 	}
 
-	public double tamaño() 
+	public int tamaño() 
 	{
 		return this.tamaño;
 	}

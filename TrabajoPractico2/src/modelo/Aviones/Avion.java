@@ -3,18 +3,20 @@ package modelo.Aviones;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
+
 import modelo.Utilitarios.Trayectoria;
 import modelo.Utilitarios.Vector;
 import modelo.Pistas.Pista;
 
 
-public class Avion
+public class Avion implements ObjetoPosicionable
 {
 	private Vector posicion;
 	private Trayectoria trayectoriaDeVuelo; 
 	private EstrategiaAvion tipoDeAvion;
 	private double velocidad;
-	private double tamaño;
+	private int tamaño;
 		
 	public Avion(Vector PosicionInicial, Trayectoria trayectoriaInicial, EstrategiaAvion tipoDeAvion)
 	{
@@ -22,7 +24,7 @@ public class Avion
 		this.trayectoriaDeVuelo = trayectoriaInicial;
 		this.tipoDeAvion = tipoDeAvion;
 		this.velocidad = 1;
-		this.tamaño = tipoDeAvion.tamaño();
+		this.setTamaño(tipoDeAvion.tamaño());
 	}
 	
 	public Avion(Vector posicionInicial, Vector direccionInicial, EstrategiaAvion tipoDeAvion)
@@ -59,7 +61,7 @@ public class Avion
 	}
 	
 	public boolean colisionaCon(Avion otroAvion){
-		return ((((this.posicion.restarOtroVector(otroAvion.posicion)).norma())-(this.tamaño+otroAvion.tamaño)<0) && 
+		return ((((this.posicion.restarOtroVector(otroAvion.posicion)).norma())-(this.getTamaño()+otroAvion.getTamaño())<0) && 
 				tipoDeAvion.calcularChoqueCon(otroAvion));
 	}
 	
@@ -86,6 +88,14 @@ public class Avion
 	
 	public void vivir(){ //esto sirve depende como lo hagamos
 		avanzar();
+	}
+
+	public int getTamaño() {
+		return tamaño;
+	}
+
+	public void setTamaño(int tamaño) {
+		this.tamaño = tamaño;
 	}
 	
 }

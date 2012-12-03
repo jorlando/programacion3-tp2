@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import vista.Aviones.VistaAvionSimple;
+
 import Excepciones.ImposibleCalcularPosicion;
 
 import modelo.Aviones.Avion;
@@ -21,17 +23,19 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	private int ancho;
 	private int largo;
 	private Nivel nivel;
+	private GameLoop gameLoop;
 	
-	public Mapa(int ancho, int largo){
+	public Mapa(int ancho, int largo, GameLoop gameLoop){
 		this.ancho = ancho;
 		this.largo = largo;
 		aviones = new ArrayList<Avion>();
 		pistas = new ArrayList<Pista>();
 		nivel = new Nivel();
+		this.gameLoop = gameLoop;
 	}
 	
-	public Mapa(){
-		this(800,600);
+	public Mapa(GameLoop gameLoop){
+		this(800,600, gameLoop);
 	}
 	
 	public void agregarPista(Pista unaPista){
@@ -171,16 +175,25 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		
 		if (this.verificarColisiones())
 		{
-			//Como termino el juego?
+			System.out.println("¡¡¡¡¡CHOQUE!!!!!");
 		}
 		
 		this.agregarAviones();
 	}
 
-	
+	static int pepe = 0;
+			
 	private void agregarAviones() 
 	{
-		this.agregarAvion(new Avion(new Vector(0,300), new Vector(320, 240), new EstrategiaAvionSimple()));
+			if(pepe % 10000000 == 0 )
+			{	
+				Avion nuevoAvion = new Avion(new Vector(0,300), new Vector(320, 240), new EstrategiaAvionSimple());
+				this.agregarAvion(nuevoAvion);
+				VistaAvionSimple vistaAvion = new VistaAvionSimple(nuevoAvion);
+				gameLoop.agregar(vistaAvion);
+			}
+			pepe++;
+		
 	}
 	
 }

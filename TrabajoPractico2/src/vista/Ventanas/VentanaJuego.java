@@ -91,7 +91,7 @@ public class VentanaJuego {
 
 	private void inicializarModelo() throws MalformedURLException, IOException {
 		
-		Mapa unMapa = new Mapa();
+		Mapa unMapa = new Mapa(gameLoop);
 		VistaMapa vistaMapa = new VistaMapa(unMapa);
 		
 		this.gameLoop.agregar(unMapa);

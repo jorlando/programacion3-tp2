@@ -6,7 +6,7 @@ import modelo.Utilitarios.Vector;
 
 public class EstrategiaAvionSimple implements EstrategiaAvion
 {
-	private static double tamaño = 10;
+	private static int tamaño = 10;
 	
 	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{
@@ -18,8 +18,10 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 		
 		//Si me voy a acercar al waypoint sigo avanzando
 		if(distanciaAlWaypoint >= proximaDistanciaAlWaypoint)
+		{
+			System.out.println(proximaPosicion.getX() + "--" + proximaPosicion.getY());
 			return proximaPosicion;
-		
+		}
 		//Sino cambio de direccion, y si no hay sigo derecho
 		
 		trayectoriaDeVuelo.QuitarWaypoint();
@@ -30,7 +32,8 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 		else
 			//recalculo la proxima posicion
 			proximaPosicion = posicion.sumarOtroVector(trayectoriaDeVuelo.Direccion(posicion).multiplicarPorEscalar(velocidad));
-	
+		
+		System.out.println(proximaPosicion.getX() + "--" + proximaPosicion.getY());
 		return proximaPosicion;	
 	}
 	
@@ -43,7 +46,7 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 	}
 
 	
-	public double tamaño() 
+	public int tamaño() 
 	{
 		return this.tamaño;
 	}
