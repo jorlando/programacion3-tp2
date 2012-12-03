@@ -10,6 +10,7 @@ public class VistaMapa extends Cuadrado {
 	public VistaMapa(Mapa unMapa){
 		super(unMapa.getAncho(), unMapa.getLargo(), unMapa);
 		this.setColor(Color.blue);
+		
 	}
 	
 }

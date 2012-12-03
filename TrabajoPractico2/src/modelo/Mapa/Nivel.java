@@ -1,7 +1,5 @@
 package modelo.Mapa;
 
-
-
 public class Nivel 
 
 {

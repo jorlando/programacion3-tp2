@@ -15,8 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import vista.Objetos.VistaMapa;
-
 import modelo.Mapa.Mapa;
 
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
@@ -25,8 +23,8 @@ import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 
 public class VentanaJuego {
 	private JFrame frame;
-	private GameLoop gameLoop;
-	private boolean juegoComenzado;
+	private Mapa mapa;
+	private boolean juegoEnProgreso;
 	private boolean pausa;
 	
 	private int FPS = 50;
@@ -73,9 +71,9 @@ public class VentanaJuego {
 		
 		JPanel panel = this.addSuperficiePanel();
 		
-		this.gameLoop = new GameLoop(FPS,(SuperficieDeDibujo) panel);
+		GameLoop gameLoop = new GameLoop(FPS,(SuperficieDeDibujo) panel);
 		
-		this.inicializarModelo();
+		this.inicializarModelo(gameLoop);
 		
 		this.addMouseListener(panel);
 		
@@ -85,18 +83,19 @@ public class VentanaJuego {
 		
 		this.pausa = true;
 		
-		this.juegoComenzado = false;
+		this.juegoEnProgreso = false;
 		
 	}
 
-	private void inicializarModelo() throws MalformedURLException, IOException {
+	private void inicializarModelo(GameLoop gameLoop) {
 		
-		Mapa unMapa = new Mapa(gameLoop);
+		mapa = new Mapa(gameLoop);
+		/*
 		VistaMapa vistaMapa = new VistaMapa(unMapa);
 		
 		this.gameLoop.agregar(unMapa);
 		this.gameLoop.agregar(vistaMapa);
-		
+		*/
 
 	}
 
@@ -155,14 +154,14 @@ public class VentanaJuego {
 		JButton btnPausa = new JButton("Pausa");
 		btnPausa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (juegoComenzado){
+				if (juegoEnProgreso){
 					if (pausa){
-						gameLoop.iniciarEjecucion();
+						mapa.iniciarSimulacion();
 						((JButton)e.getSource()).setBackground(Color.green); //esto es medio feo pero fue la unica manera que encontre de hacerlo.
 						pausa = false;
 					}
 					else{
-						gameLoop.detenerEjecucion();
+						mapa.detenerSimulacion();
 						((JButton)e.getSource()).setBackground(Color.red);
 						pausa = true;
 					}
@@ -180,9 +179,9 @@ public class VentanaJuego {
 		JButton btnIniciar = new JButton("Comenzar Juego");
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gameLoop.iniciarEjecucion();
+				mapa.iniciarSimulacion();
 				pausa = false;
-				juegoComenzado = true;
+				juegoEnProgreso = true;
 				((JButton)e.getSource()).setVisible(false);
 			}
 		});
@@ -195,8 +194,8 @@ public class VentanaJuego {
 		JButton btnIniciar = new JButton("Volver Al Menu");
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (juegoComenzado){
-					gameLoop.detenerEjecucion();
+				if (juegoEnProgreso){
+					mapa.detenerSimulacion();
 				}
 				frame.setVisible(false);
 				VentanaPrincipal ventana = new VentanaPrincipal();

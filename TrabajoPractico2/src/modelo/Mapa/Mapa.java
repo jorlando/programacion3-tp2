@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import vista.Aviones.VistaAvionSimple;
+import vista.Objetos.VistaMapa;
 
 import Excepciones.ImposibleCalcularPosicion;
 
@@ -170,30 +171,34 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	@Override
 	public void vivir() 
 	{
-		this.moverAviones();
-		this.aterrizarAviones();
-		
 		if (this.verificarColisiones())
 		{
 			System.out.println("¡¡¡¡¡CHOQUE!!!!!");
+			gameLoop.detenerEjecucion();
+			//habria que hacer algo para avisar que se murio
 		}
 		
 		this.agregarAviones();
 	}
+	
+	public void iniciarSimulacion(){
+		VistaMapa vistaMapa = new VistaMapa(this);
+		gameLoop.agregar(vistaMapa);
+		gameLoop.agregar(this);
+		gameLoop.iniciarEjecucion();
+	}
+	
+	public void agregarAviones(){
+		// le preguntamos al nivel que avion agregar 
+		Avion nuevoAvion = new Avion(new Vector(10,10), new Vector(1,1), new EstrategiaAvionSimple());
+		VistaAvionSimple vistaAvion = new VistaAvionSimple(nuevoAvion);
+		this.agregarAvion(nuevoAvion);
+		gameLoop.agregar(nuevoAvion);
+		gameLoop.agregar(vistaAvion);
+	}
 
-	static int pepe = 0;
-			
-	private void agregarAviones() 
-	{
-			if(pepe % 10000000 == 0 )
-			{	
-				Avion nuevoAvion = new Avion(new Vector(0,300), new Vector(320, 240), new EstrategiaAvionSimple());
-				this.agregarAvion(nuevoAvion);
-				VistaAvionSimple vistaAvion = new VistaAvionSimple(nuevoAvion);
-				gameLoop.agregar(vistaAvion);
-			}
-			pepe++;
-		
+	public void detenerSimulacion() {
+		gameLoop.detenerEjecucion();
 	}
 	
 }

@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
+import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
 import modelo.Utilitarios.Trayectoria;
 import modelo.Utilitarios.Vector;
 import modelo.Pistas.Pista;
 
 
-public class Avion implements ObjetoPosicionable
+public class Avion implements ObjetoPosicionable, ObjetoVivo
 {
 	private Vector posicion;
 	private Trayectoria trayectoriaDeVuelo; 
@@ -97,5 +98,6 @@ public class Avion implements ObjetoPosicionable
 	public void setTamaño(int tamaño) {
 		this.tamaño = tamaño;
 	}
+	
 	
 }
