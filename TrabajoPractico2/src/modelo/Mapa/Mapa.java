@@ -221,13 +221,11 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 				this.agregarAvion(nuevoAvion);
 				gameLoop.agregar(nuevoAvion);
 				gameLoop.agregar(vistaAvion);
-				frec += 20;
+				frec = 1;
 			}
 			catch (ImposibleCalcularPosicion exception){
 				//
 			}
-			
-			
 		}
 		/*
 		else {
@@ -249,7 +247,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	          Avion avion = (Avion) iterador.next();
 	          posicionAvion = avion.obtenerPosicion();
 	          if (posicionAvion.restarOtroVector(posicionABuscar).norma() < avion.getTamaño()*1.2){
-	        	  System.out.println("hay avion");
 	        	  return avion;
 	          }
 		}

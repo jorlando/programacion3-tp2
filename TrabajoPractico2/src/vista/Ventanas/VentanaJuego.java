@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -25,6 +26,8 @@ public class VentanaJuego {
 	private boolean juegoEnProgreso;
 	private boolean pausa;
 	private boolean trazandoTrayectoria;
+	private Avion avion;
+	private int cont;
 	
 	private int FPS = 50;
 	private int LARGO = 1024;
@@ -80,6 +83,8 @@ public class VentanaJuego {
 		
 		this.addMouseListener(panel);
 		
+		this.addMouseMotionListener(panel);
+		
 		this.setComponentsFocus(btnIniciar, btnPausa, btnVolverAlMenu, btnReiniciar); //esto nose para que sirve
 		
 		this.pausa = true;
@@ -88,11 +93,15 @@ public class VentanaJuego {
 		
 		this.trazandoTrayectoria = false;
 		
+		this.avion = null;
+		
+		this.cont = 0;
+		
 	}
 
 	private void inicializarModelo(GameLoop gameLoop) {
 		
-		mapa = new Mapa(gameLoop);
+		this.mapa = new Mapa(gameLoop);
 
 	}
 
@@ -106,57 +115,64 @@ public class VentanaJuego {
 
 
 	private void addMouseListener(JPanel panel) {
-		panel.addMouseListener(new MouseAdapter() {
-			Avion avion;	
-			@Override
-			public void mouseClicked(MouseEvent eventoMouse) {
-				System.out.println(eventoMouse.getX()+ " : "+eventoMouse.getY());
-				Vector click = new Vector(eventoMouse.getX(),eventoMouse.getY());
-				avion = mapa.obtenerAvionEn(click);
-				if (avion != null) {
-					System.out.println("avion: " +avion.getX() + " : " + avion.getY());
-					avion.limpiarTrayectoria();
-					avion.agregarPuntoATrayectoria(click);
-					trazandoTrayectoria = true;
-				}
+		panel.addMouseListener(new MouseAdapter() {	
+						
+			public void mouseClicked(MouseEvent e) {
+				System.out.println("The frame was clicked.");
 				
 			}
 			
-			public void mouseDragged(MouseEvent eventoMouse) {
-				//la idea aca es que busque en el mapa un avion cercano a ese punto e inicie una tryectoria. 
-				System.out.println(eventoMouse.getX()+ " : "+eventoMouse.getY());
-				/*if (!trazandoTrayectoria){
-					Vector click = new Vector(eventoMouse.getX(),eventoMouse.getY());
+			public void mouseEntered(MouseEvent e) {
+				System.out.println("The mouse entered the frame.");
+				
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				System.out.println("The mouse exited the frame.");
+				
+			}
+			
+			public void mousePressed(MouseEvent e) {
+				System.out.println("The left mouse button was pressed.");
+				Vector click = new Vector(e.getX(),e.getY());
+				if (trazandoTrayectoria){
+					avion.agregarPuntoATrayectoria(click);
+				}
+				else{
 					avion = mapa.obtenerAvionEn(click);
-					if (avion != null) {
-						System.out.println("avion: " +avion.getX() + " : " + avion.getY());
+					if (avion != null){
+						System.out.println("encontramos un avion");					
 						avion.limpiarTrayectoria();
 						avion.agregarPuntoATrayectoria(click);
 						trazandoTrayectoria = true;
 					}
-				}*/
-				if (trazandoTrayectoria){
-					if (avion != null){
-						int x = eventoMouse.getX();
-						int y = eventoMouse.getY();
-						avion.agregarPuntoATrayectoria(new Vector(x,y));
-						System.out.println("modificando trayectoria: "+x+","+y);
-					}
 				}
 			}
-		
-			public void mouseReleased(MouseEvent eventoMouse) {
-				avion = null;
+			
+			public void mouseReleased(MouseEvent e) {
 				trazandoTrayectoria = false;
-			}
-			
-			public void mouseExited(MouseEvent e) {
 				avion = null;
-		        trazandoTrayectoria = false;
-		    }
-			
+				System.out.println("The left mouse button was released.");
+				
+			}		
 		});
 	}
+	
+	private void addMouseMotionListener(JPanel panel) {
+		panel.addMouseMotionListener(new MouseMotionAdapter() {
+			
+			public void mouseDragged(MouseEvent e) {
+				//System.out.println("The left mouse button is being dragged.");
+				if (trazandoTrayectoria){
+					avion.agregarPuntoATrayectoria(new Vector(e.getX(),e.getY()));
+				}
+				
+			}
+			
+		});
+		
+	}
+	
 			
 
 	private JPanel addSuperficiePanel() {

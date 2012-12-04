@@ -19,7 +19,6 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 		//Si me voy a acercar al waypoint sigo avanzando
 		if(distanciaAlWaypoint >= proximaDistanciaAlWaypoint)
 		{
-			System.out.println(proximaPosicion.getX() + "--" + proximaPosicion.getY());
 			return proximaPosicion;
 		}
 		//Sino cambio de direccion, y si no hay sigo derecho
@@ -32,8 +31,7 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 		else
 			//recalculo la proxima posicion
 			proximaPosicion = posicion.sumarOtroVector(trayectoriaDeVuelo.Direccion(posicion).multiplicarPorEscalar(velocidad));
-		
-		System.out.println(proximaPosicion.getX() + "--" + proximaPosicion.getY());
+
 		return proximaPosicion;	
 	}
 	
