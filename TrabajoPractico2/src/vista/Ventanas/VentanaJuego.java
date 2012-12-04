@@ -107,18 +107,34 @@ public class VentanaJuego {
 
 	private void addMouseListener(JPanel panel) {
 		panel.addMouseListener(new MouseAdapter() {
-			Avion avion = null;	
+			Avion avion;	
 			@Override
 			public void mouseClicked(MouseEvent eventoMouse) {
-				avion = mapa.obtenerAvionEn(new Vector(eventoMouse.getX(),eventoMouse.getY()));
-				System.out.println("avion: " +avion.getX() + " : " + avion.getY());
-				avion.limpiarTrayectoria();
-				trazandoTrayectoria = true;
+				System.out.println(eventoMouse.getX()+ " : "+eventoMouse.getY());
+				Vector click = new Vector(eventoMouse.getX(),eventoMouse.getY());
+				avion = mapa.obtenerAvionEn(click);
+				if (avion != null) {
+					System.out.println("avion: " +avion.getX() + " : " + avion.getY());
+					avion.limpiarTrayectoria();
+					avion.agregarPuntoATrayectoria(click);
+					trazandoTrayectoria = true;
+				}
 				
 			}
 			
 			public void mouseDragged(MouseEvent eventoMouse) {
 				//la idea aca es que busque en el mapa un avion cercano a ese punto e inicie una tryectoria. 
+				System.out.println(eventoMouse.getX()+ " : "+eventoMouse.getY());
+				/*if (!trazandoTrayectoria){
+					Vector click = new Vector(eventoMouse.getX(),eventoMouse.getY());
+					avion = mapa.obtenerAvionEn(click);
+					if (avion != null) {
+						System.out.println("avion: " +avion.getX() + " : " + avion.getY());
+						avion.limpiarTrayectoria();
+						avion.agregarPuntoATrayectoria(click);
+						trazandoTrayectoria = true;
+					}
+				}*/
 				if (trazandoTrayectoria){
 					if (avion != null){
 						int x = eventoMouse.getX();

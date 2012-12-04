@@ -257,7 +257,10 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		while( iterador.hasNext()) {
 	          Avion avion = (Avion) iterador.next();
 	          posicionAvion = avion.obtenerPosicion();
-	          if (posicionAvion.restarOtroVector(posicionABuscar).norma() < (avion.getTamaño()/2)) return avion;
+	          if (posicionAvion.restarOtroVector(posicionABuscar).norma() < avion.getTamaño()*1.2){
+	        	  System.out.println("hay avion");
+	        	  return avion;
+	          }
 		}
 		
 		return null;
