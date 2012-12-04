@@ -11,7 +11,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import modelo.Aviones.Avion;
 import modelo.Mapa.Mapa;
+import modelo.Utilitarios.Vector;
 
 import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
 import fiuba.algo3.titiritero.modelo.GameLoop;
@@ -105,10 +107,12 @@ public class VentanaJuego {
 
 	private void addMouseListener(JPanel panel) {
 		panel.addMouseListener(new MouseAdapter() {
-					
+			Avion avion = null;	
 			@Override
 			public void mouseClicked(MouseEvent eventoMouse) {
-
+				avion = mapa.obtenerAvionEn(new Vector(eventoMouse.getX(),eventoMouse.getY()));
+				System.out.println("avion: " +avion.getX() + " : " + avion.getY());
+				avion.limpiarTrayectoria();
 				trazandoTrayectoria = true;
 				
 			}
@@ -116,18 +120,22 @@ public class VentanaJuego {
 			public void mouseDragged(MouseEvent eventoMouse) {
 				//la idea aca es que busque en el mapa un avion cercano a ese punto e inicie una tryectoria. 
 				if (trazandoTrayectoria){
-					int x = eventoMouse.getX();
-					int y = eventoMouse.getY();
-					System.out.println(x+","+y);
+					if (avion != null){
+						int x = eventoMouse.getX();
+						int y = eventoMouse.getY();
+						avion.agregarPuntoATrayectoria(new Vector(x,y));
+						System.out.println("modificando trayectoria: "+x+","+y);
+					}
 				}
-				
 			}
 		
 			public void mouseReleased(MouseEvent eventoMouse) {
+				avion = null;
 				trazandoTrayectoria = false;
 			}
 			
 			public void mouseExited(MouseEvent e) {
+				avion = null;
 		        trazandoTrayectoria = false;
 		    }
 			

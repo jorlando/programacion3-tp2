@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import vista.Aviones.VistaAvionSimple;
-import vista.Objetos.VistaMapa;
+//import vista.Objetos.VistaMapa;
 import vista.Pistas.VistaPistaSimple;
 
 import Excepciones.ImposibleCalcularPosicion;
@@ -182,9 +182,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	{
 		if (this.verificarColisiones())
 		{
-			
 			System.out.println("¡¡¡¡¡CHOQUE!!!!!");
-			
 			gameLoop.detenerEjecucion();
 			//habria que hacer algo para avisar que se murio
 		}
@@ -196,14 +194,14 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	public void iniciarSimulacion(){
 		
 		
-		VistaMapa vistaMapa = new VistaMapa(this);
+		//VistaMapa vistaMapa = new VistaMapa(this);
 		/* Creamos las pistas */
 		Pista pista1 = new PistaSimpleEntrada(new Vector(200,300), new Vector(1,0), 20, 80);
 		VistaPistaSimple vistaPista1 = new VistaPistaSimple(100,20,pista1);
 		
 		this.agregarPista(pista1);
 		/* **************************************** */
-		gameLoop.agregar(vistaMapa);
+		//gameLoop.agregar(vistaMapa); //esta vista hay que ponerla al fondo.
 		gameLoop.agregar(this);
 		gameLoop.agregar(vistaPista1);
 		/* **************************************** */
@@ -211,6 +209,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	}
 	
 	public void agregarAviones(){
+		
 		if (frec == 0){
 			// le preguntamos al nivel que avion agregar 
 			Random generator = new Random();
@@ -222,7 +221,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 				this.agregarAvion(nuevoAvion);
 				gameLoop.agregar(nuevoAvion);
 				gameLoop.agregar(vistaAvion);
-				frec = 20;
+				frec += 20;
 			}
 			catch (ImposibleCalcularPosicion exception){
 				//
@@ -230,10 +229,11 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 			
 			
 		}
+		/*
 		else {
 			frec --;
 		}
-		
+		*/
 	}
 
 	public void detenerSimulacion() {
@@ -254,6 +254,10 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		return null;
 		
 	}
+	
+	
+	
+	
 	
 	/* Para mejorar
 	private void crearPistas(){
