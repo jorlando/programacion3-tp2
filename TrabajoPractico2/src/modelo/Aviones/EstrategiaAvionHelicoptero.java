@@ -13,20 +13,26 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 	{
 		if(trayectoriaDeVuelo.Waypoint() != null)
 		{
-			double distanciaAlWaypoint = trayectoriaDeVuelo.Waypoint().restarOtroVector(posicion).norma();
+			Vector distanciaActual = trayectoriaDeVuelo.Waypoint().restarOtroVector(posicion);
+			
+			double distanciaAlWaypoint = distanciaActual.norma();
 			
 			Vector proximaPosicion = posicion.sumarOtroVector(trayectoriaDeVuelo.Direccion(posicion).multiplicarPorEscalar(velocidad));
+			Vector proximaDistancia = trayectoriaDeVuelo.Waypoint().restarOtroVector(proximaPosicion);
 			
 			double proximaDistanciaAlWaypoint = trayectoriaDeVuelo.Waypoint().restarOtroVector(proximaPosicion).norma();
 			
+			boolean mismoSentido = (distanciaActual.normalizar().esIgualA(proximaDistancia.normalizar())); //Si me acerco pero cambie de sentido es que me pase del waypoint
+			
 			//Si me voy a acercar al waypoint sigo avanzando
-			if(distanciaAlWaypoint >= proximaDistanciaAlWaypoint)
+			if(distanciaAlWaypoint >= proximaDistanciaAlWaypoint && mismoSentido)
+			{
+			//	System.out.println(proximaPosicion.getX() + "--" + proximaPosicion.getY());
 				return proximaPosicion;
+			}
+			//Sino cambio de direccion, y si no hay sigo derecho
 			
-			//Sino cambio de direccion
-			
-			trayectoriaDeVuelo.QuitarWaypoint();
-			
+			trayectoriaDeVuelo.QuitarWaypoint();			
 				//Si no hay mas direcciones el avion helicoptero se frena
 			if(trayectoriaDeVuelo.Waypoint() != null)
 					//recalculo la proxima posicion
