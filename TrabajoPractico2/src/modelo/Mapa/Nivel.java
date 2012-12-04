@@ -1,20 +1,43 @@
 package modelo.Mapa;
 
-public class Nivel 
+import fiuba.algo3.titiritero.modelo.ObjetoVivo;
+
+public class Nivel implements ObjetoVivo
 
 {
+	private static final int TIEMPO_MAXIMO_PARA_CREAR_AVIONES = 100;
 	private int nivelActual;
 	private double factorVelocidad;
 	private int avionesPorNivel;
 	private int avionesAterrizados;
+	private int contadorParaAviones;	//cicla cada cuando se agregan aviones mientras mas niveles mas seguido
 	
 	public Nivel()
 	{
 		avionesAterrizados = 0;
 		nivelActual = 1;
+		contadorParaAviones = TIEMPO_MAXIMO_PARA_CREAR_AVIONES;
 		this.reparametrizar();
 	}
 	
+	public double getFactorVelocidad()
+	{
+		return factorVelocidad;
+	}
+	
+	public void AvionAterrizado() 
+	{
+		avionesAterrizados++;
+		
+		if(avionesAterrizados >= avionesPorNivel)
+			this.siguienteNivel();
+	}
+	
+	public boolean debeGenerarAvion()
+	{
+		return (contadorParaAviones == 0);
+	}
+
 	private void reparametrizar() 
 	{
 		calcularFactorVelocidad();
@@ -30,10 +53,10 @@ public class Nivel
 	{
 		factorVelocidad = 1 + (nivelActual * nivelActual);
 	}
-
-	public double getFactorVelocidad()
-	{
-		return factorVelocidad;
+	
+	private void calcularContadorParaAviones() {
+		
+		contadorParaAviones = TIEMPO_MAXIMO_PARA_CREAR_AVIONES /(nivelActual*nivelActual);
 	}
 	
 	private void siguienteNivel()
@@ -41,12 +64,12 @@ public class Nivel
 		nivelActual++;
 		this.reparametrizar();
 	}
-
-	public void AvionAterrizado() 
+	
+	public void vivir()
 	{
-		avionesAterrizados++;
-		
-		if(avionesAterrizados == avionesPorNivel)
-			this.siguienteNivel();
+		if (contadorParaAviones == 0)
+			calcularContadorParaAviones();
+		else
+			contadorParaAviones--;
 	}
 }

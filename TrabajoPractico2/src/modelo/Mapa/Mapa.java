@@ -40,7 +40,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		this.gameLoop = gameLoop;
 		this.observador = new ObservadorDeMapa(this);
 		this.gameLoop.agregarObservador(observador);
-		
+		this.gameLoop.agregar(nivel);
 		frec = 0;
 	}
 	
@@ -211,29 +211,38 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	}
 	
 	public void agregarAviones(){
-		if (frec == 0){
+		if (nivel.debeGenerarAvion())
+		{
 			// le preguntamos al nivel que avion agregar 
 			Random generator = new Random();
-			int x = generator.nextInt(1000);
-			int y = generator.nextInt(1000);
-			try {
-				Avion nuevoAvion = new Avion(this.obtenerPosicionLibre(), new Vector(x,y), new EstrategiaAvionSimple());
+			int x = generator.nextInt(this.largo);
+			int y = generator.nextInt(this.ancho);
+			
+			int lado = (x % 4) + 1; //elijo de que lado va a salir el avion 1 arriba, 2 derecha, 3 abajo y 4 izquierda
+			
+			switch(lado)
+			{
+				case 1:
+					y= 0;
+					break;
+				case 2:
+					x= this.largo;
+					break;
+				case 3:
+					y= this.ancho;
+					break;
+				case 4:
+					x= 0;
+					break;
+			}
+			
+				Avion nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240), new EstrategiaAvionSimple());
 				VistaAvionSimple vistaAvion = new VistaAvionSimple(nuevoAvion);
 				this.agregarAvion(nuevoAvion);
 				gameLoop.agregar(nuevoAvion);
 				gameLoop.agregar(vistaAvion);
-				frec = 20;
-			}
-			catch (ImposibleCalcularPosicion exception){
-				//
-			}
-			
-			
-		}
-		else {
-			frec --;
-		}
 		
+		}	
 	}
 
 	public void detenerSimulacion() {
