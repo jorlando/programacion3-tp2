@@ -7,6 +7,7 @@ import modelo.Utilitarios.Vector;
 public class EstrategiaAvionSimple implements EstrategiaAvion
 {
 	private static int tamaño = 20;
+	private static String rutaImagen="recursos/imagenes/avionSimple2.png";
 	
 	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{
@@ -36,6 +37,10 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 		return proximaPosicion;	
 	}
 	
+	public String miImagen()
+	{
+		return this.rutaImagen;
+	}	
 	public boolean puedeAterrizarEn(Pista unaPista){
 		return unaPista.puedeAterrizarAvionSimple();
 	}

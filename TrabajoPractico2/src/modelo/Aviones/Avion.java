@@ -107,4 +107,9 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 		this.trayectoriaDeVuelo.limpiar();
 	}
 	
+	public String miImagen()
+	{
+		return tipoDeAvion.miImagen();
+	}
+	
 }

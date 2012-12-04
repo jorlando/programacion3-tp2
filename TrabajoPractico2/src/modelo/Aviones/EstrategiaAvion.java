@@ -10,4 +10,5 @@ public interface EstrategiaAvion
 	public boolean puedeAterrizarEn(Pista unaPista);
 	public boolean calcularChoqueCon(Avion unAvion); //este metodo lo unico que hace es devolver true, y por ahora es medio obsoleto, pero si le queremos agregar aviones que choquen dependiendo el tipo es mucho mas facil de implementar. 
 	public int tamaño();
+	public String miImagen();
 }

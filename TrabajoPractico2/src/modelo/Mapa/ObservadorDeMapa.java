@@ -1,5 +1,7 @@
 package modelo.Mapa;
 
+import java.io.IOException;
+
 import fiuba.algo3.titiritero.modelo.ObservadorDeGameLoop;
 
 public class ObservadorDeMapa implements ObservadorDeGameLoop {
@@ -12,7 +14,11 @@ public class ObservadorDeMapa implements ObservadorDeGameLoop {
 
 	@Override
 	public void notificarCicloFinalizado() {
-		mapa.agregarAviones();
+		try {
+			mapa.agregarAviones();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

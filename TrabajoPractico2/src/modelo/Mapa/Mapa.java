@@ -1,17 +1,18 @@
 package modelo.Mapa;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import vista.Aviones.VistaAvionSimple;
+import vista.Aviones.VistaAvion;
 //import vista.Objetos.VistaMapa;
 import vista.Pistas.VistaPistaSimple;
 
 import Excepciones.ImposibleCalcularPosicion;
 
 import modelo.Aviones.Avion;
-import modelo.Aviones.EstrategiaAvionSimple;
+import modelo.Aviones.*;
 import modelo.Pistas.Pista;
 import modelo.Pistas.PistaSimpleEntrada;
 import modelo.Utilitarios.Vector;
@@ -205,7 +206,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		gameLoop.iniciarEjecucion();
 	}
 	
-	public void agregarAviones(){
+	public void agregarAviones() throws IOException{
 		
 		
 		if (nivel.debeGenerarAvion())
@@ -232,8 +233,8 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 					x= 0;
 					break;
 			}
-		Avion nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240), new EstrategiaAvionSimple());
-		VistaAvionSimple vistaAvion = new VistaAvionSimple(nuevoAvion);
+		Avion nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240), new EstrategiaAvionPesado());
+		VistaAvion vistaAvion = new VistaAvion(nuevoAvion);
 		this.agregarAvion(nuevoAvion);
 		gameLoop.agregar(nuevoAvion);
 		gameLoop.agregar(vistaAvion);
