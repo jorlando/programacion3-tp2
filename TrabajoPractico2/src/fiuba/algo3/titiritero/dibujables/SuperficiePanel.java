@@ -23,7 +23,8 @@ public class SuperficiePanel extends JPanel implements SuperficieDeDibujo {
 	}
 	
 	public void paint(Graphics g) {
-		System.out.println("repintando");
+		/*Pide cambio */
+		//System.out.println("repintando");
 		g.drawImage(this.imagen, 0, 0, null);
 		this.limpiar();
 	}

@@ -203,7 +203,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		
 		this.agregarPista(pista1);
 		/* **************************************** */
-		//gameLoop.agregar(vistaMapa);
+		gameLoop.agregar(vistaMapa);
 		gameLoop.agregar(this);
 		gameLoop.agregar(vistaPista1);
 		/* **************************************** */
@@ -238,6 +238,21 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 
 	public void detenerSimulacion() {
 		gameLoop.detenerEjecucion();
+	}
+	
+	public Avion obtenerAvionEn(Vector posicionABuscar){
+		
+		Vector posicionAvion;
+		Iterator<Avion> iterador = aviones.listIterator();
+		
+		while( iterador.hasNext()) {
+	          Avion avion = (Avion) iterador.next();
+	          posicionAvion = avion.obtenerPosicion();
+	          if (posicionAvion.restarOtroVector(posicionABuscar).norma() < (avion.getTamaño()/2)) return avion;
+		}
+		
+		return null;
+		
 	}
 	
 	/* Para mejorar

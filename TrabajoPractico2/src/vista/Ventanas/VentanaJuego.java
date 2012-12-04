@@ -1,11 +1,8 @@
 package vista.Ventanas;
 
 import java.awt.Color;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -25,6 +22,7 @@ public class VentanaJuego {
 	private Mapa mapa;
 	private boolean juegoEnProgreso;
 	private boolean pausa;
+	private boolean trazandoTrayectoria;
 	
 	private int FPS = 50;
 	private int LARGO = 1024;
@@ -72,19 +70,21 @@ public class VentanaJuego {
 		
 		JPanel panel = this.addSuperficiePanel();
 		
+		panel.setBounds(50, 50, LARGO-100, ANCHO-100);
+		
 		GameLoop gameLoop = new GameLoop(FPS,(SuperficieDeDibujo) panel);
 		
 		this.inicializarModelo(gameLoop);
 		
 		this.addMouseListener(panel);
 		
-		this.addKeyListener();
-
 		this.setComponentsFocus(btnIniciar, btnPausa, btnVolverAlMenu, btnReiniciar); //esto nose para que sirve
 		
 		this.pausa = true;
 		
 		this.juegoEnProgreso = false;
+		
+		this.trazandoTrayectoria = false;
 		
 	}
 
@@ -102,41 +102,38 @@ public class VentanaJuego {
 		btnReiniciar.setFocusable(false);
 	}
 
-	private void addKeyListener() {
-		frame.addKeyListener(new KeyListener(
-				) {
-			
-			@Override
-			public void keyTyped(KeyEvent eventoTyped) {
-				System.out.println("Key pressed");
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent eventoRelease) {
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent eventoPress) {
-				System.out.println("Ping");
-			}  
-			 	
-		});
-	}
 
 	private void addMouseListener(JPanel panel) {
 		panel.addMouseListener(new MouseAdapter() {
 					
 			@Override
 			public void mouseClicked(MouseEvent eventoMouse) {
-				//la idea aca es que busque en el mapa un avion cercano a ese punto e inicie una tryectoria. 
-				Point posicion = eventoMouse.getLocationOnScreen(); //este punto es el que hay que agregar a la trayectoria
-				int x = posicion.x;
-				int y = posicion.y;
-				System.out.println(x+","+y);
+
+				trazandoTrayectoria = true;
 				
-			}});
+			}
+			
+			public void mouseDragged(MouseEvent eventoMouse) {
+				//la idea aca es que busque en el mapa un avion cercano a ese punto e inicie una tryectoria. 
+				if (trazandoTrayectoria){
+					int x = eventoMouse.getX();
+					int y = eventoMouse.getY();
+					System.out.println(x+","+y);
+				}
+				
+			}
 		
+			public void mouseReleased(MouseEvent eventoMouse) {
+				trazandoTrayectoria = false;
+			}
+			
+			public void mouseExited(MouseEvent e) {
+		        trazandoTrayectoria = false;
+		    }
+			
+		});
 	}
+			
 
 	private JPanel addSuperficiePanel() {
 		JPanel panel = new SuperficiePanel();
