@@ -22,7 +22,7 @@ public class EntradaConDireccion extends Entrada {
 			return (vector.restarOtroVector(posicion).norma() <= ancho) && (vector.getX() == v1.getX());
 		}
 		double y = ((v2.getY()-v1.getY())/(v2.getX()-v1.getX()))*(vector.getX()-v1.getX())+v1.getY();
-		return (vector.restarOtroVector(posicion).norma() <= ancho) && (y==vector.getY());
+		return (vector.restarOtroVector(posicion).norma() <= ancho) && (y==vector.getY()); //hay que revisar que esto ande
 			
 	}
 	
