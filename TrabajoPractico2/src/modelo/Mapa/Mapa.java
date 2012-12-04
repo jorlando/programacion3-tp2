@@ -29,8 +29,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	private GameLoop gameLoop;
 	private ObservadorDeGameLoop observador; 
 	
-	private int frec; //para probar
-	
 	public Mapa(int ancho, int largo, GameLoop gameLoop){
 		this.ancho = ancho;
 		this.largo = largo;
@@ -40,8 +38,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		this.gameLoop = gameLoop;
 		this.observador = new ObservadorDeMapa(this);
 		this.gameLoop.agregarObservador(observador);
-		this.gameLoop.agregar(nivel); //?
-		frec = 0;
+		this.gameLoop.agregar(nivel);
 	}
 	
 	public Mapa(GameLoop gameLoop){
@@ -240,7 +237,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		this.agregarAvion(nuevoAvion);
 		gameLoop.agregar(nuevoAvion);
 		gameLoop.agregar(vistaAvion);
-		frec = 1;
 		}
 	}
 
@@ -265,15 +261,5 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		return null;
 		
 	}
-	
-	
-	
-	
-	
-	/* Para mejorar
-	private void crearPistas(){
-		
-	}
-	*/
 	
 }
