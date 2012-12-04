@@ -211,6 +211,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	}
 	
 	public void agregarAviones(){
+		
 		if (nivel.debeGenerarAvion())
 		{
 			// le preguntamos al nivel que avion agregar 
