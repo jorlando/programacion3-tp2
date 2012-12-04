@@ -58,5 +58,9 @@ public class Trayectoria
 	{
 		this.waypoints.remove();
 	}
+	
+	public void limpiar(){
+		this.waypoints.clear();
+	}
 
 }

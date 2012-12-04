@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import vista.Aviones.VistaAvionSimple;
-import vista.Objetos.VistaMapa;
+//import vista.Objetos.VistaMapa;
 import vista.Pistas.VistaPistaSimple;
 
 import Excepciones.ImposibleCalcularPosicion;
@@ -182,9 +182,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	{
 		if (this.verificarColisiones())
 		{
-			
 			System.out.println("¡¡¡¡¡CHOQUE!!!!!");
-			
 			gameLoop.detenerEjecucion();
 			//habria que hacer algo para avisar que se murio
 		}
@@ -196,14 +194,14 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	public void iniciarSimulacion(){
 		
 		
-		VistaMapa vistaMapa = new VistaMapa(this);
+		//VistaMapa vistaMapa = new VistaMapa(this);
 		/* Creamos las pistas */
 		Pista pista1 = new PistaSimpleEntrada(new Vector(200,300), new Vector(1,0), 20, 80);
 		VistaPistaSimple vistaPista1 = new VistaPistaSimple(100,20,pista1);
 		
 		this.agregarPista(pista1);
 		/* **************************************** */
-		//gameLoop.agregar(vistaMapa);
+		//gameLoop.agregar(vistaMapa); //esta vista hay que ponerla al fondo.
 		gameLoop.agregar(this);
 		gameLoop.agregar(vistaPista1);
 		/* **************************************** */
@@ -211,6 +209,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	}
 	
 	public void agregarAviones(){
+		
 		
 		if (nivel.debeGenerarAvion())
 		{
@@ -249,6 +248,25 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	public void detenerSimulacion() {
 		gameLoop.detenerEjecucion();
 	}
+	
+	public Avion obtenerAvionEn(Vector posicionABuscar){
+		
+		Vector posicionAvion;
+		Iterator<Avion> iterador = aviones.listIterator();
+		
+		while( iterador.hasNext()) {
+	          Avion avion = (Avion) iterador.next();
+	          posicionAvion = avion.obtenerPosicion();
+	          if (posicionAvion.restarOtroVector(posicionABuscar).norma() < (avion.getTamaño()/2)) return avion;
+		}
+		
+		return null;
+		
+	}
+	
+	
+	
+	
 	
 	/* Para mejorar
 	private void crearPistas(){

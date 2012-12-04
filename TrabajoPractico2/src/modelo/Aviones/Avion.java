@@ -99,5 +99,12 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 		this.tamaño = tamaño;
 	}
 	
+	public void agregarPuntoATrayectoria(Vector unPunto){
+		this.trayectoriaDeVuelo.AgregarWaypoint(unPunto);
+	}
+	
+	public void limpiarTrayectoria(){
+		this.trayectoriaDeVuelo.limpiar();
+	}
 	
 }
