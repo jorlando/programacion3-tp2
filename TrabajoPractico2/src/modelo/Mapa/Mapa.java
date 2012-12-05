@@ -8,10 +8,12 @@ import java.util.Random;
 import vista.Aviones.VistaAvion;
 //import vista.Objetos.VistaMapa;
 import vista.Pistas.VistaPistaSimple;
+import vista.Ventanas.VistaMensajeError;
 
 import Excepciones.ImposibleCalcularPosicion;
 
 import modelo.Aviones.*;
+import modelo.Utilitarios.*;
 import modelo.Pistas.Pista;
 import modelo.Pistas.PistaSimpleEntrada;
 import modelo.Utilitarios.Vector;
@@ -180,6 +182,14 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		if (this.verificarColisiones())
 		{
 			System.out.println("¡¡¡¡¡CHOQUE!!!!!");
+			MensajeGameOver mensajeFinal = new MensajeGameOver();
+			VistaMensajeError vistaMensaje=null;
+			try {
+				vistaMensaje = new VistaMensajeError(mensajeFinal);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			gameLoop.agregar(vistaMensaje);
 			gameLoop.detenerEjecucion();
 			//habria que hacer algo para avisar que se murio
 		}
