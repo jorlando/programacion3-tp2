@@ -1,13 +1,14 @@
 package vista.Pistas;
 
-import fiuba.algo3.titiritero.dibujables.Cuadrado;
+import java.io.IOException;
+
+import fiuba.algo3.titiritero.dibujables.*;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 
-public class VistaPistaSimple extends Cuadrado {
+public class VistaPistaSimple extends Imagen {
 
-	public VistaPistaSimple(int ancho, int alto,
-			ObjetoPosicionable objetoPosicionable) {
-		super(ancho, alto, objetoPosicionable);	
+	public VistaPistaSimple(ObjetoPosicionable objetoPosicionable) throws IOException {
+		super("recursos/imagenes/pistaSimple2.png", objetoPosicionable);
 	}
 
 }

@@ -194,7 +194,12 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		//VistaMapa vistaMapa = new VistaMapa(this);
 		/* Creamos las pistas */
 		Pista pista1 = new PistaSimpleEntrada(new Vector(200,300), new Vector(1,0), 20, 80);
-		VistaPistaSimple vistaPista1 = new VistaPistaSimple(100,20,pista1);
+		VistaPistaSimple vistaPista1=null;
+		try {
+			vistaPista1 = new VistaPistaSimple(pista1);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		this.agregarPista(pista1);
 		/* **************************************** */
