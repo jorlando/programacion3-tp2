@@ -10,7 +10,10 @@ public class EntradaSinDireccion extends Entrada {
 		this.ancho = ancho;
 	}
 	
-	public boolean puntoPertenceALaEntrada(Vector vector) {
+	public boolean puntoPertenceALaEntrada(Vector vector, double velocidadAvion) {
+		if (velocidadAvion > ancho){
+			return (vector.restarOtroVector(posicion).norma() <= velocidadAvion);//nose si esta del todo bien
+		}
 		return (vector.restarOtroVector(posicion).norma() <= ancho);
 	}
 	

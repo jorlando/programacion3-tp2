@@ -1,6 +1,7 @@
 package vista.Ventanas;
 
 import java.awt.Container;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,10 +50,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 		panelInfo = new PanelInfo();
 		panelNombre = new PanelNombre();
 		
+		panelMenu.setOpaque(false);
+		panelInfo.setOpaque(false);
+		panelNombre.setOpaque(false);
+		
 		contentPane.add(panelInfo);
 		contentPane.add(panelNombre);
 		contentPane.add(panelMenu);
-
 		paintComponents(this.getGraphics());
 				
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -93,15 +97,23 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 	}
 	
 	private void ayuda(){
-		this.panelInfo.setTexto("Aca se informan las instrucciones del juego: ");
+		this.panelMenu.setTexto("Aca se informan las instrucciones del juego: ");
 	}
 	
 	private void acerca(){
-		this.panelInfo.setTexto("CopControl V 1.0  Integrantes:  " +
+		this.panelMenu.setTexto("CopControl V 1.0  Integrantes:  " +
 				"\nFederico Rodrigez Longhi,  \n" +
 				"Nicolas Gatti, \n" +
 				"Juan Manuel Orlando");
 	}
+	
+	public void paintComponents(Graphics g){
+		g.drawImage(fondo.getImage(),10,10,null);
+		super.paintComponents(g);
+		g.drawImage(fondo.getImage(),10,10,null);
+	}
+	
+	
 	
 }
 
