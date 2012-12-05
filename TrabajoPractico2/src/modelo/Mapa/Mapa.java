@@ -179,6 +179,8 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	@Override
 	public void vivir() 
 	{
+		
+		this.aterrizarAviones();
 		if (this.verificarColisiones())
 		{
 			System.out.println("¡¡¡¡¡CHOQUE!!!!!");
@@ -193,6 +195,8 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 			gameLoop.agregar(vistaMensaje);
 			gameLoop.detenerEjecucion();
 		}
+		
+		
 		
 		//la parte de agregar y remover aviones la hace el observador cuando termina el ciclo
 		

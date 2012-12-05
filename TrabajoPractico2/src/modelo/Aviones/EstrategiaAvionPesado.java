@@ -7,7 +7,7 @@ import modelo.Pistas.Pista;
 public class EstrategiaAvionPesado implements EstrategiaAvion
 {
 
-	private static int tamaño = 20;
+	private static int tamaño = 30;
 	private static String rutaImagen="recursos/imagenes/AvionPesado2.png";
 	
 
