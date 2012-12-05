@@ -181,12 +181,14 @@ public class VentanaJuego {
 				if (juegoEnProgreso){
 					if (pausa){
 						mapa.iniciarSimulacion();
-						((JButton)e.getSource()).setBackground(Color.green); //esto es medio feo pero fue la unica manera que encontre de hacerlo.
+						((JButton)e.getSource()).setText("Pausa");
+						((JButton)e.getSource()).setBackground(Color.red); //esto es medio feo pero fue la unica manera que encontre de hacerlo.
 						pausa = false;
 					}
 					else{
 						mapa.detenerSimulacion();
-						((JButton)e.getSource()).setBackground(Color.red);
+						((JButton)e.getSource()).setText("Reanudar");
+						((JButton)e.getSource()).setBackground(Color.green);
 						pausa = true;
 					}
 				}
@@ -194,7 +196,7 @@ public class VentanaJuego {
 		});
 		
 		btnPausa.setBounds(280, 16, 92, 25);
-		btnPausa.setBackground(Color.green);
+		btnPausa.setBackground(Color.red);
 		frame.getContentPane().add(btnPausa);
 		return btnPausa;
 	}
