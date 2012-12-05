@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 import vista.Aviones.VistaAvion;
+import vista.Objetos.VistaMapa;
 //import vista.Objetos.VistaMapa;
 import vista.Pistas.VistaPistaSimple;
 import vista.Ventanas.VistaMensajeError;
@@ -205,8 +206,10 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		/* Creamos las pistas */
 		Pista pista1 = new PistaSimpleEntrada(new Vector(200,300), new Vector(1,0), 20, 80);
 		VistaPistaSimple vistaPista1=null;
+		//VistaMapa unaVistaMapa=null;
 		try {
 			vistaPista1 = new VistaPistaSimple(pista1);
+			//unaVistaMapa = new VistaMapa(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
