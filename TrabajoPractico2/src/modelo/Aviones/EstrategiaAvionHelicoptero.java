@@ -22,6 +22,7 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 			
 			double proximaDistanciaAlWaypoint = trayectoriaDeVuelo.Waypoint().restarOtroVector(proximaPosicion).norma();
 			
+			
 			boolean mismoSentido = (distanciaActual.normalizar().esIgualA(proximaDistancia.normalizar())); //Si me acerco pero cambie de sentido es que me pase del waypoint
 			
 			//Si me voy a acercar al waypoint sigo avanzando

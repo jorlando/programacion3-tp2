@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import vista.Aviones.VistaAvionHelicoptero;
+import vista.Aviones.VistaAvionPesado;
 import vista.Aviones.VistaAvionSimple;
 //import vista.Objetos.VistaMapa;
 import vista.Pistas.VistaPistaSimple;
 
 import Excepciones.ImposibleCalcularPosicion;
 
-import modelo.Aviones.Avion;
-import modelo.Aviones.EstrategiaAvionSimple;
+import modelo.Aviones.*;
 import modelo.Pistas.Pista;
 import modelo.Pistas.PistaSimpleEntrada;
 import modelo.Utilitarios.Vector;
@@ -235,15 +236,32 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 					x= 0;
 					break;
 			}
-		Avion nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240), new EstrategiaAvionSimple());
-		VistaAvionSimple vistaAvion = new VistaAvionSimple(nuevoAvion);
+			
+			Random generador = new Random();
+			Avion nuevoAvion;
+			switch(generador.nextInt(4))
+			{
+			case 0:
+				nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240), new EstrategiaAvionSimple());
+				gameLoop.agregar(new VistaAvionSimple(nuevoAvion));
+				break;
+			case 1:
+				nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240), new EstrategiaAvionHelicoptero());
+				gameLoop.agregar(new VistaAvionHelicoptero(nuevoAvion));
+				break;
+			case 2:
+				nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240),new EstrategiaAvionPesado());
+				gameLoop.agregar(new VistaAvionPesado(nuevoAvion));
+				break;
+			default:
+				nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240), new EstrategiaAvionSimple());
+				gameLoop.agregar(new VistaAvionSimple(nuevoAvion));
+			}
+		
 		this.agregarAvion(nuevoAvion);
 		gameLoop.agregar(nuevoAvion);
-		gameLoop.agregar(vistaAvion);
-		frec = 1;
 		}
 	}
-
 
 	public void detenerSimulacion() {
 		gameLoop.detenerEjecucion();

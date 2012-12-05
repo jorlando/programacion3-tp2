@@ -20,6 +20,11 @@ public class Nivel implements ObjetoVivo
 		this.reparametrizar();
 	}
 	
+	public int getNivel()
+	{
+		return nivelActual;
+	}
+	
 	public double getFactorVelocidad()
 	{
 		return factorVelocidad;
