@@ -8,6 +8,7 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 {
 
 	private static int tamaño = 10;
+	private static String rutaImagen="recursos/imagenes/helicoptero2.png";
 	
 	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{
@@ -54,6 +55,11 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 		return true;
 	}
 
+	public String miImagen()
+	{
+		return this.rutaImagen;
+	}	
+	
 	public int tamaño() 
 	{
 		return this.tamaño;

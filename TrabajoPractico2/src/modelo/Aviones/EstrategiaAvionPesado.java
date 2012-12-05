@@ -8,6 +8,7 @@ public class EstrategiaAvionPesado implements EstrategiaAvion
 {
 
 	private static int tamaño = 20;
+	private static String rutaImagen="recursos/imagenes/AvionPesado2.png";
 	
 
 	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
@@ -49,6 +50,11 @@ public class EstrategiaAvionPesado implements EstrategiaAvion
 	
 	public boolean calcularChoqueCon(Avion unAvion){
 		return true;
+	}
+	
+	public String miImagen()
+	{
+		return this.rutaImagen;
 	}
 
 	public int tamaño() 

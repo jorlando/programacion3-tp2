@@ -27,7 +27,6 @@ public class VentanaJuego {
 	private boolean pausa;
 	private boolean trazandoTrayectoria;
 	private Avion avion;
-	private int cont;
 	
 	private int FPS = 50;
 	private int LARGO = 1024;
@@ -66,42 +65,34 @@ public class VentanaJuego {
 		frame.setResizable(false);
 		
 		JButton btnIniciar = this.addBotonIniciar();
-		
 		JButton btnPausa = this.addBotonDetener();
-		
-		JButton btnVolverAlMenu = this.addBotonVolver();
-		
 		JButton btnReiniciar = this.addBotonReiniciar();
-		
+		JButton btnVolverAlMenu = this.addBotonVolver();
+				
 		JPanel panel = this.addSuperficiePanel();
-		
 		panel.setBounds(50, 50, LARGO-100, ANCHO-100);
-		
+		/*Inicializando el gameloop*/
 		GameLoop gameLoop = new GameLoop(FPS,(SuperficieDeDibujo) panel);
-		
+			
 		this.inicializarModelo(gameLoop);
 		
+		/**/ 
 		this.addMouseListener(panel);
-		
 		this.addMouseMotionListener(panel);
 		
-		this.setComponentsFocus(btnIniciar, btnPausa, btnVolverAlMenu, btnReiniciar); //esto nose para que sirve
+		this.setComponentsFocus(btnIniciar, btnPausa, btnVolverAlMenu, btnReiniciar);
 		
+		/* inicializando variables*/
 		this.pausa = true;
-		
 		this.juegoEnProgreso = false;
-		
 		this.trazandoTrayectoria = false;
-		
 		this.avion = null;
-		
-		this.cont = 0;
 		
 	}
 
 	private void inicializarModelo(GameLoop gameLoop) {
 		
-		this.mapa = new Mapa(gameLoop);
+		this.mapa = new Mapa(LARGO-100, ANCHO-100, gameLoop);
 
 	}
 

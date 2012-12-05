@@ -1,12 +1,11 @@
 package modelo.Mapa;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import vista.Aviones.VistaAvionHelicoptero;
-import vista.Aviones.VistaAvionPesado;
-import vista.Aviones.VistaAvionSimple;
+import vista.Aviones.VistaAvion;
 //import vista.Objetos.VistaMapa;
 import vista.Pistas.VistaPistaSimple;
 
@@ -30,8 +29,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	private GameLoop gameLoop;
 	private ObservadorDeGameLoop observador; 
 	
-	private int frec; //para probar
-	
 	public Mapa(int ancho, int largo, GameLoop gameLoop){
 		this.ancho = ancho;
 		this.largo = largo;
@@ -41,8 +38,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		this.gameLoop = gameLoop;
 		this.observador = new ObservadorDeMapa(this);
 		this.gameLoop.agregarObservador(observador);
-		this.gameLoop.agregar(nivel); //?
-		frec = 0;
+		this.gameLoop.agregar(nivel);
 	}
 	
 	public Mapa(GameLoop gameLoop){
@@ -209,7 +205,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		gameLoop.iniciarEjecucion();
 	}
 	
-	public void agregarAviones(){
+	public void agregarAviones() throws IOException{
 		
 		
 		if (nivel.debeGenerarAvion())
@@ -243,23 +239,21 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 			{
 			case 0:
 				nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240), new EstrategiaAvionSimple());
-				gameLoop.agregar(new VistaAvionSimple(nuevoAvion));
 				break;
 			case 1:
 				nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240), new EstrategiaAvionHelicoptero());
-				gameLoop.agregar(new VistaAvionHelicoptero(nuevoAvion));
 				break;
 			case 2:
 				nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240),new EstrategiaAvionPesado());
-				gameLoop.agregar(new VistaAvionPesado(nuevoAvion));
 				break;
 			default:
 				nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240), new EstrategiaAvionSimple());
-				gameLoop.agregar(new VistaAvionSimple(nuevoAvion));
-			}
+				}
 		
 		this.agregarAvion(nuevoAvion);
 		gameLoop.agregar(nuevoAvion);
+		VistaAvion vistaAvion = new VistaAvion(nuevoAvion);
+		gameLoop.agregar(vistaAvion);
 		}
 	}
 
@@ -283,15 +277,5 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		return null;
 		
 	}
-	
-	
-	
-	
-	
-	/* Para mejorar
-	private void crearPistas(){
-		
-	}
-	*/
 	
 }
