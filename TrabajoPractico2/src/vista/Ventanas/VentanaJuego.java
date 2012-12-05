@@ -70,6 +70,7 @@ public class VentanaJuego {
 		JButton btnVolverAlMenu = this.addBotonVolver();
 				
 		JPanel panel = this.addSuperficiePanel();
+		
 		panel.setBounds(50, 50, LARGO-100, ANCHO-100);
 		/*Inicializando el gameloop*/
 		GameLoop gameLoop = new GameLoop(FPS,(SuperficieDeDibujo) panel);
@@ -108,31 +109,15 @@ public class VentanaJuego {
 	private void addMouseListener(JPanel panel) {
 		panel.addMouseListener(new MouseAdapter() {	
 						
-			public void mouseClicked(MouseEvent e) {
-				System.out.println("The frame was clicked.");
-				
-			}
-			
-			public void mouseEntered(MouseEvent e) {
-				System.out.println("The mouse entered the frame.");
-				
-			}
-			
-			public void mouseExited(MouseEvent e) {
-				System.out.println("The mouse exited the frame.");
-				
-			}
-			
 			public void mousePressed(MouseEvent e) {
-				System.out.println("The left mouse button was pressed.");
 				Vector click = new Vector(e.getX(),e.getY());
+				System.out.println(click.getX()+","+click.getY());
 				if (trazandoTrayectoria){
 					avion.agregarPuntoATrayectoria(click);
 				}
 				else{
 					avion = mapa.obtenerAvionEn(click);
-					if (avion != null){
-						System.out.println("encontramos un avion");					
+					if (avion != null){				
 						avion.limpiarTrayectoria();
 						avion.agregarPuntoATrayectoria(click);
 						trazandoTrayectoria = true;
@@ -143,9 +128,13 @@ public class VentanaJuego {
 			public void mouseReleased(MouseEvent e) {
 				trazandoTrayectoria = false;
 				avion = null;
-				System.out.println("The left mouse button was released.");
 				
-			}		
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				trazandoTrayectoria = false;
+				avion = null;
+			}
 		});
 	}
 	
@@ -153,7 +142,6 @@ public class VentanaJuego {
 		panel.addMouseMotionListener(new MouseMotionAdapter() {
 			
 			public void mouseDragged(MouseEvent e) {
-				//System.out.println("The left mouse button is being dragged.");
 				if (trazandoTrayectoria){
 					avion.agregarPuntoATrayectoria(new Vector(e.getX(),e.getY()));
 				}
@@ -171,6 +159,7 @@ public class VentanaJuego {
 		panel.setBackground(new Color(100, 200, 50));
 		panel.setBounds(0, 50,(LARGO),(ANCHO));
 		frame.getContentPane().add(panel);
+		
 		return panel;
 	}
 	
@@ -182,7 +171,7 @@ public class VentanaJuego {
 					if (pausa){
 						mapa.iniciarSimulacion();
 						((JButton)e.getSource()).setText("Pausa");
-						((JButton)e.getSource()).setBackground(Color.red); //esto es medio feo pero fue la unica manera que encontre de hacerlo.
+						((JButton)e.getSource()).setBackground(Color.red);
 						pausa = false;
 					}
 					else{
@@ -250,6 +239,5 @@ public class VentanaJuego {
 		frame.getContentPane().add(btnIniciar);
 		return btnIniciar;
 	}
-	
 }
 

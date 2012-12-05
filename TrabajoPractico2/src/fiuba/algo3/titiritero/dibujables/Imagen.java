@@ -15,8 +15,8 @@ import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
 
 public class Imagen implements ObjetoDibujable {
 
-    private Image imagen;
-    private ObjetoPosicionable posicionable;
+    protected Image imagen;
+    protected ObjetoPosicionable posicionable;
 
     public Imagen(String imagenUrl, ObjetoPosicionable posicionable) throws IOException {
     	this.posicionable = posicionable;

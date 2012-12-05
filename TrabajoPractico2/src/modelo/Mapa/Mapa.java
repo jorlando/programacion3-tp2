@@ -81,7 +81,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		while(iteradorPista.hasNext()) {
 			Pista pistaDondeAterrizar = (Pista) iteradorPista.next();
 			ArrayList<Avion> avionesAterrizados = pistaDondeAterrizar.aterrizarAviones(this.aviones);
-			if (avionesAterrizados.size()>0) this.borrarAterrizados(avionesAterrizados);
+			if (avionesAterrizados.size()>0) this.borrarAterrizados(avionesAterrizados); //me parece que hay que darselo al observador para que lo haga
 		} 		
 	}
 	
@@ -183,15 +183,15 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		{
 			System.out.println("¡¡¡¡¡CHOQUE!!!!!");
 			MensajeGameOver mensajeFinal = new MensajeGameOver();
-			VistaMensajeError vistaMensaje=null;
+			VistaMensajeError vistaMensaje = null;
 			try {
 				vistaMensaje = new VistaMensajeError(mensajeFinal);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
 			gameLoop.agregar(vistaMensaje);
 			gameLoop.detenerEjecucion();
-			//habria que hacer algo para avisar que se murio
 		}
 		
 		//la parte de agregar y remover aviones la hace el observador cuando termina el ciclo
@@ -203,7 +203,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		
 		//VistaMapa vistaMapa = new VistaMapa(this);
 		/* Creamos las pistas */
-		Pista pista1 = new PistaSimpleEntrada(new Vector(200,300), new Vector(1,0), 20, 80);
+		Pista pista1 = new PistaSimpleEntrada(new Vector(200,300), new Vector(0,1), 20, 80);
 		VistaPistaSimple vistaPista1=null;
 		try {
 			vistaPista1 = new VistaPistaSimple(pista1);

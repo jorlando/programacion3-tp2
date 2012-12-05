@@ -15,7 +15,7 @@ public class Helipuerto extends Pista {
 	public boolean calcularAterrizaje(Avion avion){
 		Vector posicionAvion = avion.obtenerPosicion();
 		Vector direccionAvion = avion.obtenerDireccion();
-		return (entrada.puntoPertenceALaEntrada(posicionAvion) && entrada.direccionCorrecta(direccionAvion));
+		return (entrada.puntoPertenceALaEntrada(posicionAvion, avion.getVelocidad()) && entrada.direccionCorrecta(direccionAvion));
 	}
 	
 	public boolean puedeAterrizarHelicoptero(){

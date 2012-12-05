@@ -111,5 +111,7 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 	{
 		return tipoDeAvion.miImagen();
 	}
-	
+	public double getVelocidad(){
+		return this.velocidad;
+	}
 }

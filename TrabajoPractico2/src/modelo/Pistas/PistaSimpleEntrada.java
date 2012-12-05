@@ -17,7 +17,10 @@ public class PistaSimpleEntrada extends Pista {
 	public boolean calcularAterrizaje(Avion avion) {
 		Vector posicionAvion = avion.obtenerPosicion();
 		Vector direccionAvion = avion.obtenerDireccion();
-		return (entrada.puntoPertenceALaEntrada(posicionAvion) && entrada.direccionCorrecta(direccionAvion));
+		if(entrada.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()) && entrada.direccionCorrecta(direccionAvion)){
+			System.out.println("aterriza");
+		}
+		return (entrada.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()) && entrada.direccionCorrecta(direccionAvion));
 	}
 	
 	public int getX(){

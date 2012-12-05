@@ -3,6 +3,7 @@ package vista.Ventanas.Menu;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -15,8 +16,7 @@ public class PanelInfo extends JPanel {
 
 	public PanelInfo (){
 		
-		this.setBackground(Color.white);
-		
+		//this.setBackground(Color.white);
 		texto = new JTextArea("Bienvenido a Cop Control");
 		FlowLayout layout = new FlowLayout();
 		layout.setAlignment(FlowLayout.CENTER);
@@ -33,5 +33,5 @@ public class PanelInfo extends JPanel {
 	public void setTexto(String textoAEscribir){
 		this.texto.setText(textoAEscribir);
 	}
-
+	
 }

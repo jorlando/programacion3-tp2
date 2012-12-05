@@ -15,7 +15,7 @@ public class PanelNombre extends JPanel {
 	
 	public PanelNombre(){
 		
-		this.setBackground(Color.white);
+		//this.setBackground(Color.white);
 		
 		FlowLayout layout = new FlowLayout();
 		setLayout(layout);
