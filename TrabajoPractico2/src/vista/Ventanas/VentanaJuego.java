@@ -34,8 +34,8 @@ public class VentanaJuego {
 	private Avion avion;
 	
 	private int FPS = 50;
-	private int LARGO = 1024;
-	private int ANCHO = 768;
+	private int LARGO = 1000;
+	private int ANCHO = 700;
 
 	/**
 	 * Launch the application.
@@ -51,7 +51,6 @@ public class VentanaJuego {
 		try {
 			initialize();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

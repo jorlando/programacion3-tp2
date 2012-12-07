@@ -12,6 +12,7 @@ public class VistaAvion extends Imagen {
 
 	public VistaAvion(Avion unAvion) throws IOException {
 		super(unAvion.miImagen(), unAvion);
+		unAvion.guardarMiVista(this);
 	}
 	
 	@Override

@@ -33,7 +33,6 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 				return proximaPosicion;
 			}
 			//Sino cambio de direccion, y si no hay sigo derecho
-			
 			trayectoriaDeVuelo.QuitarWaypoint();			
 				//Si no hay mas direcciones el avion helicoptero se frena
 			if(trayectoriaDeVuelo.Waypoint() != null)

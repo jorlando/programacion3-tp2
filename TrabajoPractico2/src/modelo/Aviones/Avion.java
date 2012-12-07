@@ -3,6 +3,7 @@ package modelo.Aviones;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import fiuba.algo3.titiritero.modelo.ObjetoDibujable;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
@@ -18,6 +19,7 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 	private EstrategiaAvion tipoDeAvion;
 	private double velocidad;
 	private int tamaño;
+	private ObjetoDibujable miVista;
 		
 	public Avion(Vector PosicionInicial, Trayectoria trayectoriaInicial, EstrategiaAvion tipoDeAvion)
 	{
@@ -113,5 +115,15 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 	}
 	public double getVelocidad(){
 		return this.velocidad;
+	}
+	
+	public void guardarMiVista(ObjetoDibujable vistaRecibida)
+	{
+		this.miVista = vistaRecibida;
+	}
+	
+	public ObjetoDibujable obtenerVista()
+	{
+		return this.miVista;
 	}
 }

@@ -82,15 +82,32 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		while(iteradorPista.hasNext()) {
 			Pista pistaDondeAterrizar = (Pista) iteradorPista.next();
 			ArrayList<Avion> avionesAterrizados = pistaDondeAterrizar.aterrizarAviones(this.aviones);
-			if (avionesAterrizados.size()>0) this.borrarAterrizados(avionesAterrizados); //me parece que hay que darselo al observador para que lo haga
+			if (avionesAterrizados.size()>0) this.borrarAviones(avionesAterrizados); //me parece que hay que darselo al observador para que lo haga
 		} 		
 	}
+	public void borrarAvionesQueSeFueronDelMapa()
+	{
+		Iterator<Avion> iterador = aviones.listIterator();
+		ArrayList<Avion> avionesABorrar = new ArrayList<Avion>();
+		while(iterador.hasNext()) {
+			Avion avionAEvaluar = (Avion)iterador.next();
+	          Vector posicionDelAvion = avionAEvaluar.obtenerPosicion();
+	          if ((posicionDelAvion.getX()<0 || posicionDelAvion.getX()>this.largo)||(posicionDelAvion.getY()<0 || posicionDelAvion.getY()>this.ancho))
+	          {
+	        	  avionesABorrar.add(avionAEvaluar);
+	          }
+		} 
+		if (avionesABorrar.size()>0) this.borrarAviones(avionesABorrar);
+		
+	}
 	
-	private void borrarAterrizados(ArrayList<Avion> avionesAterrizados)
+	private void borrarAviones(ArrayList<Avion> avionesAterrizados)
 	{
 		Iterator<Avion> iterador = avionesAterrizados.listIterator();
 		while( iterador.hasNext() ) {
-	          Avion avionABorrar = (Avion) iterador.next();
+			  Avion avionABorrar = (Avion) iterador.next();
+	          this.gameLoop.remover(avionABorrar.obtenerVista());
+	          this.gameLoop.remover(avionABorrar);
 	          this.aviones.remove(avionABorrar);
 	          nivel.AvionAterrizado();
 		}	
@@ -181,7 +198,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	public void vivir() 
 	{
 		
-		this.aterrizarAviones();
 		if (this.verificarColisiones())
 		{
 			System.out.println("¡¡¡¡¡CHOQUE!!!!!");

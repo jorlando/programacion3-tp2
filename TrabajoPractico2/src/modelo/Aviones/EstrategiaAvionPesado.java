@@ -31,7 +31,6 @@ public class EstrategiaAvionPesado implements EstrategiaAvion
 			return proximaPosicion;
 		}
 		//Sino cambio de direccion, y si no hay sigo derecho
-		
 		trayectoriaDeVuelo.QuitarWaypoint();
 		
 			//El avion simple mantiene la trayectoria de vuelo

@@ -29,8 +29,8 @@ public class EstrategiaAvionComputarizado implements EstrategiaAvion {
 			return proximaPosicion;
 		}
 		//Sino cambio de direccion, y si no hay sigo derecho
-		
 		trayectoriaDeVuelo.QuitarWaypoint();
+		
 		
 			//El avion mantiene la trayectoria de vuelo
 		if(trayectoriaDeVuelo.Waypoint() == null)
