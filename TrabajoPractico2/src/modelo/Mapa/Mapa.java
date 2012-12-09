@@ -2,22 +2,21 @@ package modelo.Mapa;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Random;
 
 import vista.Aviones.VistaAvion;
 import vista.Objetos.VistaMapa;
 //import vista.Objetos.VistaMapa;
-import vista.Pistas.VistaPistaSimple;
+import vista.Pistas.*;
 import vista.Ventanas.VistaMensajeError;
 
 import Excepciones.ImposibleCalcularPosicion;
 
 import modelo.Aviones.*;
 import modelo.Utilitarios.*;
-import modelo.Pistas.Pista;
-import modelo.Pistas.PistaSimpleEntrada;
-import modelo.Utilitarios.Vector;
+import modelo.Pistas.*;
 
 import fiuba.algo3.titiritero.modelo.*;
 
@@ -30,7 +29,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	private int largo;
 	private Nivel nivel;
 	private GameLoop gameLoop;
-	private ObservadorDeGameLoop observador; 
+	private ObservadorDeGameLoop observador;
 	
 	public Mapa(int ancho, int largo, GameLoop gameLoop){
 		this.ancho = ancho;
@@ -50,6 +49,70 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	
 	public void agregarPista(Pista unaPista){
 		pistas.add(unaPista);
+	}
+	
+	
+	public Hashtable obtenerDireccionParaComputarizado()
+	{
+		boolean continuoBuscando=true;
+		Hashtable hashResultado=new Hashtable();
+		while (continuoBuscando)
+		{
+			Random generator = new Random();
+			int valorRandom = generator.nextInt(this.pistas.size());
+			Pista unaPista = this.pistas.get(valorRandom);
+			if (unaPista.tieneDireccion())
+			{
+				continuoBuscando=false;
+				Hashtable unHash= unaPista.obtenerPosicionDireccion();
+				hashResultado.put("posicion", this.obtenerPosicionDesdeBorde(unHash));
+				hashResultado.put("direccion", unHash.get("posicion"));
+			}
+		}
+		return hashResultado;
+	}
+	
+	public Vector obtenerPosicionDesdeBorde(Hashtable unHash)
+	{
+		Vector posicion = (Vector) unHash.get("posicion");
+		Vector direccion = (Vector) unHash.get("direccion");
+				
+		while (!(this.esElBorde(posicion)))
+		{
+			posicion=posicion.restarOtroVector(direccion);
+		}
+		posicion= this.aplicarVarianza(posicion, (double)unHash.get("ancho"));
+		return posicion;
+	}
+	public Vector aplicarVarianza(Vector posicion, double variable)
+	{
+		Random generator = new Random();
+		int valor = generator.nextInt((int)variable*2);
+		
+		ArrayList valoresPosibles = new ArrayList();
+		valoresPosibles.add(valor);
+		valoresPosibles.add((0-valor));
+		int indice = generator.nextInt(valoresPosibles.size());
+		int valorParaModificar = (int) valoresPosibles.get(indice);
+		double y;
+		double x;
+		
+		if (posicion.getX()<=0 || posicion.getX()>=this.largo)
+		{
+			y=(posicion.getY()-valorParaModificar);
+			x=posicion.getX();
+		}
+		else
+		{
+			y=posicion.getY();
+			x=(posicion.getX()-valorParaModificar);
+		}
+		return (new Vector(x,y));
+	}
+	
+	public boolean esElBorde(Vector unaPos)
+	{
+		return ((unaPos.getX()<=0 || unaPos.getX()>=this.largo)||(unaPos.getY()<=0 || unaPos.getY()>=this.ancho));
 	}
 	
 	public void agregarAvion(Avion unAvion){
@@ -212,11 +275,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 			gameLoop.agregar(vistaMensaje);
 			gameLoop.detenerEjecucion();
 		}
-		
-		
-		
-		//la parte de agregar y remover aviones la hace el observador cuando termina el ciclo
-		
 	}
 	
 	public void iniciarSimulacion(){
@@ -224,35 +282,37 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		
 		//VistaMapa vistaMapa = new VistaMapa(this);
 		/* Creamos las pistas */
-		Pista pista1 = new PistaSimpleEntrada(new Vector(200,300), new Vector(0,1), 20, 80);
-		VistaPistaSimple vistaPista1=null;
+		Pista pistaSimple = new PistaSimpleEntrada(new Vector(200,300), new Vector(0,1), 20, 80);
+		Pista pistaPesada = new PistaPesadaSimple(new Vector(450,90), new Vector(1,1), 20, 80);
+		VistaPistaSimple vistaPistaSimple=null;
+		VistaPistaPesadaSimple vistaPistaPesada=null;
 		//VistaMapa unaVistaMapa=null;
 		try {
-			vistaPista1 = new VistaPistaSimple(pista1);
+			vistaPistaSimple = new VistaPistaSimple(pistaSimple);
+			vistaPistaPesada = new VistaPistaPesadaSimple(pistaPesada);
 			//unaVistaMapa = new VistaMapa(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		this.agregarPista(pista1);
+		this.agregarPista(pistaSimple);
+		this.agregarPista(pistaPesada);
 		/* **************************************** */
-		//gameLoop.agregar(vistaMapa); //esta vista hay que ponerla al fondo.
+		//gameLoop.agregar(unaVistaMapa); //esta vista hay que ponerla al fondo.
 		gameLoop.agregar(this);
-		gameLoop.agregar(vistaPista1);
+		gameLoop.agregar(vistaPistaSimple);
+		gameLoop.agregar(vistaPistaPesada);
 		/* **************************************** */
 		gameLoop.iniciarEjecucion();
 	}
 	
 	public void agregarAviones() throws IOException{
-		
-		
 		if (nivel.debeGenerarAvion())
 		{
 			// le preguntamos al nivel que avion agregar 
 			Random generator = new Random();
 			int x = generator.nextInt(this.largo);
 			int y = generator.nextInt(this.ancho);
-			
 			int lado = (x % 4) + 1; //elijo de que lado va a salir el avion 1 arriba, 2 derecha, 3 abajo y 4 izquierda
 			
 			switch(lado)
@@ -284,10 +344,14 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 			case 2:
 				nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240),new EstrategiaAvionPesado());
 				break;
+			case 3:
+				Hashtable datosComputarizado=this.obtenerDireccionParaComputarizado();
+				Vector posicionAvion = (Vector) datosComputarizado.get("posicion");
+				nuevoAvion = new Avion(posicionAvion, (Vector) datosComputarizado.get("direccion"), new EstrategiaAvionComputarizado());
+				break;
 			default:
 				nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240), new EstrategiaAvionSimple());
 				}
-		
 		this.agregarAvion(nuevoAvion);
 		gameLoop.agregar(nuevoAvion);
 		VistaAvion vistaAvion = new VistaAvion(nuevoAvion);

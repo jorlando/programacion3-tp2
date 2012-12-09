@@ -33,5 +33,9 @@ public class EntradaConDireccion extends Entrada {
 	public boolean direccionCorrecta(Vector direccion){
 		return (tolerancia >= Math.abs(Math.toDegrees(direccion.anguloFormadoCon(direccionEntrada))));
 	}
+	public Vector obtenerDireccion()
+	{
+		return this.direccionEntrada;
+	}
 
 }

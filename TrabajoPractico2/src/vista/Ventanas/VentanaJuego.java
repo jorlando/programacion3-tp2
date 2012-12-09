@@ -154,11 +154,8 @@ public class VentanaJuego {
 			}
 			
 		});
-		
 	}
 	
-			
-
 	private JPanel addSuperficiePanel() {
 		JPanel panel = new SuperficiePanel();
 		panel.setBackground(new Color(100, 200, 50));

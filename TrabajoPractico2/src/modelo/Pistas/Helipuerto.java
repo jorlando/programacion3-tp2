@@ -1,5 +1,8 @@
 package modelo.Pistas;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+
 import modelo.Utilitarios.Vector;
 import modelo.Aviones.Avion;
 import modelo.Entradas.Entrada;
@@ -28,6 +31,20 @@ public class Helipuerto extends Pista {
 	
 	public int getY(){
 		return entrada.getY();
+	}
+	
+	public boolean tieneDireccion()
+	{
+		return false;
+	}
+	
+	public Hashtable obtenerPosicionDireccion()
+	{
+		Hashtable miHash = new Hashtable();
+		miHash.put("posicion", this.entrada.obtenerPosicion());
+		miHash.put("direccion", this.entrada.obtenerDireccion());
+		miHash.put("ancho", 0);
+		return miHash;
 	}
 	
 }

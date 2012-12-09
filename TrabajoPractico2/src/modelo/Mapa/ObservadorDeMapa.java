@@ -16,7 +16,7 @@ public class ObservadorDeMapa implements ObservadorDeGameLoop {
 	public void notificarCicloFinalizado() {
 		try {
 			mapa.agregarAviones();
-			//mapa.aterrizarAviones();
+			mapa.aterrizarAviones();
 			mapa.borrarAvionesQueSeFueronDelMapa();
 		} catch (IOException e) {
 			e.printStackTrace();

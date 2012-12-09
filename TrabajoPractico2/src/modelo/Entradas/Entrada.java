@@ -16,4 +16,17 @@ public abstract class Entrada {
 		return (int)this.posicion.getY();
 	}
 
+	public Vector obtenerPosicion()
+	{
+		return this.posicion;
+	}
+	public Vector obtenerDireccion()
+	{
+		return null;
+	}
+	
+	public double obtenerAncho()
+	{
+		return this.ancho;
+	}
 }

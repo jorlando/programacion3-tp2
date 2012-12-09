@@ -1,5 +1,8 @@
 package modelo.Pistas;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
+
 import modelo.Utilitarios.Vector;
 import modelo.Pistas.Pista;
 import modelo.Aviones.Avion;
@@ -30,4 +33,15 @@ public class PistaSimpleEntrada extends Pista {
 	public int getY(){
 		return this.entrada.getY();
 	}
+	
+	public Hashtable obtenerPosicionDireccion()
+	{
+		Hashtable miHash = new Hashtable();
+		miHash.put("posicion", this.entrada.obtenerPosicion());
+		miHash.put("direccion", this.entrada.obtenerDireccion());
+		miHash.put("ancho", this.entrada.obtenerAncho());
+
+		return miHash;
+	}
+	
 }
