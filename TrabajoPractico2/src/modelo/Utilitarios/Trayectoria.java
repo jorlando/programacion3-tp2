@@ -31,16 +31,21 @@ public class Trayectoria
 
 	public Vector Direccion(Vector desdePosicion)
 	{
-		//La direccion sera la resta Waypoint - posicion desde normalizada
-		if (this.waypoints.peek().esIgualA(desdePosicion))
-			return this.direccionAnterior;
-		else
-		{		
-			Vector aux = this.waypoints.peek().restarOtroVector(desdePosicion);
-			
-			this.direccionAnterior = aux.normalizar();
-			return aux.normalizar();
+		if (this.waypoints.peek() != null)
+		{
+			//La direccion sera la resta Waypoint - posicion desde normalizada
+			if (this.waypoints.peek().esIgualA(desdePosicion))
+				return this.direccionAnterior;
+			else
+			{		
+				Vector aux = this.waypoints.peek().restarOtroVector(desdePosicion);
+				
+				this.direccionAnterior = aux.normalizar();
+				return aux.normalizar();
+			}
 		}
+		else 
+			return new Vector(0,0);
 	}
 	
 

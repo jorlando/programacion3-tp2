@@ -25,8 +25,8 @@ public class EntradaConDireccion extends Entrada {
 		double yMin = ((v2.getY()-v1.getY())/(v2.getX()-v1.getX()))*(vector.getX()-v1.getX())+v1.getY();
 		// double y = ((v2.getY()-v1.getY())/(v2.getX()-v1.getX()))*(vector.getX()-v1.getX())+v1.getY();
 		double yMax = ((v2.getY()-v1.getY())/(v2.getX()-v1.getX()))*(vector.getX()-v1.getX())+v1.getY();
-		
-		return (vector.restarOtroVector(posicion).norma() <= ancho) && ((yMin<vector.getY()) && (vector.getY()<yMax)); //hay que revisar que esto ande
+																									//GN Aca se tocan los condicionales
+		return (vector.restarOtroVector(posicion).norma() <= ancho) && ((yMin <= vector.getY()) && (vector.getY() <= yMax)); //hay que revisar que esto ande
 			
 	}
 	
