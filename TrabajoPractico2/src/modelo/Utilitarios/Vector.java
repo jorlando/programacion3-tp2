@@ -2,6 +2,7 @@ package modelo.Utilitarios;
 
 
 public class Vector {
+	private static final double DELTA = 0.000001;	//1 E^-6
 	private double x;
 	private double y;
 	
@@ -25,9 +26,10 @@ public class Vector {
 	}
 	
 	public boolean esIgualA(Vector otro){
-		return ((this.x==otro.x) && (this.y == otro.y));
+		return 	((Math.abs(this.x - otro.x)) <= DELTA && 
+				 (Math.abs(this.y - otro.y)) <= DELTA);
 	}
-	
+
 	public double norma(){
 		return Math.sqrt((x*x)+(y*y));
 	}
