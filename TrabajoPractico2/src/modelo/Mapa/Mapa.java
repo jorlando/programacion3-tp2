@@ -9,8 +9,8 @@ import java.util.Random;
 import vista.Aviones.VistaAvion;
 import vista.Objetos.VistaMapa;
 import vista.Pistas.*;
-import vista.Ventanas.VistaMensajeError;
-import vista.Ventanas.vistapunto;
+import vista.Ventanas.*;
+
 
 import Excepciones.ImposibleCalcularPosicion;
 
@@ -18,6 +18,7 @@ import modelo.Aviones.*;
 import modelo.Utilitarios.*;
 import modelo.Pistas.*;
 
+import fiuba.algo3.titiritero.dibujables.Imagen;
 import fiuba.algo3.titiritero.modelo.*;
 
 
@@ -30,6 +31,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	private Nivel nivel;
 	private GameLoop gameLoop;
 	private ObservadorDeGameLoop observador;
+	private ArrayList<Imagen> mensajesAMostrar;
 	
 	public Mapa(int ancho, int largo, GameLoop gameLoop){
 		this.ancho = ancho;
@@ -41,6 +43,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		this.observador = new ObservadorDeMapa(this);
 		this.gameLoop.agregarObservador(observador);
 		this.gameLoop.agregar(nivel);
+		mensajesAMostrar=new ArrayList<Imagen>();
 	}
 	
 	public Mapa(GameLoop gameLoop){
@@ -139,15 +142,42 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		return false;
 	}
 	
-	public void aterrizarAviones(){
+	public boolean aterrizarAviones(){
 		//hay que hacer que aumente un punto por cada avion aterrizado
 		Iterator<Pista> iteradorPista = pistas.listIterator();
+		boolean aterrizoAlguno=false;
 		while(iteradorPista.hasNext()) {
 			Pista pistaDondeAterrizar = (Pista) iteradorPista.next();
 			ArrayList<Avion> avionesAterrizados = pistaDondeAterrizar.aterrizarAviones(this.aviones);
-			if (avionesAterrizados.size()>0) this.borrarAviones(avionesAterrizados);
-		} 		
+			if (avionesAterrizados.size()>0){
+				aterrizoAlguno=true;
+				this.borrarAviones(avionesAterrizados);
+				nivel.AvionesAterrizados(avionesAterrizados.size());
+			}
+		}
+		return (aterrizoAlguno);
 	}
+	
+	// Metodo para manejar la posibilidad de agregar mensajes al mapa
+	public void mostrarMensaje(Imagen miVista){
+			mensajesAMostrar.add(miVista);
+			gameLoop.agregar(miVista);
+	}
+	
+	// Metodo para manejar la posibilidad de ocultar mensajes al mapa
+	public void ocultarMensaje(Imagen miVista){
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {}
+			gameLoop.remover(miVista);
+			mensajesAMostrar.remove(miVista);
+	}
+	
+	// Metodo para manejar la posibilidad de preguntar si hay un mensajes en el mapa
+	public boolean estaVisibleMensaje(Imagen miVista){
+		return (mensajesAMostrar.contains(miVista));
+	}
+		
 	public void borrarAvionesQueSeFueronDelMapa()
 	{
 		Iterator<Avion> iterador = aviones.listIterator();
@@ -172,7 +202,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	          this.gameLoop.remover(avionABorrar.obtenerVista());
 	          this.gameLoop.remover(avionABorrar);
 	          this.aviones.remove(avionABorrar);
-	          nivel.AvionAterrizado();
 		}	
 	}
 	
@@ -278,9 +307,9 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		
 		//VistaMapa vistaMapa = new VistaMapa(this);
 		/* Creamos las pistas */
-		Pista pistaSimple = new PistaSimpleEntrada(new Vector(300,300), new Vector(1,0), 40, 80);
+		Pista pistaSimple = new PistaSimpleEntrada(new Vector(300,350), new Vector(1,0), 40, 80);
 		Pista pistaPesada = new PistaPesadaSimple(new Vector(60,150), new Vector(0,1), 40, 80);
-		Pista pistaHelipuerto = new Helipuerto(new Vector(450,450),80);
+		Pista pistaHelipuerto = new Helipuerto(new Vector(450,500),80);
 		Pista pistaDoble = new PistaDobleEntrada(new Vector(250,40), new Vector(500,40), 80, 80);
 		
 		VistaPistaSimple vistaPistaSimple=null;

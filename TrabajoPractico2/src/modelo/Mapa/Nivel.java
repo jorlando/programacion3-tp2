@@ -38,6 +38,12 @@ public class Nivel implements ObjetoVivo
 			this.siguienteNivel();
 	}
 	
+	public void AvionesAterrizados(int cantidad){
+		for(int x=0;x<cantidad;x++){
+			this.AvionAterrizado();
+		}
+	}
+	
 	public boolean debeGenerarAvion()
 	{
 		return (contadorParaAviones == 0);

@@ -2,14 +2,13 @@ package modelo.Utilitarios;
 
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 
-
-public class MensajeGameOver implements ObjetoPosicionable{
+public class MensajeAterrizado implements ObjetoPosicionable {
 	private int miX;
 	private int miY;
-	public MensajeGameOver()
+	public MensajeAterrizado()
 	{
-		miX=80;
-		miY=0;
+		miX=150;
+		miY=150;
 	}
 	public int getX(){
 		return this.miX;
