@@ -122,7 +122,7 @@ public class VentanaJuego {
 				}
 				else{
 					avion = mapa.obtenerAvionEn(click);
-					if (avion != null){				
+					if ((avion != null) && (avion.trayectoriaModificable())){				
 						avion.limpiarTrayectoria();
 						avion.agregarPuntoATrayectoria(click);
 						trazandoTrayectoria = true;

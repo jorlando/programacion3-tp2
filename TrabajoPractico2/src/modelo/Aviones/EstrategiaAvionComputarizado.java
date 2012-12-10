@@ -59,5 +59,11 @@ public class EstrategiaAvionComputarizado implements EstrategiaAvion {
 	{
 		return this.tamaño;
 	}
+	
+	// el avion computarizado no se puede modificar la trayectoria;
+	public boolean trayectoriaModificable()
+	{
+		return false;
+	}
 
 }

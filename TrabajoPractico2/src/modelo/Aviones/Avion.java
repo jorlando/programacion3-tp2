@@ -126,4 +126,10 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 	{
 		return this.miVista;
 	}
+	
+	//utilizado para filtrar el avion Computarizado a la hora de capturar con el mouse
+	public boolean trayectoriaModificable()
+	{
+		return this.tipoDeAvion.trayectoriaModificable();
+	}
 }

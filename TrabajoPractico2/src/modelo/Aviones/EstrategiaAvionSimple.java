@@ -53,10 +53,14 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 		return true;
 	}
 
-	
 	public int tamaño() 
 	{
 		return this.tamaño;
+	}
+	
+	public boolean trayectoriaModificable()
+	{
+		return true;
 	}
 
 	

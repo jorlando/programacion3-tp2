@@ -63,6 +63,11 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 	{
 		return this.tamaño;
 	}
+	
+	public boolean trayectoriaModificable()
+	{
+		return true;
+	}
 
 	
 }

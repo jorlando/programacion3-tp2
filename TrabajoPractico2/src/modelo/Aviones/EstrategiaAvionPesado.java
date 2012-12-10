@@ -60,6 +60,11 @@ public class EstrategiaAvionPesado implements EstrategiaAvion
 	{
 		return this.tamaño;
 	}
+	
+	public boolean trayectoriaModificable()
+	{
+		return true;
+	}
 
 
 }
