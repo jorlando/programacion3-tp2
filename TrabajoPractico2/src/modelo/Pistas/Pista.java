@@ -19,10 +19,12 @@ public abstract class Pista implements ObjetoPosicionable{
 		while (iteradorAvion.hasNext())
 		{
 			Avion avionAEvaluar= iteradorAvion.next();
-			if(this.calcularAterrizaje(avionAEvaluar)) avionesAterrizados.add(avionAEvaluar);
+			if(avionAEvaluar.puedoAterrizarEn(this)) {
+				avionesAterrizados.add(avionAEvaluar);
+				System.out.println("ATERRIZANDO AVION");
+			}
 		}
 		return avionesAterrizados;
-
 	}
 	
 	public boolean puedeAterrizarHelicoptero(){
@@ -30,10 +32,15 @@ public abstract class Pista implements ObjetoPosicionable{
 	}
 	
 	public boolean puedeAterrizarAvionSimple(){
-		return true;
+		return false;
 	}
 	
 	public boolean puedeAterrizarAvionPesado(){
+		return false;
+	}
+	
+	public boolean puedeAterrizarAvionComputarizado()
+	{
 		return false;
 	}
 

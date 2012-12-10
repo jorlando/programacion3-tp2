@@ -44,4 +44,12 @@ public class PistaSimpleEntrada extends Pista {
 		return miHash;
 	}
 	
+	public boolean puedeAterrizarAvionSimple(){
+		return true;
+	}
+	
+	public boolean puedeAterrizarAvionComputarizado(){
+		return true;
+	}
+	
 }

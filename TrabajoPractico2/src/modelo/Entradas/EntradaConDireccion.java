@@ -19,7 +19,7 @@ public class EntradaConDireccion extends Entrada {
 		Vector v1 = posicion;
 		Vector v2 = posicion.sumarOtroVector(direccionEntrada.obtenerPerpendicular());
 		if (v1.getX() == v2.getX()){ //si son iguales falla (division por 0)
-			System.out.println("pista!");
+			//System.out.println("pista!");
 			return (vector.restarOtroVector(posicion).norma() <= ancho) && ( vector.getX() > (v1.getX() - velocidadAvion) && vector.getX() < (v1.getX() + velocidadAvion));
 		}
 		double yMin = ((v2.getY()-v1.getY())/(v2.getX()-v1.getX()))*(vector.getX()-v1.getX())+v1.getY();

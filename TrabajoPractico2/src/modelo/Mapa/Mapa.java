@@ -8,9 +8,9 @@ import java.util.Random;
 
 import vista.Aviones.VistaAvion;
 import vista.Objetos.VistaMapa;
-//import vista.Objetos.VistaMapa;
 import vista.Pistas.*;
 import vista.Ventanas.VistaMensajeError;
+import vista.Ventanas.vistapunto;
 
 import Excepciones.ImposibleCalcularPosicion;
 
@@ -145,7 +145,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		while(iteradorPista.hasNext()) {
 			Pista pistaDondeAterrizar = (Pista) iteradorPista.next();
 			ArrayList<Avion> avionesAterrizados = pistaDondeAterrizar.aterrizarAviones(this.aviones);
-			if (avionesAterrizados.size()>0) this.borrarAviones(avionesAterrizados); //me parece que hay que darselo al observador para que lo haga
+			if (avionesAterrizados.size()>0) this.borrarAviones(avionesAterrizados);
 		} 		
 	}
 	public void borrarAvionesQueSeFueronDelMapa()
@@ -234,10 +234,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		return true;
 	}
 
-	/* Falta Implementar */
-	public Vector calcularDireccionParaPosicion(Vector unaPosicion) {
-		return new Vector(0,0);
-	}
 	
 	public int getLargo(){
 		return this.largo;
@@ -282,14 +278,22 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		
 		//VistaMapa vistaMapa = new VistaMapa(this);
 		/* Creamos las pistas */
-		Pista pistaSimple = new PistaSimpleEntrada(new Vector(200,300), new Vector(0,1), 20, 80);
-		Pista pistaPesada = new PistaPesadaSimple(new Vector(450,90), new Vector(1,1), 20, 80);
+		Pista pistaSimple = new PistaSimpleEntrada(new Vector(300,300), new Vector(1,0), 40, 80);
+		Pista pistaPesada = new PistaPesadaSimple(new Vector(60,150), new Vector(0,1), 40, 80);
+		Pista pistaHelipuerto = new Helipuerto(new Vector(450,450),80);
+		Pista pistaDoble = new PistaDobleEntrada(new Vector(250,40), new Vector(500,40), 80, 80);
+		
 		VistaPistaSimple vistaPistaSimple=null;
 		VistaPistaPesadaSimple vistaPistaPesada=null;
+		VistaHelipuerto vistaHelipuerto=null;
+		VistaPistaDobleEntrada vistaDoble= null;
+		
 		//VistaMapa unaVistaMapa=null;
 		try {
 			vistaPistaSimple = new VistaPistaSimple(pistaSimple);
 			vistaPistaPesada = new VistaPistaPesadaSimple(pistaPesada);
+			vistaHelipuerto = new VistaHelipuerto(pistaHelipuerto);
+			vistaDoble = new VistaPistaDobleEntrada(pistaDoble);
 			//unaVistaMapa = new VistaMapa(this);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -297,11 +301,15 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		
 		this.agregarPista(pistaSimple);
 		this.agregarPista(pistaPesada);
+		this.agregarPista(pistaHelipuerto);
+		this.agregarPista(pistaDoble);
 		/* **************************************** */
 		//gameLoop.agregar(unaVistaMapa); //esta vista hay que ponerla al fondo.
 		gameLoop.agregar(this);
 		gameLoop.agregar(vistaPistaSimple);
 		gameLoop.agregar(vistaPistaPesada);
+		gameLoop.agregar(vistaHelipuerto);
+		gameLoop.agregar(vistaDoble);
 		/* **************************************** */
 		gameLoop.iniciarEjecucion();
 	}

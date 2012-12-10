@@ -43,7 +43,7 @@ public class EstrategiaAvionComputarizado implements EstrategiaAvion {
 	}
 	
 	public boolean puedeAterrizarEn(Pista unaPista){
-		return unaPista.puedeAterrizarAvionSimple();
+		return unaPista.puedeAterrizarAvionComputarizado();
 	}
 	
 	public boolean calcularChoqueCon(Avion unAvion){

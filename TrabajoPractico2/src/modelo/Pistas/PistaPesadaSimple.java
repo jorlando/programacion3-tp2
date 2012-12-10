@@ -9,8 +9,19 @@ public class PistaPesadaSimple extends PistaSimpleEntrada{
 		super(posicion, direccion, ancho, tolerancia);
 	}
 	
+	public boolean puedeAterrizarAvionSimple(){
+		System.out.println("PISTA PESADA AVION SIMPLE");
+		return true;
+	}
+	
 	public boolean puedeAterrizarAvionPesado(){
-		return true;	
+		System.out.println("PISTA PESADA AVION PESADO");
+		return true;
+	}
+	
+	public boolean puedeAterrizarAvionComputarizado(){
+		System.out.println("PISTA PESADA AVION COMPUTARIZADO");
+		return true;
 	}
 
 }

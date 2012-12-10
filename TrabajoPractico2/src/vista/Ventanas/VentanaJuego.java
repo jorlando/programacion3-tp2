@@ -116,7 +116,7 @@ public class VentanaJuego {
 						
 			public void mousePressed(MouseEvent e) {
 				Vector click = new Vector(e.getX(),e.getY());
-				System.out.println(click.getX()+","+click.getY());
+				//System.out.println(click.getX()+","+click.getY());
 				if (trazandoTrayectoria){
 					avion.agregarPuntoATrayectoria(click);
 				}

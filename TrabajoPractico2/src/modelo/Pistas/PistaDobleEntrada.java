@@ -37,14 +37,7 @@ public class PistaDobleEntrada extends Pista {
 	}
 	
 	public int getY(){
-		return entrada1.getY();
-	}
-	public ArrayList<Vector> obtenerPosicion()
-	{
-		ArrayList<Vector> misPosiciones = new ArrayList<Vector>();
-		misPosiciones.add(this.entrada1.obtenerPosicion());
-		misPosiciones.add(this.entrada2.obtenerPosicion());
-		return misPosiciones;
+		return entrada1.getY()-20;
 	}
 	
 	public Hashtable obtenerPosicionDireccion()
@@ -59,5 +52,13 @@ public class PistaDobleEntrada extends Pista {
 		miHash.put("ancho",unaEntrada.obtenerAncho());
 
 		return miHash;
+	}
+	
+	public boolean puedeAterrizarAvionSimple(){
+		return true;
+	}
+	
+	public boolean puedeAterrizarAvionComputarizado(){
+		return true;
 	}
 }

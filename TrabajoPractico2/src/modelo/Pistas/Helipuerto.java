@@ -23,14 +23,14 @@ public class Helipuerto extends Pista {
 	
 	public boolean puedeAterrizarHelicoptero(){
 		return true;
-	}
-	
+	}	
+	//se resta 55 para que el punto de aterrizaje sea en el centro de la imagen
 	public int getX(){
-		return entrada.getX();
+		return entrada.getX()-55;
 	}
 	
 	public int getY(){
-		return entrada.getY();
+		return entrada.getY()-55;
 	}
 	
 	public boolean tieneDireccion()
