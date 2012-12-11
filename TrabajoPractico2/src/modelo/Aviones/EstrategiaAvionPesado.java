@@ -53,12 +53,12 @@ public class EstrategiaAvionPesado implements EstrategiaAvion
 	
 	public String miImagen()
 	{
-		return this.rutaImagen;
+		return rutaImagen;
 	}
 
 	public int tamaño() 
 	{
-		return this.tamaño;
+		return tamaño;
 	}
 	
 	public boolean trayectoriaModificable()

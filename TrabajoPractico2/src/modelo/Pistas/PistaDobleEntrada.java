@@ -40,13 +40,13 @@ public class PistaDobleEntrada extends Pista {
 		return entrada1.getY()-20;
 	}
 	
-	public Hashtable obtenerPosicionDireccion()
+	public Hashtable<String,Object> obtenerPosicionDireccion()
 	{
 		Random generator = new Random();
 		int valorRandom = generator.nextInt(this.misEntradas.size());
 		Entrada unaEntrada = this.misEntradas.get(valorRandom);
 		
-		Hashtable miHash = new Hashtable();
+		Hashtable<String,Object> miHash = new Hashtable<String,Object>();
 		miHash.put("posicion", unaEntrada.obtenerPosicion());
 		miHash.put("direccion", unaEntrada.obtenerDireccion());
 		miHash.put("ancho",unaEntrada.obtenerAncho());

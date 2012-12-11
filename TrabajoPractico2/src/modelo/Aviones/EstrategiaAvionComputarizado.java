@@ -52,12 +52,12 @@ public class EstrategiaAvionComputarizado implements EstrategiaAvion {
 
 	public String miImagen()
 	{
-		return this.rutaImagen;
+		return rutaImagen;
 	}	
 
 	public int tamaño() 
 	{
-		return this.tamaño;
+		return tamaño;
 	}
 	
 	// el avion computarizado no se puede modificar la trayectoria;

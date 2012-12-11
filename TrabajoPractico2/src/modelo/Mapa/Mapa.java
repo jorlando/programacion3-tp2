@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.Random;
 
 import vista.Aviones.VistaAvion;
-import vista.Objetos.VistaMapa;
 import vista.Pistas.*;
 import vista.Ventanas.*;
 
@@ -55,10 +54,10 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	}
 	
 	
-	public Hashtable obtenerDireccionParaComputarizado()
+	public Hashtable<String,Object> obtenerDireccionParaComputarizado()
 	{
 		boolean continuoBuscando=true;
-		Hashtable hashResultado=new Hashtable();
+		Hashtable<String,Object> hashResultado=new Hashtable<String,Object>();
 		while (continuoBuscando)
 		{
 			Random generator = new Random();
@@ -67,7 +66,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 			if (unaPista.tieneDireccion())
 			{
 				continuoBuscando=false;
-				Hashtable unHash= unaPista.obtenerPosicionDireccion();
+				Hashtable<String,Object> unHash= unaPista.obtenerPosicionDireccion();
 				hashResultado.put("posicion", this.obtenerPosicionDesdeBorde(unHash));
 				hashResultado.put("direccion", unHash.get("posicion"));
 			}
@@ -75,7 +74,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		return hashResultado;
 	}
 	
-	public Vector obtenerPosicionDesdeBorde(Hashtable unHash)
+	public Vector obtenerPosicionDesdeBorde(Hashtable<String,Object> unHash)
 	{
 		Vector posicion = (Vector) unHash.get("posicion");
 		Vector direccion = (Vector) unHash.get("direccion");
@@ -84,7 +83,8 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		{
 			posicion=posicion.restarOtroVector(direccion);
 		}
-		posicion= this.aplicarVarianza(posicion, (double)unHash.get("ancho"));
+		double miAncho=(double) unHash.get("ancho");
+		posicion= this.aplicarVarianza(posicion,miAncho);
 		return posicion;
 	}
 	public Vector aplicarVarianza(Vector posicion, double variable)
@@ -92,7 +92,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		Random generator = new Random();
 		int valor = generator.nextInt((int)variable*2);
 		
-		ArrayList valoresPosibles = new ArrayList();
+		ArrayList<Integer> valoresPosibles = new ArrayList<Integer>();
 		valoresPosibles.add(valor);
 		valoresPosibles.add((0-valor));
 		int indice = generator.nextInt(valoresPosibles.size());
@@ -382,7 +382,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 				nuevoAvion = new Avion(new Vector(x,y), new Vector(320,240),new EstrategiaAvionPesado());
 				break;
 			case 3:
-				Hashtable datosComputarizado=this.obtenerDireccionParaComputarizado();
+				Hashtable<String,Object> datosComputarizado=this.obtenerDireccionParaComputarizado();
 				Vector posicionAvion = (Vector) datosComputarizado.get("posicion");
 				nuevoAvion = new Avion(posicionAvion, (Vector) datosComputarizado.get("direccion"), new EstrategiaAvionComputarizado());
 				break;

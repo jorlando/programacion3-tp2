@@ -6,8 +6,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 
 import fiuba.algo3.titiritero.dibujables.*;
-import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
-import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
+import fiuba.algo3.titiritero.modelo.*;
 
 public class VistaPistaSimple extends Imagen {
 	

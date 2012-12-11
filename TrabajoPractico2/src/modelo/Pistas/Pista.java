@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import modelo.Aviones.Avion;
-import modelo.Utilitarios.Vector;
 
 public abstract class Pista implements ObjetoPosicionable{
 	
@@ -49,6 +48,6 @@ public abstract class Pista implements ObjetoPosicionable{
 		return true;
 	}
 	
-	public abstract Hashtable obtenerPosicionDireccion();
+	public abstract Hashtable<String,Object> obtenerPosicionDireccion();
 	
 }

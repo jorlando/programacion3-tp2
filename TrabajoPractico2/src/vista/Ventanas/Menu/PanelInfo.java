@@ -3,7 +3,6 @@ package vista.Ventanas.Menu;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;

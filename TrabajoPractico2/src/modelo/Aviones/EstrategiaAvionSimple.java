@@ -43,7 +43,7 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 	
 	public String miImagen()
 	{
-		return this.rutaImagen;
+		return rutaImagen;
 	}	
 	public boolean puedeAterrizarEn(Pista unaPista){
 		return unaPista.puedeAterrizarAvionSimple();
@@ -55,7 +55,7 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 
 	public int tamaño() 
 	{
-		return this.tamaño;
+		return tamaño;
 	}
 	
 	public boolean trayectoriaModificable()
