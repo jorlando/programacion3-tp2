@@ -2,13 +2,13 @@ package modelo.Utilitarios;
 
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 
-public class MensajeAterrizado implements ObjetoPosicionable {
+public class MensajeLevelComplete implements ObjetoPosicionable {
 	private int miX;
 	private int miY;
-	public MensajeAterrizado()
+	public MensajeLevelComplete()
 	{
-		miX=200;
-		miY=200;
+		miX=150;
+		miY=100;
 	}
 	public int getX(){
 		return this.miX;
@@ -17,4 +17,5 @@ public class MensajeAterrizado implements ObjetoPosicionable {
 	public int getY(){
 		return this.miY;
 	}
+
 }

@@ -9,7 +9,7 @@ import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
 import modelo.Utilitarios.Trayectoria;
 import modelo.Utilitarios.Vector;
-import modelo.Pistas.Pista;
+import modelo.Pistas.*;
 
 
 public class Avion implements ObjetoPosicionable, ObjetoVivo
@@ -37,7 +37,7 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 	
 	public Vector obtenerDireccion()
 	{	
-		return this.trayectoriaDeVuelo.Direccion(this.posicion); 
+		return this.trayectoriaDeVuelo.Direccion(this.posicion);
 	}
 
 	public Vector obtenerPosicion()

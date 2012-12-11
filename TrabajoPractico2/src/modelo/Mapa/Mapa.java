@@ -31,6 +31,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	private GameLoop gameLoop;
 	private ObservadorDeGameLoop observador;
 	private ArrayList<Imagen> mensajesAMostrar;
+	private int nivelActual;
 	
 	public Mapa(int ancho, int largo, GameLoop gameLoop){
 		this.ancho = ancho;
@@ -38,11 +39,13 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		aviones = new ArrayList<Avion>();
 		pistas = new ArrayList<Pista>();
 		nivel = new Nivel();
+		nivelActual=nivel.getNivel();
 		this.gameLoop = gameLoop;
 		this.observador = new ObservadorDeMapa(this);
 		this.gameLoop.agregarObservador(observador);
 		this.gameLoop.agregar(nivel);
 		mensajesAMostrar=new ArrayList<Imagen>();
+		
 	}
 	
 	public Mapa(GameLoop gameLoop){
@@ -288,7 +291,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		
 		if (this.verificarColisiones())
 		{
-			System.out.println("¡¡¡¡¡CHOQUE!!!!!");
 			MensajeGameOver mensajeFinal = new MensajeGameOver();
 			VistaMensajeError vistaMensaje = null;
 			try {
@@ -414,7 +416,14 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		}
 		
 		return null;
-		
+	}
+	
+	public boolean cambioElNivel(){
+		if(nivelActual==nivel.getNivel()) return false;
+		else{
+			nivelActual=nivel.getNivel();
+			return true;
+		}
 	}
 	
 }

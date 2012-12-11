@@ -10,7 +10,7 @@ import modelo.Entradas.EntradaConDireccion;
 
 
 public class PistaSimpleEntrada extends Pista {
-	private Entrada entrada;
+	protected Entrada entrada;
 	
 	public PistaSimpleEntrada(Vector posicion, Vector direccion, double ancho, double tolerancia){
 		entrada = new EntradaConDireccion(posicion,ancho,direccion,tolerancia);
@@ -19,9 +19,6 @@ public class PistaSimpleEntrada extends Pista {
 	public boolean calcularAterrizaje(Avion avion) {
 		Vector posicionAvion = avion.obtenerPosicion();
 		Vector direccionAvion = avion.obtenerDireccion();
-		if(entrada.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()) && entrada.direccionCorrecta(direccionAvion)){
-			System.out.println("aterriza");
-		}
 		return (entrada.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()) && entrada.direccionCorrecta(direccionAvion));
 	}
 	

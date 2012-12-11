@@ -17,8 +17,9 @@ public class PistaDobleEntrada extends Pista {
 	
 	public PistaDobleEntrada(Vector posicion1, Vector posicion2, double ancho, double tolerancia){
 		Vector direccion = posicion2.restarOtroVector(posicion1);
+		Vector direccion2 = posicion1.restarOtroVector(posicion2);
 		entrada1 = new EntradaConDireccion(posicion1, ancho, direccion , tolerancia);
-		entrada2 = new EntradaConDireccion(posicion2, ancho, direccion.multiplicarPorEscalar(-1), tolerancia);
+		entrada2 = new EntradaConDireccion(posicion2, ancho, direccion2, tolerancia);
 		misEntradas = new ArrayList<Entrada>();
 		misEntradas.add(entrada1);
 		misEntradas.add(entrada2);
@@ -28,8 +29,8 @@ public class PistaDobleEntrada extends Pista {
 		
 		Vector posicionAvion = avion.obtenerPosicion();
 		Vector direccionAvion = avion.obtenerDireccion();
-		return (((entrada1.direccionCorrecta(direccionAvion) && entrada1.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()))) ||
-			((entrada2.direccionCorrecta(direccionAvion) && entrada2.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()))));
+		return ((((entrada1.direccionCorrecta(direccionAvion)) && (entrada1.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()))))||
+				 (((entrada2.direccionCorrecta(direccionAvion)) && (entrada2.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad())))));
 	}
 	
 	public int getX(){
