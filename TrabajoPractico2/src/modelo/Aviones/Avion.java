@@ -3,6 +3,8 @@ package modelo.Aviones;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.jdom2.Element;
+
 import fiuba.algo3.titiritero.modelo.ObjetoDibujable;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
@@ -131,5 +133,15 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 	public boolean trayectoriaModificable()
 	{
 		return this.tipoDeAvion.trayectoriaModificable();
+	}
+
+	public Element serializarXML() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static Avion cargarDesdeXML(Element rootElement) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
