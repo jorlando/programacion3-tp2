@@ -1,5 +1,6 @@
 package vista.Ventanas;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -66,7 +67,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent evento) {
-		// TODO Auto-generated method stub
 		if (evento.getActionCommand()=="nuevoJuego"){
 			nuevoJuego();
 		}
@@ -107,11 +107,11 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 				"Juan Manuel Orlando");
 	}
 	
-	public void paintComponents(Graphics g){
-		g.drawImage(fondo.getImage(),10,10,null);
-		super.paintComponents(g);
-		g.drawImage(fondo.getImage(),10,10,null);
-	}
+	//public void paintComponents(Graphics g){
+		//g.drawImage(fondo.getImage(),10,10,null);
+		//super.paintComponents(g);
+		//g.drawImage(fondo.getImage(),10,10,null);
+	//}
 	
 	
 	

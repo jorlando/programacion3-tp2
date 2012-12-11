@@ -1,5 +1,6 @@
 package vista.Ventanas.Menu;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 
@@ -16,8 +17,8 @@ public class PanelMenu extends JPanel {
 	
 	public PanelMenu(ActionListener oyente){
 		
-		//this.setBackground(Color.white);
-		
+		this.setBackground(Color.black);
+		setOpaque(true);
 		setLayout(new FlowLayout());
 		
 		nuevoJuego = new JButton ("NUEVO JUEGO");

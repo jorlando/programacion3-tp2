@@ -93,7 +93,7 @@ public class VentanaJuego {
 
 	private void inicializarModelo(GameLoop gameLoop) {
 		
-		this.mapa = new Mapa(LARGO-100, ANCHO-100, gameLoop);
+		this.mapa = new Mapa(ANCHO-100,LARGO-100 , gameLoop);
 
 	}
 

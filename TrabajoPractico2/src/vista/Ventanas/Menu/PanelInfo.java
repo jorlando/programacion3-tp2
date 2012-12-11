@@ -15,13 +15,13 @@ public class PanelInfo extends JPanel {
 
 	public PanelInfo (){
 		
-		//this.setBackground(Color.white);
+		this.setBackground(Color.black);
 		texto = new JTextArea("Bienvenido a Cop Control");
 		FlowLayout layout = new FlowLayout();
 		layout.setAlignment(FlowLayout.CENTER);
 		layout.setVgap(0);
 		setLayout(layout);
-		
+		setOpaque(true);
 		texto.setForeground(new Color(0,50,100));
 		texto.setFont(new Font("Tahoma", 10, 20));
 		

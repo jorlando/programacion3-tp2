@@ -29,8 +29,8 @@ public class PistaDobleEntrada extends Pista {
 		
 		Vector posicionAvion = avion.obtenerPosicion();
 		Vector direccionAvion = avion.obtenerDireccion();
-		return ((((entrada1.direccionCorrecta(direccionAvion)) && (entrada1.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()))))||
-				 (((entrada2.direccionCorrecta(direccionAvion)) && (entrada2.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad())))));
+		return (((entrada1.direccionCorrecta(direccionAvion) && entrada1.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()))) ||
+			((entrada2.direccionCorrecta(direccionAvion) && entrada2.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()))));
 	}
 	
 	public int getX(){

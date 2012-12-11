@@ -36,6 +36,7 @@ public class ObservadorDeMapa implements ObservadorDeGameLoop {
 		} catch (IOException e) {}
 		return vistaAMostrar;
 	}
+
 	
 	
 	
