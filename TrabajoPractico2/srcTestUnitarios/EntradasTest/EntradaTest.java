@@ -12,6 +12,7 @@ public class EntradaTest extends TestCase {
 	EntradaConDireccion entrada;
 	Avion avion1;
 	
+	@Override
 	public void setUp(){
 		entrada= new EntradaConDireccion(new Vector(1,2) , 2 , new Vector(2,1) , 45 );
 		avion1 = new Avion(new Vector(1,2),new Vector (2,1), new EstrategiaAvionSimple());

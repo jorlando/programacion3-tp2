@@ -11,10 +11,12 @@ public class MensajeGameOver implements ObjetoPosicionable{
 		miX=80;
 		miY=0;
 	}
+	@Override
 	public int getX(){
 		return this.miX;
 	}
 	
+	@Override
 	public int getY(){
 		return this.miY;
 	}

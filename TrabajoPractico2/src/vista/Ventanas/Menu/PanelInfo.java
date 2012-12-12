@@ -22,8 +22,8 @@ public class PanelInfo extends JPanel {
 		layout.setVgap(0);
 		setLayout(layout);
 		setOpaque(true);
-		texto.setForeground(new Color(0,50,100));
-		texto.setFont(new Font("Tahoma", 10, 20));
+		texto.setForeground(Color.blue);
+		texto.setFont(new Font("Arial", Font.BOLD, 40));
 		
 		add(texto);
 		

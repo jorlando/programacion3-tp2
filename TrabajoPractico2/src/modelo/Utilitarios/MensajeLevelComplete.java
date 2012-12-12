@@ -10,10 +10,12 @@ public class MensajeLevelComplete implements ObjetoPosicionable {
 		miX=150;
 		miY=100;
 	}
+	@Override
 	public int getX(){
 		return this.miX;
 	}
 	
+	@Override
 	public int getY(){
 		return this.miY;
 	}

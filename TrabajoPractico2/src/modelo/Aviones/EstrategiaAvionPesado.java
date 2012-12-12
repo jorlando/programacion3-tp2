@@ -11,6 +11,7 @@ public class EstrategiaAvionPesado implements EstrategiaAvion
 	private static String rutaImagen="recursos/imagenes/AvionPesado2.png";
 	
 
+	@Override
 	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{
 		Vector distanciaActual = trayectoriaDeVuelo.Waypoint().restarOtroVector(posicion);
@@ -43,24 +44,29 @@ public class EstrategiaAvionPesado implements EstrategiaAvion
 		return proximaPosicion;	
 	}
 	
+	@Override
 	public boolean puedeAterrizarEn(Pista unaPista){
 		return unaPista.puedeAterrizarAvionPesado();
 	}
 	
+	@Override
 	public boolean calcularChoqueCon(Avion unAvion){
 		return true;
 	}
 	
+	@Override
 	public String miImagen()
 	{
 		return rutaImagen;
 	}
 
+	@Override
 	public int tamaño() 
 	{
 		return tamaño;
 	}
 	
+	@Override
 	public boolean trayectoriaModificable()
 	{
 		return true;

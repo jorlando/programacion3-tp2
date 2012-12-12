@@ -25,6 +25,7 @@ public class PistaDobleEntrada extends Pista {
 		misEntradas.add(entrada2);
 	}
 
+	@Override
 	public boolean calcularAterrizaje(Avion avion) {
 		
 		Vector posicionAvion = avion.obtenerPosicion();
@@ -33,14 +34,17 @@ public class PistaDobleEntrada extends Pista {
 			((entrada2.direccionCorrecta(direccionAvion) && entrada2.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()))));
 	}
 	
+	@Override
 	public int getX(){
 		return entrada1.getX();
 	}
 	
+	@Override
 	public int getY(){
 		return entrada1.getY()-20;
 	}
 	
+	@Override
 	public Hashtable<String,Object> obtenerPosicionDireccion()
 	{
 		Random generator = new Random();
@@ -55,10 +59,12 @@ public class PistaDobleEntrada extends Pista {
 		return miHash;
 	}
 	
+	@Override
 	public boolean puedeAterrizarAvionSimple(){
 		return true;
 	}
 	
+	@Override
 	public boolean puedeAterrizarAvionComputarizado(){
 		return true;
 	}

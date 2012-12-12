@@ -14,6 +14,7 @@ public class TrayectoriaTest extends TestCase
 
 	public Queue<Vector> unasDirecciones;
 	
+	@Override
 	protected void setUp()
 	{
 		unasDirecciones = new LinkedList<Vector>();

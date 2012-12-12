@@ -13,6 +13,7 @@ public class VectorTest extends TestCase{
 	Vector vector60;
 	Vector vectorm21;
 	
+	@Override
 	public void setUp (){
 		
 		vector12 = new Vector(1,2);

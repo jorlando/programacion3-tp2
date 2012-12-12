@@ -10,10 +10,12 @@ public class MensajeAterrizado implements ObjetoPosicionable {
 		miX=200;
 		miY=200;
 	}
+	@Override
 	public int getX(){
 		return this.miX;
 	}
 	
+	@Override
 	public int getY(){
 		return this.miY;
 	}

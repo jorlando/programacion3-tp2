@@ -10,6 +10,7 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 	private static int tamaño = 10;
 	private static String rutaImagen="recursos/imagenes/helicoptero2.png";
 	
+	@Override
 	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{
 		if(trayectoriaDeVuelo.Waypoint() != null)
@@ -46,24 +47,29 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 		else return posicion;
 	}
 	
+	@Override
 	public boolean puedeAterrizarEn(Pista unaPista){
 		return unaPista.puedeAterrizarHelicoptero();
 	}
 	
+	@Override
 	public boolean calcularChoqueCon(Avion unAvion){
 		return true;
 	}
 
+	@Override
 	public String miImagen()
 	{
 		return rutaImagen;
 	}	
 	
+	@Override
 	public int tamaño() 
 	{
 		return tamaño;
 	}
 	
+	@Override
 	public boolean trayectoriaModificable()
 	{
 		return true;

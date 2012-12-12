@@ -15,6 +15,7 @@ public class EntradaConDireccion extends Entrada {
 		tolerancia = tol;
 	}
 	
+	@Override
 	public boolean puntoPertenceALaEntrada(Vector vector, double velocidadAvion){
 		Vector v1 = posicion;
 		Vector v2 = posicion.sumarOtroVector(direccionEntrada.obtenerPerpendicular());
@@ -30,9 +31,11 @@ public class EntradaConDireccion extends Entrada {
 			
 	}
 	
+	@Override
 	public boolean direccionCorrecta(Vector direccion){
 		return (tolerancia >= Math.abs(Math.toDegrees(direccion.anguloFormadoCon(direccionEntrada))));
 	}
+	@Override
 	public Vector obtenerDireccion()
 	{
 		return this.direccionEntrada;

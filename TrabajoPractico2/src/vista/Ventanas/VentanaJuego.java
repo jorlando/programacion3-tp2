@@ -1,6 +1,11 @@
 package vista.Ventanas;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -10,7 +15,15 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+import vista.Ventanas.Menu.PanelInfo;
+import vista.Ventanas.Menu.PanelMenu;
+import vista.Ventanas.Menu.PanelNombre;
+import vista.Ventanas.Menu.PanelPuntaje;
 
 import modelo.Aviones.Avion;
 import modelo.Mapa.Mapa;
@@ -27,6 +40,9 @@ public class VentanaJuego {
 	private boolean pausa;
 	private boolean trazandoTrayectoria;
 	private Avion avion;
+	JTextArea texto;
+	JPanel panel;
+	PanelPuntaje puntajePanel;
 	
 	private int FPS = 50;
 	private int LARGO = 1000;
@@ -56,19 +72,18 @@ public class VentanaJuego {
 	 */
 	private void initialize() throws IOException {
 		frame = new JFrame();
-		frame.setForeground(new Color(0, 0, 0));
+		frame.setForeground(Color.black);
 		frame.setBounds(100, 100, LARGO, ANCHO);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		frame.setTitle("CopControl");
-		frame.setResizable(false);
 		
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		JButton btnIniciar = this.addBotonIniciar();
 		JButton btnPausa = this.addBotonDetener();
 		JButton btnReiniciar = this.addBotonReiniciar();
 		JButton btnVolverAlMenu = this.addBotonVolver();
 				
-		JPanel panel = this.addSuperficiePanel();
+		panel = this.addSuperficiePanel();
 		
 		panel.setBounds(50, 50, LARGO-100, ANCHO-100);
 		/*Inicializando el gameloop*/
@@ -87,14 +102,21 @@ public class VentanaJuego {
 		this.juegoEnProgreso = false;
 		this.trazandoTrayectoria = false;
 		this.avion = null;
-
 		
+		
+		Container contentPane = frame.getContentPane();
+		
+		//Creamos los paneles
+		contentPane.setLayout(new BorderLayout());
+		puntajePanel = new PanelPuntaje();
+		puntajePanel.setOpaque(true);
+		contentPane.add("East",puntajePanel);
+			
 	}
 
 	private void inicializarModelo(GameLoop gameLoop) {
 		
 		this.mapa = new Mapa(ANCHO-100,LARGO-100 , gameLoop);
-
 	}
 
 	private void setComponentsFocus(JButton btnIniciar, JButton btnDetener, JButton btnVolver, JButton btnReiniciar) {
@@ -109,6 +131,7 @@ public class VentanaJuego {
 	private void addMouseListener(JPanel panel) {
 		panel.addMouseListener(new MouseAdapter() {	
 						
+			@Override
 			public void mousePressed(MouseEvent e) {
 				Vector click = new Vector(e.getX(),e.getY());
 				//System.out.println(click.getX()+","+click.getY());
@@ -125,12 +148,14 @@ public class VentanaJuego {
 				}
 			}
 			
+			@Override
 			public void mouseReleased(MouseEvent e) {
 				trazandoTrayectoria = false;
 				avion = null;
 				
 			}
 			
+			@Override
 			public void mouseExited(MouseEvent e) {
 				trazandoTrayectoria = false;
 				avion = null;
@@ -141,6 +166,7 @@ public class VentanaJuego {
 	private void addMouseMotionListener(JPanel panel) {
 		panel.addMouseMotionListener(new MouseMotionAdapter() {
 			
+			@Override
 			public void mouseDragged(MouseEvent e) {
 				if (trazandoTrayectoria){
 					avion.agregarPuntoATrayectoria(new Vector(e.getX(),e.getY()));
@@ -163,6 +189,7 @@ public class VentanaJuego {
 	private JButton addBotonDetener() {
 		JButton btnPausa = new JButton("Pausa");
 		btnPausa.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (juegoEnProgreso){
 					if (pausa){
@@ -190,6 +217,7 @@ public class VentanaJuego {
 	private JButton addBotonIniciar() {
 		JButton btnIniciar = new JButton("Comenzar Juego");
 		btnIniciar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				mapa.iniciarSimulacion();
 				pausa = false;
@@ -205,6 +233,7 @@ public class VentanaJuego {
 	private JButton addBotonVolver() {
 		JButton btnIniciar = new JButton("Volver Al Menu");
 		btnIniciar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (juegoEnProgreso){
 					mapa.detenerSimulacion();
@@ -222,6 +251,7 @@ public class VentanaJuego {
 	private JButton addBotonReiniciar() {
 		JButton btnIniciar = new JButton("Reiniciar");
 		btnIniciar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (juegoEnProgreso){
 					mapa.detenerSimulacion();

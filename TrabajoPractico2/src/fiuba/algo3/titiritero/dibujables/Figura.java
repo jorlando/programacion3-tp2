@@ -11,6 +11,7 @@ public abstract class Figura implements ObjetoDibujable {
 	private Color color;
 	private ObjetoPosicionable posicionable;
 	
+	@Override
 	public abstract void dibujar(SuperficieDeDibujo superfice);
 
 	public void setColor(Color unColor){

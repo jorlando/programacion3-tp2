@@ -1,8 +1,6 @@
 package vista.Ventanas;
 
-import java.awt.Color;
 import java.awt.Container;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +27,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 	public VentanaPrincipal(){
 		//Inicializamos la ventana
 		super ("CopControl");
-		setBounds(600,460,640,480);
+		setBounds(0,0,640,480);
 		setResizable(false);
 	}
 	

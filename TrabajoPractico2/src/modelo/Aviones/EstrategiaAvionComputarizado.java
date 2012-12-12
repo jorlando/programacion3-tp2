@@ -9,6 +9,7 @@ public class EstrategiaAvionComputarizado implements EstrategiaAvion {
 	private static int tamaño = 15;
 	private static String rutaImagen="recursos/imagenes/AvionComputarizado2.png";
 	
+	@Override
 	public Vector avanzar(Vector posicion, double velocidad, Trayectoria trayectoriaDeVuelo)
 	{
 		Vector distanciaActual = trayectoriaDeVuelo.Waypoint().restarOtroVector(posicion);
@@ -42,25 +43,30 @@ public class EstrategiaAvionComputarizado implements EstrategiaAvion {
 		return proximaPosicion;	
 	}
 	
+	@Override
 	public boolean puedeAterrizarEn(Pista unaPista){
 		return unaPista.puedeAterrizarAvionComputarizado();
 	}
 	
+	@Override
 	public boolean calcularChoqueCon(Avion unAvion){
 		return true;
 	}
 
+	@Override
 	public String miImagen()
 	{
 		return rutaImagen;
 	}	
 
+	@Override
 	public int tamaño() 
 	{
 		return tamaño;
 	}
 	
 	// el avion computarizado no se puede modificar la trayectoria;
+	@Override
 	public boolean trayectoriaModificable()
 	{
 		return false;

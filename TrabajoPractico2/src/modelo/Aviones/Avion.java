@@ -3,8 +3,6 @@ package modelo.Aviones;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.jdom2.Element;
-
 import fiuba.algo3.titiritero.modelo.ObjetoDibujable;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
@@ -74,7 +72,7 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 	{
 		Iterator<Avion> iteradorAviones = otrosAviones.listIterator();
 		while( iteradorAviones.hasNext() ) {
-	          Avion avionAVerificar = (Avion) iteradorAviones.next();
+	          Avion avionAVerificar = iteradorAviones.next();
 	          // dentro de la lista de aviones recibida por parametro tambien esta el avion que verifica
 	          if (avionAVerificar != this){
 	        	  if( this.colisionaCon(avionAVerificar) ) return true;
@@ -83,14 +81,17 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 	return false;
 	}
 	
+	@Override
 	public int getX(){
 		return (int)this.posicion.getX();
 	}
 	
+	@Override
 	public int getY(){
 		return (int)this.posicion.getY();
 	}
 	
+	@Override
 	public void vivir(){ //esto sirve depende como lo hagamos
 		avanzar();
 	}

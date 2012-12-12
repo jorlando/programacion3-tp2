@@ -76,6 +76,7 @@ public class Nivel implements ObjetoVivo
 		this.reparametrizar();
 	}
 	
+	@Override
 	public void vivir()
 	{
 		if (contadorParaAviones == 0)

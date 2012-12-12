@@ -99,7 +99,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		valoresPosibles.add(valor);
 		valoresPosibles.add((0-valor));
 		int indice = generator.nextInt(valoresPosibles.size());
-		int valorParaModificar = (int) valoresPosibles.get(indice);
+		int valorParaModificar = valoresPosibles.get(indice);
 		double y;
 		double x;
 		
@@ -137,7 +137,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	public boolean verificarColisiones(){
 		Iterator<Avion> iterador = aviones.listIterator();
 		while( iterador.hasNext() ) {
-	          Avion avionAVerificar = (Avion) iterador.next();
+	          Avion avionAVerificar = iterador.next();
 	          if (avionAVerificar.verificarSiColicionaConOtro(this.aviones))//esto es repetitivo hay que ver si se puede mejorar
 	        	  return true;
 		} 
@@ -150,7 +150,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		Iterator<Pista> iteradorPista = pistas.listIterator();
 		boolean aterrizoAlguno=false;
 		while(iteradorPista.hasNext()) {
-			Pista pistaDondeAterrizar = (Pista) iteradorPista.next();
+			Pista pistaDondeAterrizar = iteradorPista.next();
 			ArrayList<Avion> avionesAterrizados = pistaDondeAterrizar.aterrizarAviones(this.aviones);
 			if (avionesAterrizados.size()>0){
 				aterrizoAlguno=true;
@@ -186,7 +186,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		Iterator<Avion> iterador = aviones.listIterator();
 		ArrayList<Avion> avionesABorrar = new ArrayList<Avion>();
 		while(iterador.hasNext()) {
-			Avion avionAEvaluar = (Avion)iterador.next();
+			Avion avionAEvaluar = iterador.next();
 	          Vector posicionDelAvion = avionAEvaluar.obtenerPosicion();
 	          if ((posicionDelAvion.getX()<0 || posicionDelAvion.getX()>this.largo)||(posicionDelAvion.getY()<0 || posicionDelAvion.getY()>this.ancho))
 	          {
@@ -201,7 +201,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	{
 		Iterator<Avion> iterador = avionesAterrizados.listIterator();
 		while( iterador.hasNext() ) {
-			  Avion avionABorrar = (Avion) iterador.next();
+			  Avion avionABorrar = iterador.next();
 	          this.gameLoop.remover(avionABorrar.obtenerVista());
 	          this.gameLoop.remover(avionABorrar);
 	          this.aviones.remove(avionABorrar);
@@ -211,7 +211,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	public void moverAviones(){
 		Iterator<Avion> iterador = aviones.listIterator();
 		while( iterador.hasNext() ) {
-	          Avion avionAMover = (Avion) iterador.next();
+	          Avion avionAMover = iterador.next();
 	          avionAMover.avanzar();
 		} 
 	}
@@ -258,7 +258,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		Iterator<Avion> iterador = aviones.listIterator();
 		
 		while( iterador.hasNext()) {
-	          Avion avion = (Avion) iterador.next();
+	          Avion avion = iterador.next();
 	          posicionAvion = avion.obtenerPosicion();
 	          if (posicion.restarOtroVector(posicionAvion).norma() < distanciaMin) return false;
 		}
@@ -408,7 +408,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		Iterator<Avion> iterador = aviones.listIterator();
 		
 		while( iterador.hasNext()) {
-	          Avion avion = (Avion) iterador.next();
+	          Avion avion = iterador.next();
 	          posicionAvion = avion.obtenerPosicion();
 	          if (posicionAvion.restarOtroVector(posicionABuscar).norma() < avion.getTamaño()*1.2){
 	        	  return avion;

@@ -11,14 +11,17 @@ public class PistaPesadaSimple extends PistaSimpleEntrada{
 		entrada = new EntradaConDireccion(posicion,ancho,direccion,tolerancia);
 	}
 	
+	@Override
 	public boolean puedeAterrizarAvionSimple(){
 		return true;
 	}
 	
+	@Override
 	public boolean puedeAterrizarAvionPesado(){
 		return true;
 	}
 	
+	@Override
 	public boolean puedeAterrizarAvionComputarizado(){
 		return true;
 	}

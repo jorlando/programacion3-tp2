@@ -16,20 +16,24 @@ public class PistaSimpleEntrada extends Pista {
 		entrada = new EntradaConDireccion(posicion,ancho,direccion,tolerancia);
 	}
 	
+	@Override
 	public boolean calcularAterrizaje(Avion avion) {
 		Vector posicionAvion = avion.obtenerPosicion();
 		Vector direccionAvion = avion.obtenerDireccion();
 		return (entrada.puntoPertenceALaEntrada(posicionAvion,avion.getVelocidad()) && entrada.direccionCorrecta(direccionAvion));
 	}
 	
+	@Override
 	public int getX(){
 		return this.entrada.getX();
 	}
 	
+	@Override
 	public int getY(){
 		return this.entrada.getY();
 	}
 	
+	@Override
 	public Hashtable<String,Object> obtenerPosicionDireccion()
 	{
 		Hashtable<String,Object> miHash = new Hashtable<String,Object>();
@@ -40,10 +44,12 @@ public class PistaSimpleEntrada extends Pista {
 		return miHash;
 	}
 	
+	@Override
 	public boolean puedeAterrizarAvionSimple(){
 		return true;
 	}
 	
+	@Override
 	public boolean puedeAterrizarAvionComputarizado(){
 		return true;
 	}

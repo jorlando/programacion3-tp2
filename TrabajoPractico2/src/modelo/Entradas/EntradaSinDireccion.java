@@ -10,6 +10,7 @@ public class EntradaSinDireccion extends Entrada {
 		this.ancho = ancho;
 	}
 	
+	@Override
 	public boolean puntoPertenceALaEntrada(Vector vector, double velocidadAvion) {
 		if (velocidadAvion > ancho){
 			return (vector.restarOtroVector(posicion).norma() <= velocidadAvion);//nose si esta del todo bien
@@ -17,6 +18,7 @@ public class EntradaSinDireccion extends Entrada {
 		return (vector.restarOtroVector(posicion).norma() <= ancho);
 	}
 	
+	@Override
 	public boolean direccionCorrecta(Vector direccion){
 		return true;
 	}

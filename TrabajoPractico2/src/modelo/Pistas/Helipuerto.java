@@ -14,29 +14,35 @@ public class Helipuerto extends Pista {
 		entrada = new EntradaSinDireccion(posicion,ancho);
 	}
 	
+	@Override
 	public boolean calcularAterrizaje(Avion avion){
 		Vector posicionAvion = avion.obtenerPosicion();
 		Vector direccionAvion = avion.obtenerDireccion();
 		return (entrada.puntoPertenceALaEntrada(posicionAvion, avion.getVelocidad()) && entrada.direccionCorrecta(direccionAvion));
 	}
 	
+	@Override
 	public boolean puedeAterrizarHelicoptero(){
 		return true;
 	}	
 	//se resta 55 para que el punto de aterrizaje sea en el centro de la imagen
+	@Override
 	public int getX(){
 		return entrada.getX()-55;
 	}
 	
+	@Override
 	public int getY(){
 		return entrada.getY()-55;
 	}
 	
+	@Override
 	public boolean tieneDireccion()
 	{
 		return false;
 	}
 	
+	@Override
 	public Hashtable<String,Object> obtenerPosicionDireccion()
 	{
 		Hashtable<String,Object> miHash = new Hashtable<String,Object>();

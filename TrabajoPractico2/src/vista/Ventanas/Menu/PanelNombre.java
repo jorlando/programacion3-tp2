@@ -32,12 +32,12 @@ public class PanelNombre extends JPanel {
 		return this.nombre.getText();
 	}
 
-	 public void paint(Graphics g){
+	public void paint(Graphics g){
         Dimension tamanio = getSize();
         ImageIcon imagenFondo = new ImageIcon("recursos/imagenes/insertcoin.png");        
         g.drawImage(imagenFondo.getImage(),0,0,tamanio.width, tamanio.height, null);        
         setOpaque(false);
         super.paintComponent(g);
-    }    
+    }
 
 }

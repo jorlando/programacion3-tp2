@@ -14,6 +14,7 @@ public class SuperficiePanel extends JPanel implements SuperficieDeDibujo {
 	private Image imagen;
 
 	// es llamado internamente por el metodo repaint() de la clase Frame
+	@Override
 	public void update(Graphics g) {
 		paint(g);
 	}
@@ -22,12 +23,14 @@ public class SuperficiePanel extends JPanel implements SuperficieDeDibujo {
 		this.imagen = imagen;
 	}
 	
+	@Override
 	public void paint(Graphics g) {
 		//System.out.println("repintando");
 		g.drawImage(this.imagen, 0, 0, null);
 		this.limpiar();
 	}
 	
+	@Override
 	public void actualizar() {
 		this.repaint();
 	}
