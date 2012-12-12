@@ -10,7 +10,7 @@ import org.jdom2.output.*;
 
 public class Archivador {
 	
-	public static void guardar(Avion unAvion, String pathArchivo) {
+	public static void guardar(guardable unAvion, String pathArchivo) {
 		try {
 	        
 			Element root = unAvion.serializarXML();
