@@ -69,5 +69,11 @@ public class EstrategiaAvionSimple implements EstrategiaAvion
 		return true;
 	}
 
+	@Override
+	public String descripcionDeTipo() {
+		
+		return "AvionSimple";
+	}
+
 	
 }

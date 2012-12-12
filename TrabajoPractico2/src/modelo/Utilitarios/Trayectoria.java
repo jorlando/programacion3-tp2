@@ -4,8 +4,12 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import org.jdom2.Element;
 
-public class Trayectoria
+import persistencia.guardable;
+
+
+public class Trayectoria implements guardable
 {
 	private Queue<Vector> waypoints;
 	private Vector direccionAnterior;
@@ -66,6 +70,30 @@ public class Trayectoria
 	
 	public void limpiar(){
 		this.waypoints.clear();
+	}
+
+	public Element serializarXML() {
+		
+		Element elementoTrayectoria = new Element("trayectoria");
+		
+		elementoTrayectoria.setAttribute("anteriorX", Double.toString(direccionAnterior.getX()));
+		elementoTrayectoria.setAttribute("anteriorY", Double.toString(direccionAnterior.getY()));
+		
+		Iterator<Vector> iterador = waypoints.iterator();
+		
+		int contador = 1;
+		while(iterador.hasNext())
+		{
+			Vector auxWaypoint = iterador.next();
+			Element auxChild = new Element("waypoint " + Integer.toString(contador));  
+			
+			auxChild.setAttribute("x", Double.toString(auxWaypoint.getX()));
+			auxChild.setAttribute("y", Double.toString(auxWaypoint.getY()));
+			
+			elementoTrayectoria.addContent(auxChild);
+			contador++;
+		}
+		return elementoTrayectoria;
 	}
 
 }

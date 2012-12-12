@@ -4,6 +4,10 @@ import modelo.Aviones.Avion;
 
 import java.io.FileWriter;
 
+import org.jdom2.*;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.*;
+
 public class Archivador {
 	
 	public static void guardar(Avion unAvion, String pathArchivo) {

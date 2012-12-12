@@ -3,6 +3,10 @@ package modelo.Aviones;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.jdom2.Element;
+
+import persistencia.guardable;
+
 import fiuba.algo3.titiritero.modelo.ObjetoDibujable;
 import fiuba.algo3.titiritero.modelo.ObjetoPosicionable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
@@ -12,7 +16,7 @@ import modelo.Utilitarios.Vector;
 import modelo.Pistas.*;
 
 
-public class Avion implements ObjetoPosicionable, ObjetoVivo
+public class Avion implements ObjetoPosicionable, ObjetoVivo, guardable
 {
 	private Vector posicion;
 	private Trayectoria trayectoriaDeVuelo; 
@@ -136,11 +140,20 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo
 		return this.tipoDeAvion.trayectoriaModificable();
 	}
 
-	public Element serializarXML() {
-		// TODO Auto-generated method stub
-		return null;
+	public Element serializarXML()
+	{
+		Element elementoAvion = new Element("avion");
+		elementoAvion.setAttribute("x", Double.toString(posicion.getX()));
+		elementoAvion.setAttribute("y", Double.toString(posicion.getY()));
+		elementoAvion.setAttribute("velocidad", Double.toString(velocidad));
+		elementoAvion.setAttribute("tamanio", Double.toString(tamaño));
+		elementoAvion.setAttribute("tipoDeAvion", tipoDeAvion.descripcionDeTipo());
+		
+		elementoAvion.getChildren().add(trayectoriaDeVuelo.serializarXML());
+		
+		return elementoAvion;		
 	}
-
+	
 	public static Avion cargarDesdeXML(Element rootElement) {
 		// TODO Auto-generated method stub
 		return null;

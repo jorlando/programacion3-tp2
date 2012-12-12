@@ -72,4 +72,10 @@ public class EstrategiaAvionComputarizado implements EstrategiaAvion {
 		return false;
 	}
 
+	@Override
+	public String descripcionDeTipo() {
+		
+		return "AvionComputarizado";
+	}
+
 }

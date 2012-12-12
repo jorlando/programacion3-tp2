@@ -75,5 +75,11 @@ public class EstrategiaAvionHelicoptero implements EstrategiaAvion
 		return true;
 	}
 
+	@Override
+	public String descripcionDeTipo() {
+		
+		return "AvionHelicoptero";
+	}
+
 	
 }

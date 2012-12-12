@@ -12,4 +12,5 @@ public interface EstrategiaAvion
 	public int tamaño();
 	public String miImagen();
 	public boolean trayectoriaModificable();
+	public String descripcionDeTipo();
 }
