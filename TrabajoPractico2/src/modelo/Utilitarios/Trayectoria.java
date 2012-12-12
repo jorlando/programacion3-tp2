@@ -76,8 +76,11 @@ public class Trayectoria implements guardable
 		
 		Element elementoTrayectoria = new Element("trayectoria");
 		
-		elementoTrayectoria.setAttribute("anteriorX", Double.toString(direccionAnterior.getX()));
-		elementoTrayectoria.setAttribute("anteriorY", Double.toString(direccionAnterior.getY()));
+		if(direccionAnterior != null) //direccion anterior es null hasta que la trayectoria cambia de direccion.
+		{	
+			elementoTrayectoria.setAttribute("anteriorX", Double.toString(direccionAnterior.getX()));
+			elementoTrayectoria.setAttribute("anteriorY", Double.toString(direccionAnterior.getY()));
+		}
 		
 		Iterator<Vector> iterador = waypoints.iterator();
 		
@@ -85,7 +88,7 @@ public class Trayectoria implements guardable
 		while(iterador.hasNext())
 		{
 			Vector auxWaypoint = iterador.next();
-			Element auxChild = new Element("waypoint " + Integer.toString(contador));  
+			Element auxChild = new Element("waypoint" + Integer.toString(contador));  
 			
 			auxChild.setAttribute("x", Double.toString(auxWaypoint.getX()));
 			auxChild.setAttribute("y", Double.toString(auxWaypoint.getY()));
