@@ -108,7 +108,7 @@ public class VentanaJuego {
 		
 		//Creamos los paneles
 		contentPane.setLayout(new BorderLayout());
-		puntajePanel = new PanelPuntaje();
+		puntajePanel = PanelPuntaje.obtenerPanel();
 		puntajePanel.setOpaque(true);
 		contentPane.add("East",puntajePanel);
 			
@@ -258,7 +258,9 @@ public class VentanaJuego {
 					frame.setVisible(false);
 					VentanaJuego vJuego = new VentanaJuego();
 					vJuego.getFrame().setVisible(true);
-				}
+					//reseteo los valores del panel de puntaje
+					PanelPuntaje.obtenerPanel().reiniciar();
+					}
 				
 			}
 		});

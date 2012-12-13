@@ -15,7 +15,16 @@ public class PanelPuntaje extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private JLabel nivelNumero;
 	private JLabel avionesCantidad;
-public PanelPuntaje(){
+	public static PanelPuntaje elPanel;
+	
+
+public static PanelPuntaje obtenerPanel(){
+		if (elPanel==null){
+			elPanel=new PanelPuntaje();
+		}
+		return elPanel;
+	}
+private PanelPuntaje(){
 		
 		//this.setBackground(Color.black);
 		setOpaque(false);
@@ -52,6 +61,11 @@ public PanelPuntaje(){
 	
 	public void cambiarAvionesAterrizados(String textoAEscribir){
 		avionesCantidad.setText(textoAEscribir);
+	}
+	
+	public void reiniciar(){
+		this.cambiarAvionesAterrizados("0");
+		this.cambiarNivel("1");
 	}
 	
 	public void cambiarNivel(String textoAEscribir){
