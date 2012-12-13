@@ -3,6 +3,8 @@ package UtilitariosTest;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import persistencia.Archivador;
+
 import modelo.Utilitarios.Trayectoria;
 import modelo.Utilitarios.Vector;
 
@@ -53,4 +55,17 @@ public class TrayectoriaTest extends TestCase
 		assertTrue(unaTrayectoria.Waypoint().esIgualA(new Vector(1,1)));
 	}
 
+	public void testPersistencia()
+	{
+		unasDirecciones.offer(new Vector(1,2));	
+		unasDirecciones.offer(new Vector(2,3));
+		Trayectoria unaTrayectoria = new Trayectoria(unasDirecciones.iterator());
+		
+		Archivador.guardar(unaTrayectoria, "srcTestUnitarios//UtilitariosTest//pruebaTrayectoria.xml");
+		
+		Trayectoria nuevaTrayectoria = Archivador.cargarTrayectoria("srcTestUnitarios//UtilitariosTest//pruebaTrayectoria.xml");
+		
+		assertTrue(nuevaTrayectoria.Waypoint().esIgualA(new Vector(1,2)));
+		
+	}
 }

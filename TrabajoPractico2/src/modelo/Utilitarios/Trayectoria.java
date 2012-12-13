@@ -28,6 +28,10 @@ public class Trayectoria implements guardable
 		this.waypoints.offer(unWaypoint);
 	}
 	
+	public Trayectoria() {
+		this.waypoints = new LinkedList<Vector>();
+	}
+
 	public Vector Waypoint()
 	{
 		return this.waypoints.peek();
@@ -97,6 +101,26 @@ public class Trayectoria implements guardable
 			contador++;
 		}
 		return elementoTrayectoria;
+	}
+
+	public static Trayectoria cargarDesdeXML(Element elementoTrayectoria)
+	{
+		Trayectoria nuevaTrayectoria = new Trayectoria();
+				
+		if(elementoTrayectoria.hasAttributes())
+		{
+			nuevaTrayectoria.direccionAnterior = new Vector(Double.parseDouble(elementoTrayectoria.getAttributeValue("anteriorX")), Double.parseDouble(elementoTrayectoria.getAttributeValue("anteriorY")));
+		}
+			
+		Iterator <Element> iterador = elementoTrayectoria.getChildren().iterator();
+		while (iterador.hasNext())
+		{
+			Element auxElement = iterador.next();
+			Vector auxVector = new Vector(Double.parseDouble(auxElement.getAttributeValue("x")), Double.parseDouble(auxElement.getAttributeValue("y")));
+			nuevaTrayectoria.AgregarWaypoint(auxVector);
+		}
+		
+		return nuevaTrayectoria;
 	}
 
 }
