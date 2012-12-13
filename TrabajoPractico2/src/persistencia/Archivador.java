@@ -33,15 +33,20 @@ public class Archivador {
 	}
 	
 	public static Avion cargarAvion(String pathArchivo) {
-		try {
-	        SAXBuilder builder = new SAXBuilder();
-	        Document document = builder.build(pathArchivo);
-	        
-	        return Avion.cargarDesdeXML(document.getRootElement());
-	        
-		} catch(Exception e) {
-			throw new RuntimeException(e);
+	
+		SAXBuilder builder = new SAXBuilder();
+	    Document document;
+		try 
+		{
+			document = builder.build(pathArchivo);
+		} 
+		catch (JDOMException | IOException e)
+		{
+			e.printStackTrace();
+			return null;
 		}
+	     
+	    return Avion.cargarDesdeXML(document.getRootElement());
 	}
 
 	public static Trayectoria cargarTrayectoria(String pathArchivo) 

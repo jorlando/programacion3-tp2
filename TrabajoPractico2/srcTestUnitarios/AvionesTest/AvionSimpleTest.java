@@ -1,6 +1,8 @@
 package AvionesTest;
 
 import java.util.ArrayList;
+
+import persistencia.Archivador;
 import modelo.Utilitarios.Vector;
 import modelo.Aviones.Avion;
 import modelo.Aviones.EstrategiaAvionSimple;
@@ -84,5 +86,27 @@ public class AvionSimpleTest extends TestCase
 		
 		assertFalse(unAvion.verificarSiColicionaConOtro(todosLosAviones));
 		
+	}
+	
+	public void testPersistenciaAvion()
+	{
+		String pathArchivo = "srcTestUnitarios//AvionesTest//pruebaAvionSimple.xml";
+		Vector posicionInicial = new Vector(1,0);
+		Vector direccionInicial = new Vector(2,0);
+		Avion unAvion = new Avion(posicionInicial, direccionInicial, new EstrategiaAvionSimple());
+		
+		Archivador.guardar(unAvion, pathArchivo);
+		
+		Avion nuevoAvion = Archivador.cargarAvion(pathArchivo);
+		
+		boolean avionesSonIguales;
+		avionesSonIguales = unAvion.obtenerPosicion().esIgualA(nuevoAvion.obtenerPosicion());
+		avionesSonIguales &= unAvion.obtenerDireccion().esIgualA(nuevoAvion.obtenerDireccion());
+		avionesSonIguales &= unAvion.obtenerEstrategia().descripcionDeTipo() == nuevoAvion.obtenerEstrategia().descripcionDeTipo();
+		avionesSonIguales &= unAvion.getY() == nuevoAvion.getY();
+		avionesSonIguales &= unAvion.getTamaño() == nuevoAvion.getTamaño();
+		avionesSonIguales &= unAvion.getVelocidad() == nuevoAvion.getVelocidad();
+		
+		assertTrue(avionesSonIguales);
 	}
 }
