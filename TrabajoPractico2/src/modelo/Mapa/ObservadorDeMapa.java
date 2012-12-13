@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import modelo.Utilitarios.*;
 import vista.Ventanas.*;
+import vista.Ventanas.Menu.PanelPuntaje;
 
 import fiuba.algo3.titiritero.modelo.ObservadorDeGameLoop;
 
@@ -37,7 +38,13 @@ public class ObservadorDeMapa implements ObservadorDeGameLoop {
 		return vistaAMostrar;
 	}
 
-	
+	public void actualizarPanelPuntaje(){
+		PanelPuntaje puntajePanel = PanelPuntaje.obtenerPanel();
+		String nivel= mapa.obtenerNivel()+"";
+		String aviones= mapa.obtenerAvionesAterrizados()+"";
+		puntajePanel.cambiarNivel(nivel);
+		puntajePanel.cambiarAvionesAterrizados(aviones);
+	}
 	
 	
 	@Override
@@ -49,6 +56,7 @@ public class ObservadorDeMapa implements ObservadorDeGameLoop {
 		if (mapa.aterrizarAviones()) mapa.mostrarMensaje(this.mensajeGood);
 		if(mapa.cambioElNivel()) mapa.mostrarMensaje(this.mensajeLevelComplete);
 		mapa.borrarAvionesQueSeFueronDelMapa();
+		this.actualizarPanelPuntaje();
 	}
 
 }

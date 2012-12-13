@@ -426,4 +426,12 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		}
 	}
 	
+	public int obtenerNivel(){
+		return this.nivel.getNivel();
+	}
+	
+	public int obtenerAvionesAterrizados(){
+		return this.nivel.obtenerAvionesAterrizados();
+	}
+	
 }

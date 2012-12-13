@@ -84,4 +84,8 @@ public class Nivel implements ObjetoVivo
 		else
 			contadorParaAviones--;
 	}
+	
+	public int obtenerAvionesAterrizados(){
+		return this.avionesAterrizados;
+	}
 }
