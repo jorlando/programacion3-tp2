@@ -57,15 +57,16 @@ public class TrayectoriaTest extends TestCase
 
 	public void testPersistencia()
 	{
+		String pathArchivo = "srcTestUnitarios//UtilitariosTest//pruebaTrayectoria.xml";
 		unasDirecciones.offer(new Vector(1,2));	
 		unasDirecciones.offer(new Vector(2,3));
 		Trayectoria unaTrayectoria = new Trayectoria(unasDirecciones.iterator());
 		
-		Archivador.guardar(unaTrayectoria, "srcTestUnitarios//UtilitariosTest//pruebaTrayectoria.xml");
+		Archivador.guardar(unaTrayectoria, pathArchivo);
 		
-		Trayectoria nuevaTrayectoria = Archivador.cargarTrayectoria("srcTestUnitarios//UtilitariosTest//pruebaTrayectoria.xml");
+		Trayectoria nuevaTrayectoria = Archivador.cargarTrayectoria(pathArchivo);
 		
-		assertTrue(nuevaTrayectoria.Waypoint().esIgualA(new Vector(1,2)));
+		assertTrue(nuevaTrayectoria.Waypoint().esIgualA(new Vector(1,2))); // Verifico que la cabecera se mantenga
 		
 	}
 }

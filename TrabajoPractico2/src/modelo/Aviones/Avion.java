@@ -154,8 +154,32 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo, guardable
 		return elementoAvion;		
 	}
 	
-	public static Avion cargarDesdeXML(Element rootElement) {
-		// TODO Auto-generated method stub
-		return null;
+	public static Avion cargarDesdeXML(Element elementoAvion) {
+		
+		double posX = Double.parseDouble(elementoAvion.getAttributeValue("x"));
+		double posY = Double.parseDouble(elementoAvion.getAttributeValue("y"));
+		
+		Trayectoria nuevaTrayectoria = Trayectoria.cargarDesdeXML(elementoAvion.getChild("trayectoria"));
+		
+		String descripcionTipo = elementoAvion.getAttributeValue("tipoDeAvion");
+		
+		return new Avion(new Vector(posX, posY), nuevaTrayectoria, determinarEstrategiaPorString(descripcionTipo));
+	}
+
+	private static EstrategiaAvion determinarEstrategiaPorString(String descripcionTipo) throws DescripcionAvionInvalida
+	{
+		switch(descripcionTipo)
+		{
+		case "AvionSimple":
+			return new EstrategiaAvionSimple();
+		case "AvionComputarizado":
+			return new EstrategiaAvionComputarizado();
+		case "AvionPesado":
+			return new EstrategiaAvionPesado();
+		case "AvionHelicoptero":
+			return new EstrategiaAvionHelicoptero();
+		default:
+			throw new DescripcionAvionInvalida();
+		}
 	}
 }
