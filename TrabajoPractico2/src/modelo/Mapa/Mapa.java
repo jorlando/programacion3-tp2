@@ -312,7 +312,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		Pista pistaSimple = new PistaSimpleEntrada(new Vector(300,350), new Vector(1,0), 40, 80);
 		Pista pistaPesada = new PistaPesadaSimple(new Vector(60,150), new Vector(0,1), 40, 80);
 		Pista pistaHelipuerto = new Helipuerto(new Vector(450,500),80);
-		Pista pistaDoble = new PistaDobleEntrada(new Vector(250,40), new Vector(500,40), 80, 80);
+		Pista pistaDoble = new PistaDobleEntrada(new Vector(250,40), new Vector(500,40), 40, 80);
 		
 		VistaPistaSimple vistaPistaSimple=null;
 		VistaPistaPesadaSimple vistaPistaPesada=null;
