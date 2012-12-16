@@ -91,7 +91,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 	}
 	
 	private void cargarJuego(){
-		System.out.println("se tiene que cargar un juego guardado");
+		VentanaJuego vJuego = new VentanaJuego("guardado.xml");
+		setVisible(false);
+		vJuego.getFrame().setVisible(true);
 	}
 	
 	private void ayuda(){

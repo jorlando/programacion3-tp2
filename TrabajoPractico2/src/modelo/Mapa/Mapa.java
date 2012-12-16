@@ -6,6 +6,10 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Random;
 
+import org.jdom2.Element;
+
+import persistencia.guardable;
+
 import vista.Aviones.VistaAvion;
 import vista.Pistas.*;
 import vista.Ventanas.*;
@@ -21,7 +25,8 @@ import fiuba.algo3.titiritero.dibujables.Imagen;
 import fiuba.algo3.titiritero.modelo.*;
 
 
-public class Mapa implements ObjetoVivo, ObjetoPosicionable{
+public class Mapa implements ObjetoVivo, ObjetoPosicionable, guardable
+{
 	
 	private ArrayList<Avion> aviones;
 	private ArrayList<Pista> pistas;
@@ -433,5 +438,34 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	public int obtenerAvionesAterrizados(){
 		return this.nivel.obtenerAvionesAterrizados();
 	}
+
+	@Override
+	public Element serializarXML()
+	{
+		Element elementoMapa = new Element("Mapa");
+		
+		elementoMapa.setAttribute("ancho", String.valueOf(this.ancho));
+		elementoMapa.setAttribute("largo", String.valueOf(this.largo));
+		elementoMapa.setAttribute("nivelActual", String.valueOf(this.nivelActual));
+		
+		elementoMapa.addContent(this.nivel.serializarXML());	//Elemento XML de nivel
+		
+		Iterator<Avion> iteradorAviones = this.aviones.iterator();
+		Element elementoAviones = new Element("Aviones");
+		
+		while(iteradorAviones.hasNext())
+			elementoAviones.addContent(iteradorAviones.next().serializarXML());	//Elemento XML de un avion
+		
+		elementoMapa.addContent(elementoAviones);
+		
+		
+		return elementoMapa;
+		
+		
+	}
 	
+	public void setNivel(Nivel unNivel)
+	{
+		this.nivel = unNivel;
+	}
 }
