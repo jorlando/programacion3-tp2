@@ -1,6 +1,7 @@
 package persistencia;
 
 import modelo.Aviones.Avion;
+import modelo.Mapa.Nivel;
 import modelo.Utilitarios.Trayectoria;
 
 import java.io.FileWriter;
@@ -64,6 +65,23 @@ public class Archivador {
 		}
 	     
 	     return Trayectoria.cargarDesdeXML(document.getRootElement());
+	}
+
+	public static Nivel cargarNivel(String pathArchivo)
+	{
+		SAXBuilder builder = new SAXBuilder();
+	    Document document;
+		try 
+		{
+			document = builder.build(pathArchivo);
+		} 
+		catch (JDOMException | IOException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	     
+	    return Nivel.cargarDesdeXML(document.getRootElement());
 	}
 
 }
