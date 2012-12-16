@@ -52,7 +52,20 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable, guardable
 		mensajesAMostrar=new ArrayList<Imagen>();
 		
 	}
-	
+	public Mapa(int ancho, int largo, GameLoop gameLoop, Nivel unNivel){
+		this.ancho = ancho;
+		this.largo = largo;
+		aviones = new ArrayList<Avion>();
+		pistas = new ArrayList<Pista>();
+		nivel = unNivel;
+		nivelActual=nivel.getNivel();
+		this.gameLoop = gameLoop;
+		this.observador = new ObservadorDeMapa(this);
+		this.gameLoop.agregarObservador(observador);
+		this.gameLoop.agregar(nivel);
+		mensajesAMostrar=new ArrayList<Imagen>();
+		
+	}
 	public Mapa(GameLoop gameLoop){
 		this(800,600, gameLoop);
 	}
@@ -464,8 +477,4 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable, guardable
 		
 	}
 	
-	public void setNivel(Nivel unNivel)
-	{
-		this.nivel = unNivel;
-	}
 }

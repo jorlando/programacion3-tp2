@@ -109,8 +109,7 @@ public class Archivador {
 		int ancho =  Integer.parseInt(elementoMapa.getAttributeValue("ancho"));
 		int largo = Integer.parseInt(elementoMapa.getAttributeValue("largo"));
 		
-		Mapa nuevoMapa = new Mapa(ancho, largo, gameLoop);
-		nuevoMapa.setNivel(Nivel.cargarDesdeXML(elementoMapa.getChild("Nivel")));
+		Mapa nuevoMapa = new Mapa(ancho, largo, gameLoop, Nivel.cargarDesdeXML(elementoMapa.getChild("Nivel")));
 		
 		Iterator<Element> avionesACargar = elementoMapa.getChild("Aviones").getChildren().iterator();
 		while(avionesACargar.hasNext())
