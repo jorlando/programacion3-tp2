@@ -86,7 +86,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		{
 			posicion=posicion.restarOtroVector(direccion);
 		}
-		double miAncho=(double) unHash.get("ancho");
+		double miAncho = (double) unHash.get("ancho"); // Aca me falla el juego
 		posicion= this.aplicarVarianza(posicion,miAncho);
 		return posicion;
 	}
