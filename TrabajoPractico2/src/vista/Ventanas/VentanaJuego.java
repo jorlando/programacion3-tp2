@@ -3,9 +3,6 @@ package vista.Ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,16 +12,11 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import persistencia.Archivador;
 
-import vista.Ventanas.Menu.PanelInfo;
-import vista.Ventanas.Menu.PanelMenu;
-import vista.Ventanas.Menu.PanelNombre;
 import vista.Ventanas.Menu.PanelPuntaje;
 
 import modelo.Aviones.Avion;
@@ -246,14 +238,14 @@ public class VentanaJuego {
 	}
 	
 	private JButton addBotonVolver() {
-		JButton btnIniciar = new JButton("Volver Al Menu");
+		JButton btnIniciar = new JButton("Guardar y Salir");
 		btnIniciar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (juegoEnProgreso){
 					System.out.println("Guardando el juego...");
 					Archivador.guardar(mapa, "guardado.xml");	//guardo el juego
-					System.out.println("Guardando el juego...OK! ;)");
+					System.out.println("Guardando el juego...OK!");
 					mapa.detenerSimulacion();
 				}
 				frame.setVisible(false);

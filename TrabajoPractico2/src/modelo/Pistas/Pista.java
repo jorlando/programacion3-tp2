@@ -11,8 +11,7 @@ public abstract class Pista implements ObjetoPosicionable{
 	
 	public abstract boolean calcularAterrizaje(Avion unAvion);
 	
-	public ArrayList<Avion> aterrizarAviones (ArrayList<Avion> avionesAterrizar)
-	{
+	public ArrayList<Avion> aterrizarAviones (ArrayList<Avion> avionesAterrizar){
 		ArrayList<Avion> avionesAterrizados = new ArrayList<Avion>();
 		Iterator<Avion> iteradorAvion = avionesAterrizar.iterator();
 		while (iteradorAvion.hasNext())
@@ -38,16 +37,13 @@ public abstract class Pista implements ObjetoPosicionable{
 		return false;
 	}
 	
-	public boolean puedeAterrizarAvionComputarizado()
-	{
+	public boolean puedeAterrizarAvionComputarizado(){
 		return false;
 	}
 
-	public boolean tieneDireccion()
-	{
+	public boolean tieneDireccion(){
 		return true;
 	}
 	
 	public abstract Hashtable<String,Object> obtenerPosicionDireccion();
-	
 }
