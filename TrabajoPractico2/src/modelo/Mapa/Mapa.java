@@ -108,10 +108,10 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable, guardable
 		posicion= this.aplicarVarianza(posicion,miAncho);
 		return posicion;
 	}
-	public Vector aplicarVarianza(Vector posicion, double variable)
+	public Vector aplicarVarianza(Vector posicion, double cuantoVaria)
 	{
 		Random generator = new Random();
-		int valor = generator.nextInt((int)variable*2);
+		int valor = generator.nextInt((int)cuantoVaria*2);
 		
 		ArrayList<Integer> valoresPosibles = new ArrayList<Integer>();
 		valoresPosibles.add(valor);

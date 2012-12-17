@@ -62,7 +62,7 @@ public class PistaSimpleEntradaTest extends TestCase{
 	
 	public void testNoAterrizarFueraDeLaEntrada(){
 		Pista unaPista = new PistaSimpleEntrada(new Vector (0,0), new Vector(1,1), 2, 80);
-		Avion unAvion = new Avion(new Vector(1,0), new Vector(1,1), new EstrategiaAvionSimple());
+		Avion unAvion = new Avion(new Vector(3,0), new Vector(1,1), new EstrategiaAvionSimple());
 		assertFalse(unaPista.calcularAterrizaje(unAvion));
 	}
 	

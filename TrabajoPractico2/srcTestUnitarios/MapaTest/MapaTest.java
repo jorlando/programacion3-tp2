@@ -2,22 +2,29 @@ package MapaTest;
 
 import java.util.ArrayList;
 
+import fiuba.algo3.titiritero.dibujables.SuperficiePanel;
+import fiuba.algo3.titiritero.modelo.GameLoop;
+import fiuba.algo3.titiritero.modelo.SuperficieDeDibujo;
+
 import Excepciones.ImposibleCalcularPosicion;
 
 import junit.framework.TestCase;
-import modelo.Aviones.Avion;
-import modelo.Aviones.EstrategiaAvionPesado;
-import modelo.Aviones.EstrategiaAvionSimple;
+import modelo.Aviones.*;
 import modelo.Mapa.Mapa;
-import modelo.Pistas.Pista;
-import modelo.Pistas.PistaDobleEntrada;
+import modelo.Pistas.*;
 import modelo.Utilitarios.Vector;
 
 public class MapaTest extends TestCase {
+	private Mapa unMapa;
+	private GameLoop gameLoop;
+	protected void setUp(){
+		gameLoop = new GameLoop(50,(SuperficieDeDibujo) new SuperficiePanel());
+		unMapa = new Mapa(50,50,gameLoop);		
+	}
 
 	public void testMapaAgregarPista()
 	{
-		Mapa unMapa= new Mapa(50,50);
+		
 		Pista unaPista = new PistaDobleEntrada(new Vector (0,0), new Vector(1,1), 2, 0);
 		unMapa.agregarPista(unaPista);
 		ArrayList<Pista> pistas = unMapa.obtenerPistas();
@@ -26,8 +33,6 @@ public class MapaTest extends TestCase {
 	
 	public void testMapaAgregarAviones()
 	{
-		Mapa unMapa= new Mapa(50,50);
-		
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
 		Avion unAvion = new Avion(posicionInicial, direccionInicial, new EstrategiaAvionSimple());
@@ -43,7 +48,6 @@ public class MapaTest extends TestCase {
 	
 	public void testMapaColicionanAviones()
 	{
-		Mapa unMapa= new Mapa(50,50);
 		Vector posicionInicial = new Vector(0,0);
 		Vector direccionInicial = new Vector(1,2);
 		Avion unAvion = new Avion(posicionInicial, direccionInicial, new EstrategiaAvionSimple());
@@ -57,7 +61,6 @@ public class MapaTest extends TestCase {
 	}
 	
 	public void testMapaAvionAterriza(){
-		Mapa unMapa= new Mapa(50,50);
 		Pista unaPista = new PistaDobleEntrada(new Vector (0,0), new Vector(1,1), 2, 0);
 		Avion unAvion = new Avion(new Vector(1,1), new Vector(-1,-1), new EstrategiaAvionSimple());
 		
@@ -71,7 +74,6 @@ public class MapaTest extends TestCase {
 	
 	public void testMapaAvanzarAviones()
 	{
-		Mapa unMapa= new Mapa(50,50);
 		Vector posicionInicial = new Vector(1,0);
 		Vector direccionInicial = new Vector(2,0);
 		Avion unAvion = new Avion(posicionInicial, direccionInicial, new EstrategiaAvionSimple());
@@ -84,10 +86,10 @@ public class MapaTest extends TestCase {
 				   unAvion.obtenerPosicion().getY() == 0.0 );
 	}
 	public void testMapaObtenerPosicion(){
-		Mapa unMapa = new Mapa(10,10);
+		Mapa otroMapa = new Mapa(10,10,gameLoop);
 		Vector unVector = new Vector(0,0);
 		try{
-			unVector = unMapa.obtenerPosicionLibre();
+			unVector = otroMapa.obtenerPosicionLibre();
 		}
 		catch (ImposibleCalcularPosicion ex){
 			assertTrue(true);

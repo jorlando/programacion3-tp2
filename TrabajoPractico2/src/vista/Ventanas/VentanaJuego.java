@@ -178,7 +178,6 @@ public class VentanaJuego {
 				if (trazandoTrayectoria){
 					avion.agregarPuntoATrayectoria(new Vector(e.getX(),e.getY()));
 				}
-				
 			}
 			
 		});
