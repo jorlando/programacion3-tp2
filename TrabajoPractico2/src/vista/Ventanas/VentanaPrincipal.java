@@ -106,14 +106,5 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 				"Nicolas Gatti, \n" +
 				"Juan Manuel Orlando");
 	}
-	
-	//public void paintComponents(Graphics g){
-		//g.drawImage(fondo.getImage(),10,10,null);
-		//super.paintComponents(g);
-		//g.drawImage(fondo.getImage(),10,10,null);
-	//}
-	
-	
-	
 }
 
