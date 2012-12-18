@@ -21,3 +21,5 @@ Comandos disponibles:
 [compilartest] 	---> Compila las clases productivas junto con los test y aloja estos ultimos en test
 
 [pasartest]	---> Todo lo anterior y ejecuta las pruebas unitarias con JUnit. Devuelve log interactivo.
+
+*ACLARACION* Si se tipea simplemente ant se puede observar la lista de comandos disponibles.

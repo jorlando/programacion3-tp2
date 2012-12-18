@@ -1,4 +1,0 @@
-Metodos que faltan implementar:
-
-	-Mapa.calcularDireccionParaPosicion
-	-Nivel.calcularNuevoTipoDeAvion
