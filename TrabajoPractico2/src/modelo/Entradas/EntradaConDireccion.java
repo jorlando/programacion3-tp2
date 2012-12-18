@@ -15,30 +15,13 @@ public class EntradaConDireccion extends Entrada {
 		tolerancia = tol;
 	}
 	
-	/*@Override
-	public boolean puntoPertenceALaEntrada(Vector vector, double velocidadAvion){
-		Vector v1 = posicion;
-		Vector v2 = posicion.sumarOtroVector(direccionEntrada.obtenerPerpendicular());
-		if (v1.getX() == v2.getX()){ //si son iguales falla (division por 0)
-			//System.out.println("pista!");
-			return (vector.restarOtroVector(posicion).norma() <= ancho) && ( vector.getX() > (v1.getX() - velocidadAvion) && vector.getX() < (v1.getX() + velocidadAvion));
-			
-		}
-		double yMin = ((v2.getY()-v1.getY())/(v2.getX()-v1.getX()))*(vector.getX()-v1.getX())+v1.getY();
-		// double y = ((v2.getY()-v1.getY())/(v2.getX()-v1.getX()))*(vector.getX()-v1.getX())+v1.getY();
-		double yMax = ((v2.getY()-v1.getY())/(v2.getX()-v1.getX()))*(vector.getX()-v1.getX())+v1.getY();
-																									//GN Aca se tocan los condicionales
-		return (vector.restarOtroVector(posicion).norma() <= ancho) && ((yMin <= vector.getY()) && (vector.getY() <= yMax)); //hay que revisar que esto ande
-		
-	}*/
 	
 	public boolean puntoPertenceALaEntrada(Vector vector, double velocidadAvion){
 		Vector v1 = posicion;
 		Vector v3= direccionEntrada.obtenerPerpendicular().multiplicarPorEscalar(ancho);
 		Vector v2 = posicion.sumarOtroVector(v3);
-		if (v1.getX() == v2.getX()){ //si son iguales falla (division por 0)
+		if (v1.getX() == v2.getX()){
 			return (vector.restarOtroVector(posicion).norma() <= ancho) && ( vector.getX() > (v1.getX() - velocidadAvion) && vector.getX() < (v1.getX() + velocidadAvion));
-			
 		}
 				
 		double minimo=Math.min(v1.getX(),v2.getX());
@@ -49,12 +32,9 @@ public class EntradaConDireccion extends Entrada {
 	@Override
 	public boolean direccionCorrecta(Vector direccion){
 		return (tolerancia >= Math.abs(Math.toDegrees(direccion.anguloFormadoCon(direccionEntrada))));
-		
 	}
 	@Override
-	public Vector obtenerDireccion()
-	{
+	public Vector obtenerDireccion(){
 		return this.direccionEntrada;
 	}
-
 }

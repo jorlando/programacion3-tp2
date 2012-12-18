@@ -3,9 +3,6 @@ package vista.Ventanas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -15,14 +12,11 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import vista.Ventanas.Menu.PanelInfo;
-import vista.Ventanas.Menu.PanelMenu;
-import vista.Ventanas.Menu.PanelNombre;
+import persistencia.Archivador;
+
 import vista.Ventanas.Menu.PanelPuntaje;
 
 import modelo.Aviones.Avion;
@@ -60,16 +54,29 @@ public class VentanaJuego {
 	 */
 	public VentanaJuego() {
 		try {
-			initialize();
+			initialize();	//inicializacion general
+			GameLoop gameLoop = new GameLoop(FPS,(SuperficieDeDibujo) panel);
+			this.inicializarModelo(gameLoop);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 * @throws IOException 
-	 */
+	public VentanaJuego(String pathArchivoXML)
+	{
+		try 
+		{
+			initialize();	//inicializacion general
+			GameLoop gameLoop = new GameLoop(FPS,(SuperficieDeDibujo) panel);
+			this.inicializarModelo(gameLoop, pathArchivoXML);
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+
+
 	private void initialize() throws IOException {
 		frame = new JFrame();
 		frame.setForeground(Color.black);
@@ -86,12 +93,7 @@ public class VentanaJuego {
 		panel = this.addSuperficiePanel();
 		
 		panel.setBounds(50, 50, LARGO-100, ANCHO-100);
-		/*Inicializando el gameloop*/
-		GameLoop gameLoop = new GameLoop(FPS,(SuperficieDeDibujo) panel);
-			
-		this.inicializarModelo(gameLoop);
-		
-		/**/ 
+
 		this.addMouseListener(panel);
 		this.addMouseMotionListener(panel);
 		
@@ -119,6 +121,11 @@ public class VentanaJuego {
 		this.mapa = new Mapa(ANCHO-100,LARGO-100 , gameLoop);
 	}
 
+	private void inicializarModelo(GameLoop gameLoop, String pathArchivoXML) throws IOException
+	{
+		this.mapa = Archivador.cargarMapa(pathArchivoXML, gameLoop);	
+	}
+	
 	private void setComponentsFocus(JButton btnIniciar, JButton btnDetener, JButton btnVolver, JButton btnReiniciar) {
 		frame.setFocusable(true);
 		btnDetener.setFocusable(false);
@@ -134,7 +141,6 @@ public class VentanaJuego {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				Vector click = new Vector(e.getX(),e.getY());
-				//System.out.println(click.getX()+","+click.getY());
 				if (trazandoTrayectoria){
 					avion.agregarPuntoATrayectoria(click);
 				}
@@ -171,7 +177,6 @@ public class VentanaJuego {
 				if (trazandoTrayectoria){
 					avion.agregarPuntoATrayectoria(new Vector(e.getX(),e.getY()));
 				}
-				
 			}
 			
 		});
@@ -231,11 +236,14 @@ public class VentanaJuego {
 	}
 	
 	private JButton addBotonVolver() {
-		JButton btnIniciar = new JButton("Volver Al Menu");
+		JButton btnIniciar = new JButton("Guardar y Salir");
 		btnIniciar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (juegoEnProgreso){
+					System.out.println("Guardando el juego...");
+					Archivador.guardar(mapa, "guardado.xml");	//guardo el juego
+					System.out.println("Guardando el juego...OK!");
 					mapa.detenerSimulacion();
 				}
 				frame.setVisible(false);
@@ -268,5 +276,7 @@ public class VentanaJuego {
 		frame.getContentPane().add(btnIniciar);
 		return btnIniciar;
 	}
+	
+	
 }
 

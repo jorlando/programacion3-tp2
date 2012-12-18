@@ -20,23 +20,23 @@ public class EntradaTest extends TestCase {
 	
 	public void testEntradaPunto12PerteneceAEntrada() {
 		Vector unPunto = new Vector(1,2);
-		assertTrue(entrada.puntoPertenceALaEntrada(unPunto));	
+		assertTrue(entrada.puntoPertenceALaEntrada(unPunto,0));	
 	}
 	
 	public void testEntradaPunto20PerteneceAEntrada() {
 		EntradaConDireccion entrada2 = new EntradaConDireccion(new Vector(1,2) , 3 , new Vector(2,1) , 45);
 		Vector unPunto = new Vector(2,0);
-		assertTrue(entrada2.puntoPertenceALaEntrada(unPunto));	
+		assertTrue(entrada2.puntoPertenceALaEntrada(unPunto,0));	
 	}
 	
 	public void testEntradaPuntoPerteneceAEntradaPeroSePasaDelAncho() {
 		Vector unPunto = new Vector(3,-2);
-		assertFalse(entrada.puntoPertenceALaEntrada(unPunto));	
+		assertFalse(entrada.puntoPertenceALaEntrada(unPunto,0));	
 	}
 	
 	public void testEntradaPuntoNoPerteneceAEntrada() {
-		Vector unPunto = new Vector(1,3);
-		assertFalse(entrada.puntoPertenceALaEntrada(unPunto));	
+		Vector unPunto = new Vector(1,5);
+		assertFalse(entrada.puntoPertenceALaEntrada(unPunto,0));	
 	}
 	
 	public void testEntradaDireccion10Correcta() {

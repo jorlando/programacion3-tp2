@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 
-<project name="Cop-Control" default="compilar">
+<project name="Cop-Control" default="uso">
+	
+	<target name="uso" description="set de instrucciones">
+		<echo message=""></echo>
+		<echo message="CopControl - ANT BuildFile"></echo>
+		<echo message="--------------------------"></echo>
+		<echo message="Comandos:"></echo>
+		<echo message="	limpiar         - Elimina la ultima compilacion"></echo>
+		<echo message="	compilar        - Compila clases productivas"></echo>
+		<echo message="	compilartest    - Compila test unitarios"></echo>
+		<echo message="	pasartest       - Ejecuta los test utilizando jUnit"></echo>	
+	</target>
 	
 	<target name="limpiar" description="Borrar Todo lo Compilado">
 		<delete dir= "build"/>
@@ -9,7 +20,10 @@
 		
 	<target name="compilar" depends="limpiar" description= "Compilar Version Productiva">
 		<mkdir dir="build"/>
-		<javac srcdir = "./src" destdir="./build"></javac>
+		<javac srcdir = "./src" destdir="./build">
+			<classpath path= "./util/jdom-2.0.4/jdom-2.0.4.jar"></classpath>
+		</javac>
+		
 	</target>
 	
 	<target name="compilartest" depends="compilar" description= "Compilar Solo Tests">
@@ -26,7 +40,8 @@
 
 	        	<classpath path= "./build"></classpath>
 	        	<classpath path= "./test"></classpath>
-	 			<classpath path= "./util/junit.jar"></classpath>	           
+	 			<classpath path= "./util/junit.jar"></classpath>	 
+	 			<classpath path= "./util/jdom-2.0.4/jdom-2.0.4.jar"></classpath>
 	            <batchtest>
 	                <fileset dir="./srcTestUnitarios">
 	                    <include name="**/*Test.java"/>

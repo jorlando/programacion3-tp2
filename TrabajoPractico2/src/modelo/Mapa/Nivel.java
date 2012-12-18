@@ -1,8 +1,11 @@
 package modelo.Mapa;
 
+import org.jdom2.Element;
+
+import persistencia.guardable;
 import fiuba.algo3.titiritero.modelo.ObjetoVivo;
 
-public class Nivel implements ObjetoVivo
+public class Nivel implements ObjetoVivo, guardable
 
 {
 	private static final int TIEMPO_MAXIMO_PARA_CREAR_AVIONES = 100;
@@ -87,5 +90,30 @@ public class Nivel implements ObjetoVivo
 	
 	public int obtenerAvionesAterrizados(){
 		return this.avionesAterrizados;
+	}
+
+	@Override
+	public Element serializarXML() {
+		Element elementoNivel = new Element("Nivel");
+		
+		elementoNivel.setAttribute("nivelActual", String.valueOf(this.nivelActual));
+		elementoNivel.setAttribute("factorVelocidad", String.valueOf(this.factorVelocidad));
+		elementoNivel.setAttribute("avionesPorNivel", String.valueOf(this.avionesPorNivel));
+		elementoNivel.setAttribute("contadorParaAviones", String.valueOf(this.contadorParaAviones));
+		elementoNivel.setAttribute("avionesAterrizados", String.valueOf(this.avionesAterrizados));
+		
+		return elementoNivel;
+	}
+	
+	public static Nivel cargarDesdeXML (Element elementoNivel)
+	{
+		Nivel nuevoNivel = new Nivel();
+		nuevoNivel.nivelActual = Integer.parseInt(elementoNivel.getAttributeValue("nivelActual"));
+		nuevoNivel.factorVelocidad = Double.parseDouble(elementoNivel.getAttributeValue("factorVelocidad"));
+		nuevoNivel.avionesPorNivel = Integer.parseInt(elementoNivel.getAttributeValue("avionesPorNivel"));
+		nuevoNivel.contadorParaAviones = Integer.parseInt(elementoNivel.getAttributeValue("contadorParaAviones"));
+		nuevoNivel.avionesAterrizados = Integer.parseInt(elementoNivel.getAttributeValue("avionesAterrizados"));
+		
+		return nuevoNivel;
 	}
 }

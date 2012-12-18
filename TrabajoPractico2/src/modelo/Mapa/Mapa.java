@@ -6,6 +6,10 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Random;
 
+import org.jdom2.Element;
+
+import persistencia.guardable;
+
 import vista.Aviones.VistaAvion;
 import vista.Pistas.*;
 import vista.Ventanas.*;
@@ -21,7 +25,8 @@ import fiuba.algo3.titiritero.dibujables.Imagen;
 import fiuba.algo3.titiritero.modelo.*;
 
 
-public class Mapa implements ObjetoVivo, ObjetoPosicionable{
+public class Mapa implements ObjetoVivo, ObjetoPosicionable, guardable
+{
 	
 	private ArrayList<Avion> aviones;
 	private ArrayList<Pista> pistas;
@@ -47,7 +52,20 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		mensajesAMostrar=new ArrayList<Imagen>();
 		
 	}
-	
+	public Mapa(int ancho, int largo, GameLoop gameLoop, Nivel unNivel){
+		this.ancho = ancho;
+		this.largo = largo;
+		aviones = new ArrayList<Avion>();
+		pistas = new ArrayList<Pista>();
+		nivel = unNivel;
+		nivelActual=nivel.getNivel();
+		this.gameLoop = gameLoop;
+		this.observador = new ObservadorDeMapa(this);
+		this.gameLoop.agregarObservador(observador);
+		this.gameLoop.agregar(nivel);
+		mensajesAMostrar=new ArrayList<Imagen>();
+		
+	}
 	public Mapa(GameLoop gameLoop){
 		this(800,600, gameLoop);
 	}
@@ -86,14 +104,14 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		{
 			posicion=posicion.restarOtroVector(direccion);
 		}
-		double miAncho = (double) unHash.get("ancho"); // Aca me falla el juego
+		double miAncho = (double) unHash.get("ancho");
 		posicion= this.aplicarVarianza(posicion,miAncho);
 		return posicion;
 	}
-	public Vector aplicarVarianza(Vector posicion, double variable)
+	public Vector aplicarVarianza(Vector posicion, double cuantoVaria)
 	{
 		Random generator = new Random();
-		int valor = generator.nextInt((int)variable*2);
+		int valor = generator.nextInt((int)cuantoVaria*2);
 		
 		ArrayList<Integer> valoresPosibles = new ArrayList<Integer>();
 		valoresPosibles.add(valor);
@@ -146,7 +164,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	}
 	
 	public boolean aterrizarAviones(){
-		//hay que hacer que aumente un punto por cada avion aterrizado
 		Iterator<Pista> iteradorPista = pistas.listIterator();
 		boolean aterrizoAlguno=false;
 		while(iteradorPista.hasNext()) {
@@ -155,6 +172,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 			if (avionesAterrizados.size()>0){
 				aterrizoAlguno=true;
 				this.borrarAviones(avionesAterrizados);
+				//aumento el nivel
 				nivel.AvionesAterrizados(avionesAterrizados.size());
 			}
 		}
@@ -305,9 +323,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	}
 	
 	public void iniciarSimulacion(){
-		
-		
-		//VistaMapa vistaMapa = new VistaMapa(this);
 		/* Creamos las pistas */
 		Pista pistaSimple = new PistaSimpleEntrada(new Vector(300,350), new Vector(1,0), 40, 80);
 		Pista pistaPesada = new PistaPesadaSimple(new Vector(60,150), new Vector(0,1), 40, 80);
@@ -319,13 +334,11 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		VistaHelipuerto vistaHelipuerto=null;
 		VistaPistaDobleEntrada vistaDoble= null;
 		
-		//VistaMapa unaVistaMapa=null;
 		try {
 			vistaPistaSimple = new VistaPistaSimple(pistaSimple);
 			vistaPistaPesada = new VistaPistaPesadaSimple(pistaPesada);
 			vistaHelipuerto = new VistaHelipuerto(pistaHelipuerto);
 			vistaDoble = new VistaPistaDobleEntrada(pistaDoble);
-			//unaVistaMapa = new VistaMapa(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -335,7 +348,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 		this.agregarPista(pistaHelipuerto);
 		this.agregarPista(pistaDoble);
 		/* **************************************** */
-		//gameLoop.agregar(unaVistaMapa); //esta vista hay que ponerla al fondo.
 		gameLoop.agregar(this);
 		gameLoop.agregar(vistaPistaSimple);
 		gameLoop.agregar(vistaPistaPesada);
@@ -432,6 +444,31 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable{
 	
 	public int obtenerAvionesAterrizados(){
 		return this.nivel.obtenerAvionesAterrizados();
+	}
+
+	@Override
+	public Element serializarXML()
+	{
+		Element elementoMapa = new Element("Mapa");
+		
+		elementoMapa.setAttribute("ancho", String.valueOf(this.ancho));
+		elementoMapa.setAttribute("largo", String.valueOf(this.largo));
+		elementoMapa.setAttribute("nivelActual", String.valueOf(this.nivelActual));
+		
+		elementoMapa.addContent(this.nivel.serializarXML());	//Elemento XML de nivel
+		
+		Iterator<Avion> iteradorAviones = this.aviones.iterator();
+		Element elementoAviones = new Element("Aviones");
+		
+		while(iteradorAviones.hasNext())
+			elementoAviones.addContent(iteradorAviones.next().serializarXML());	//Elemento XML de un avion
+		
+		elementoMapa.addContent(elementoAviones);
+		
+		
+		return elementoMapa;
+		
+		
 	}
 	
 }

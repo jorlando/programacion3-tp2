@@ -91,11 +91,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 	}
 	
 	private void cargarJuego(){
-		System.out.println("se tiene que cargar un juego guardado");
+		VentanaJuego vJuego = new VentanaJuego("guardado.xml");
+		setVisible(false);
+		vJuego.getFrame().setVisible(true);
 	}
 	
 	private void ayuda(){
-		this.panelMenu.setTexto("Aca se informan las instrucciones del juego: ");
+		this.panelMenu.setTexto("Instrucciones del juego:\n  Arrastrar los aviones, manteniendolos\n  presionados hacia la pista que\n  le correponde ");
 	}
 	
 	private void acerca(){
@@ -104,14 +106,5 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 				"Nicolas Gatti, \n" +
 				"Juan Manuel Orlando");
 	}
-	
-	//public void paintComponents(Graphics g){
-		//g.drawImage(fondo.getImage(),10,10,null);
-		//super.paintComponents(g);
-		//g.drawImage(fondo.getImage(),10,10,null);
-	//}
-	
-	
-	
 }
 

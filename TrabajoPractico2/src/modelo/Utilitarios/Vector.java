@@ -11,8 +11,7 @@ public class Vector {
 		this.y = y;
 	}
 	
-	public Vector (Vector aCopiar)
-	{
+	public Vector (Vector aCopiar){
 		this.x = aCopiar.getX();
 		this.y = aCopiar.getY();
 	}
@@ -56,7 +55,6 @@ public class Vector {
 	}
 	
 	public double productoEscalar(Vector otro){
-		
 		return ((this.x*otro.x) + (this.y*otro.y));
 	}
 	
@@ -64,5 +62,4 @@ public class Vector {
 		if (this.norma()*otro.norma()==0) return 0;
 		return Math.acos((this.productoEscalar(otro))/(this.norma()*otro.norma()));
 	}
-
 }

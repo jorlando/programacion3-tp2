@@ -19,13 +19,6 @@ public class PanelNombre extends JPanel {
 		FlowLayout layout = new FlowLayout();
 		setLayout(layout);
 		layout.setVgap(50);
-		//this.setSize(400,280);
-		//nombre = new JTextField(20);
-		
-		//add(new JLabel("Nombre: "));
-		//add(nombre);
-
-
 	}
 	
 	public String getNombre(){
