@@ -9,7 +9,10 @@
 		
 	<target name="compilar" depends="limpiar" description= "Compilar Version Productiva">
 		<mkdir dir="build"/>
-		<javac srcdir = "./src" destdir="./build"></javac>
+		<javac srcdir = "./src" destdir="./build">
+			<classpath path= "./util/jdom-2.0.4/jdom-2.0.4.jar"></classpath>
+		</javac>
+		
 	</target>
 	
 	<target name="compilartest" depends="compilar" description= "Compilar Solo Tests">
@@ -26,7 +29,8 @@
 
 	        	<classpath path= "./build"></classpath>
 	        	<classpath path= "./test"></classpath>
-	 			<classpath path= "./util/junit.jar"></classpath>	           
+	 			<classpath path= "./util/junit.jar"></classpath>	 
+	 			<classpath path= "./util/jdom-2.0.4/jdom-2.0.4.jar"></classpath>
 	            <batchtest>
 	                <fileset dir="./srcTestUnitarios">
 	                    <include name="**/*Test.java"/>
