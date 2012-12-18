@@ -104,7 +104,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable, guardable
 		{
 			posicion=posicion.restarOtroVector(direccion);
 		}
-		double miAncho = (double) unHash.get("ancho"); // Aca me falla el juego
+		double miAncho = (double) unHash.get("ancho");
 		posicion= this.aplicarVarianza(posicion,miAncho);
 		return posicion;
 	}
@@ -164,7 +164,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable, guardable
 	}
 	
 	public boolean aterrizarAviones(){
-		//hay que hacer que aumente un punto por cada avion aterrizado
 		Iterator<Pista> iteradorPista = pistas.listIterator();
 		boolean aterrizoAlguno=false;
 		while(iteradorPista.hasNext()) {
@@ -173,6 +172,7 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable, guardable
 			if (avionesAterrizados.size()>0){
 				aterrizoAlguno=true;
 				this.borrarAviones(avionesAterrizados);
+				//aumento el nivel
 				nivel.AvionesAterrizados(avionesAterrizados.size());
 			}
 		}
@@ -323,9 +323,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable, guardable
 	}
 	
 	public void iniciarSimulacion(){
-		
-		
-		//VistaMapa vistaMapa = new VistaMapa(this);
 		/* Creamos las pistas */
 		Pista pistaSimple = new PistaSimpleEntrada(new Vector(300,350), new Vector(1,0), 40, 80);
 		Pista pistaPesada = new PistaPesadaSimple(new Vector(60,150), new Vector(0,1), 40, 80);
@@ -337,13 +334,11 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable, guardable
 		VistaHelipuerto vistaHelipuerto=null;
 		VistaPistaDobleEntrada vistaDoble= null;
 		
-		//VistaMapa unaVistaMapa=null;
 		try {
 			vistaPistaSimple = new VistaPistaSimple(pistaSimple);
 			vistaPistaPesada = new VistaPistaPesadaSimple(pistaPesada);
 			vistaHelipuerto = new VistaHelipuerto(pistaHelipuerto);
 			vistaDoble = new VistaPistaDobleEntrada(pistaDoble);
-			//unaVistaMapa = new VistaMapa(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -353,7 +348,6 @@ public class Mapa implements ObjetoVivo, ObjetoPosicionable, guardable
 		this.agregarPista(pistaHelipuerto);
 		this.agregarPista(pistaDoble);
 		/* **************************************** */
-		//gameLoop.agregar(unaVistaMapa); //esta vista hay que ponerla al fondo.
 		gameLoop.agregar(this);
 		gameLoop.agregar(vistaPistaSimple);
 		gameLoop.agregar(vistaPistaPesada);

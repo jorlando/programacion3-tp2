@@ -9,7 +9,6 @@ import fiuba.algo3.titiritero.dibujables.*;
 public class VistaMapa extends Cuadrado {
 
 	public VistaMapa(Mapa unMapa) throws IOException{
-		//super("recursos/imagenes/fondoJuego.jpg", unMapa);
 		super(unMapa.getAncho(), unMapa.getLargo(), unMapa);
 		this.setColor(Color.blue);
 		

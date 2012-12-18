@@ -20,7 +20,7 @@ public class EntradaConDireccion extends Entrada {
 		Vector v1 = posicion;
 		Vector v3= direccionEntrada.obtenerPerpendicular().multiplicarPorEscalar(ancho);
 		Vector v2 = posicion.sumarOtroVector(v3);
-		if (v1.getX() == v2.getX()){ //si son iguales falla (division por 0)
+		if (v1.getX() == v2.getX()){
 			return (vector.restarOtroVector(posicion).norma() <= ancho) && ( vector.getX() > (v1.getX() - velocidadAvion) && vector.getX() < (v1.getX() + velocidadAvion));
 		}
 				

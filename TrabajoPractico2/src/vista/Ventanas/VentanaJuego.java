@@ -141,7 +141,6 @@ public class VentanaJuego {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				Vector click = new Vector(e.getX(),e.getY());
-				//System.out.println(click.getX()+","+click.getY());
 				if (trazandoTrayectoria){
 					avion.agregarPuntoATrayectoria(click);
 				}

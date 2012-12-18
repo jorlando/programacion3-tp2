@@ -21,8 +21,6 @@ public static PanelPuntaje obtenerPanel(){
 		return elPanel;
 	}
 private PanelPuntaje(){
-		
-		//this.setBackground(Color.black);
 		setOpaque(false);
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setSize(20,20);

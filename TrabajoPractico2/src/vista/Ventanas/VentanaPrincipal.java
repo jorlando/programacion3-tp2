@@ -97,7 +97,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 	}
 	
 	private void ayuda(){
-		this.panelMenu.setTexto("Aca se informan las instrucciones del juego: ");
+		this.panelMenu.setTexto("Instrucciones del juego:\n  Arrastrar los aviones, manteniendolos\n  presionados hacia la pista que\n  le correponde ");
 	}
 	
 	private void acerca(){

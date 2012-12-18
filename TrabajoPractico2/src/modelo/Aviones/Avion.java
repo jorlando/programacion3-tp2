@@ -96,7 +96,7 @@ public class Avion implements ObjetoPosicionable, ObjetoVivo, guardable
 	}
 	
 	@Override
-	public void vivir(){ //esto sirve depende como lo hagamos
+	public void vivir(){
 		avanzar();
 	}
 

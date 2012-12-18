@@ -10,7 +10,6 @@ public class VistaWaypoint extends Circulo {
 	public VistaWaypoint( ObjetoPosicionable objetoPosicionable) {
 		super(2, objetoPosicionable);
 		this.setColor(Color.RED);
-		// TODO Auto-generated constructor stub
 	}
 
 }
